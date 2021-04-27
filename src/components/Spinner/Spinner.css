@@ -1,0 +1,16 @@
+.spinner{
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    left: 50%;
+    top: 50%;
+    position: fixed;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
