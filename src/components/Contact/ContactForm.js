@@ -50,7 +50,7 @@ const ContactForm = () => {
       >
         {({ isSubmitting }) => (
           <Form className="border border-dark p-3 rounded">
-            <h2 className="h2">Envíanos tu mensaje</h2>
+            <h2 className="h2">Envianos tu mensaje</h2>
             <div className="form-group text-left">
               <label htmlFor="name" className="text-left">
                 Nombre
