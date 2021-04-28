@@ -49,8 +49,9 @@ const ContactForm = () => {
         validate={validateFields}
       >
         {({ isSubmitting }) => (
-          <Form className="container mt-2 lg-w-50 lg-h-75">
-            <div className="form-group">
+          <Form className="border border-dark p-3 rounded">
+            <h2 className="h2">Envíanos tu mensaje</h2>
+            <div className="form-group text-left">
               <label htmlFor="name" className="text-left">
                 Nombre
               </label>
@@ -66,7 +67,7 @@ const ContactForm = () => {
                 className="alert alert-danger h6 mt-2"
               />
             </div>
-            <div className="form-group">
+            <div className="form-group text-left">
               <label htmlFor="email">Correo electrónico</label>
               <Field
                 className="form-control"
@@ -80,7 +81,7 @@ const ContactForm = () => {
                 className="alert alert-danger h6 mt-2"
               />
             </div>
-            <div className="form-group">
+            <div className="form-group text-left">
               <label htmlFor="message">Mensaje</label>
               <Field
                 as="textarea"
