@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const loginService = {
   login: (credentials) => {
     return credentials
-  }
-}
+  },
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -16,23 +16,23 @@ export const userSlice = createSlice({
       state.user = action.payload
     },
   },
-})
+});
 
-export const { storeUser } = userSlice.actions
+export const { storeUser } = userSlice.actions;
 
 export const userLogin = credentials => async dispatch => {
-    const user = await loginService.login(credentials)
+    const user = await loginService.login(credentials);
     window.localStorage.setItem(
       'ongLoggedUser', JSON.stringify(user)
-    )
-    dispatch(storeUser(user))
-}
+    );
+    dispatch(storeUser(user));
+};
 
 export const userLogout = () => dispatch => {
-    dispatch(storeUser(null))
-    window.localStorage.removeItem('ongLoggedUser')
-}
+    dispatch(storeUser(null));
+    window.localStorage.removeItem('ongLoggedUser');
+};
   
-export const userLogged = state => state.user.user
+export const userLogged = state => state.user.user;
   
-export default userSlice.reducer
+export default userSlice.reducer;
