@@ -31,9 +31,38 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(10px)
+    transform: translateY(10px);
   }
   100% {
-    transform: translateY(0px)
+    transform: translateY(0px);
   }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  background-color: #808080;
+}
+
+.slide-img {
+  padding: 15px;
+  position: flex;
+  width: 2%;
+}
+
+.slide-img:after {
+  content: "";
+  display: flex;
+  padding-bottom: 100%;
+}
+
+.slide-txt {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  position: absolute;
+  top: 182px;
+  right: 0;
+  width: 50%;
+  padding-right: 4%;
+  line-height: 1.8;
 }
