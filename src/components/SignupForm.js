@@ -33,7 +33,7 @@ const SignupForm = () => {
       })
 
       const onSubmit=(data)=>{
-        /*Axios.post("http://localhost:4001/transactions/", data)
+        /*Axios.post("", data)
             .then((result) => {
                 console.log('Registered User')
 
