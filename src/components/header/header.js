@@ -3,6 +3,9 @@ import React from 'react';
 // Styles
 import './header.styles.css';
 
+// Components
+import NavItem from '../nav-item/nav-item';
+
 const Header = () => {
     return (
         <div className="header">
@@ -10,7 +13,7 @@ const Header = () => {
                 <img className="logo" src="#"/>
             </div>
             <div className="nav-container">
-
+                
             </div>
         </div>
     )
