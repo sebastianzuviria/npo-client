@@ -6,6 +6,9 @@ import './header.styles.css';
 // Components
 import NavItem from '../nav-item/nav-item';
 
+// Mock Logo
+import logo from '../../assets/logo.png';
+
 const Header = () => {
     const [navbarItems, setNavbarItems] = useState(
         [
@@ -30,7 +33,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="logo-container">
-                <img className="logo" src="#"/>
+                <img className="logo" src={logo}/>
             </div>
             <div className="nav-container">
                 {
