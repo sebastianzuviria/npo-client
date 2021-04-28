@@ -3,10 +3,10 @@ import React from 'react';
 // Styles
 import './nav-item.styles.css';
 
-const NavItem = ( { itemTex: itemText, itemRoute } ) => {
+const NavItem = ( { itemText, itemRoute } ) => {
     return (
         <div>
-            <a className="nav-item" href={itemRoute}> {itemText} </a>
+            <a className="nav-item" href={ itemRoute }> { itemText } </a>
         </div>
     )
 }
