@@ -23,6 +23,14 @@ export const userSlice = createSlice({
 
 export const { storeUser, removeUser } = userSlice.actions;
 
+export const isLogged = () => dispatch => {
+  const loggedUserJSON = window.localStorage.getItem('ongLoggedUser');
+    if(loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      dispatch(storeUser(user));
+  };
+};
+
 export const userLogin = credentials => async dispatch => {
     const user = await loginService.login(credentials);
     window.localStorage.setItem(
