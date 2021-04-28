@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import './Spinner.css';
 
-export const Spinner = ( { timeout = 0 } ) => {
+const Spinner = ( { timeout = 0 } ) => {
 
     return (
         <Loader
@@ -14,3 +14,5 @@ export const Spinner = ( { timeout = 0 } ) => {
     )
 
 }
+
+export default Spinner;
