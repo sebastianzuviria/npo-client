@@ -1,9 +1,11 @@
-import React from'react'
+import React, {useState} from'react'
 import { Formik , Form  } from 'formik' ;   
 import * as Yup from 'yup';
 import MyTextInput from './Textfield'
 
 const SignupForm = () => {
+
+    const [register, setRegister]= useState(false);    
 
     const initialValues={
 
@@ -42,7 +44,8 @@ const SignupForm = () => {
               console.log("Sorry, unregistered user");
             });
         */
-       console.log(data)
+        setRegister(true);
+        console.log(data)
     }
 
     return (
@@ -82,6 +85,7 @@ const SignupForm = () => {
             <button type="submit">Submit</button>
           </Form>
         </Formik>
+        {register ? 'Successful registered user' : ''}
       </>
     );
   };
