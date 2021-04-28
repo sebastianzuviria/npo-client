@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
 
 //install Swiper modules
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Pagination]);
 
 let content = [
   {
@@ -38,14 +39,17 @@ function slider() {
         spaceBetween={50}
         slidesPerView={1}
         navigation
+        pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
       >
         {content.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div>
-              <img src={slide.imageUrl} alt="slider-img"></img>
+            <div className="container">
+              <div className="slide-img">
+                <img src={slide.imageUrl} alt="slider-img"></img>
+              </div>
+              <div className="slide-txt">{slide.text}</div>
             </div>
-            <div>{slide.text}</div>
           </SwiperSlide>
         ))}
       </Swiper>
