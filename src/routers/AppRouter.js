@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { Counter } from '../features/counter/Counter';
 import App from '../App';
 
-export const AppRouter = () => {
+const AppRouter = () => {
     return (
 
         <Router>
@@ -20,3 +20,5 @@ export const AppRouter = () => {
 
     )
 }
+
+export default AppRouter;
