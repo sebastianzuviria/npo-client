@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+
+SwiperCore.use([Navigation]);
 
 function slider() {
   return (
@@ -8,6 +12,7 @@ function slider() {
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
+        navigation
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
