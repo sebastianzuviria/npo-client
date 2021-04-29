@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+const allCategories = [ 
+    { value: 'category 1', label: 'Category 1'},
+    { value: 'category 2', label: 'Category 2'},
+    { value: 'category 3', label: 'Category 3'}
+]
+
 const NewsForm = ({ id, title, image, category, content }) => {
     const [newTitle, setNewTitle] = useState('');
     const [newImage, setNewImage] = useState('');
@@ -68,11 +74,15 @@ const NewsForm = ({ id, title, image, category, content }) => {
                 </label>
                 <label>
                     category
-                    <input 
-                        type='text'
+                    <select
                         value={newCategory}
-                        onChange={({target}) => { setNewCategory(target.value) }}
-                    />
+                        onChange={({ target }) => setNewCategory(target.value)}
+                    >
+                        <option value=''>Select</option>
+                        {allCategories.map(c => 
+                            <option key={c.value} value={c.value}>{c.label}</option>
+                        )}
+                    </select>
                 </label>
                 <label>
                     content
@@ -85,7 +95,7 @@ const NewsForm = ({ id, title, image, category, content }) => {
                     } }
                 />
                 </label>
-                <button type='submit'>Submit</button>
+                <button type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
             </form>
         </div>
     );
