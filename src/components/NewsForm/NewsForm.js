@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import './NewsForm.css';
 import React, { useState, useEffect } from 'react';
+=======
+import './NewsForm.css'
+import React, { useState, useEffect } from 'react'
+>>>>>>> 9fab09828704fd6c544e3ab61da2aee6ae31a910
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
