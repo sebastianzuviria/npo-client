@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const NewsForm = () => {
     const [title, setTitle] = useState('');
@@ -6,11 +8,25 @@ const NewsForm = () => {
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
 
+    console.log(content)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const newsObject = {
+            title,
+            image,
+            category,
+            content
+        }
+
+        console.log(newsObject)
+    }
 
     return (
         <div>
             <h2>News Form</h2>
-            <form style={{ display: 'flex', flexDirection: 'column'}}>
+            <form style={{ display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
                 <label>
                     title
                     <input 
@@ -37,12 +53,16 @@ const NewsForm = () => {
                 </label>
                 <label>
                     content
-                    <textarea 
-                        type='text'
-                        value={content}
-                        onChange={({target}) => { setContent(target.value) }}
-                    />
+                    <CKEditor
+                    editor={ ClassicEditor }
+                    data={content}
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        setContent(data)
+                    } }
+                />
                 </label>
+                <button type='submit'>Submit</button>
             </form>
         </div>
     )
