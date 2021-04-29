@@ -15,10 +15,21 @@ export const userSlice = createSlice({
     storeUser: (state, action) => {
       state.user = action.payload
     },
+    removeUser: (state, action) => {
+      state.user = null
+    },
   },
 });
 
-export const { storeUser } = userSlice.actions;
+export const { storeUser, removeUser } = userSlice.actions;
+
+export const isLogged = () => dispatch => {
+  const loggedUserJSON = window.localStorage.getItem('ongLoggedUser');
+    if(loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      dispatch(storeUser(user));
+  };
+};
 
 export const userLogin = credentials => async dispatch => {
     const user = await loginService.login(credentials);
@@ -29,7 +40,7 @@ export const userLogin = credentials => async dispatch => {
 };
 
 export const userLogout = () => dispatch => {
-    dispatch(storeUser(null));
+    dispatch(removeUser());
     window.localStorage.removeItem('ongLoggedUser');
 };
   
