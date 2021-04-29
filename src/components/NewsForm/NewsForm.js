@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import './NewsForm.css';
+import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -6,7 +7,7 @@ const allCategories = [
     { value: 'category 1', label: 'Category 1'},
     { value: 'category 2', label: 'Category 2'},
     { value: 'category 3', label: 'Category 3'}
-]
+];
 
 const NewsForm = ({ id, title, image, category, content }) => {
     const [newTitle, setNewTitle] = useState('');
@@ -50,14 +51,14 @@ const NewsForm = ({ id, title, image, category, content }) => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div>
             <h2>{titleOfForm}</h2>
             <form style={{ display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
                 <label>
-                    title
+                    Title
                     <input 
                         type='text'
                         value={newTitle}
@@ -65,7 +66,7 @@ const NewsForm = ({ id, title, image, category, content }) => {
                     />
                 </label>
                 <label>
-                    image
+                    Image
                     <input 
                         type='text'
                         value={newImage}
@@ -73,7 +74,7 @@ const NewsForm = ({ id, title, image, category, content }) => {
                     />
                 </label>
                 <label>
-                    category
+                    Category
                     <select
                         value={newCategory}
                         onChange={({ target }) => setNewCategory(target.value)}
@@ -85,21 +86,20 @@ const NewsForm = ({ id, title, image, category, content }) => {
                     </select>
                 </label>
                 <label>
-                    content
+                    Content
                     <CKEditor
-                    editor={ ClassicEditor }
-                    data={newContent}
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        setNewContent(data)
-                    } }
-                />
+                        editor={ ClassicEditor }
+                        data={newContent}
+                        onChange={ ( event, editor ) => {
+                            const data = editor.getData();
+                            setNewContent(data)
+                        } }
+                    />
                 </label>
                 <button type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
             </form>
         </div>
     );
-
 };
 
 export default NewsForm;
