@@ -45,15 +45,16 @@
 }
 
 .slide-img {
+  height: auto;
   padding: 15px;
-  position: flex;
+  position: relative;
   width: 2%;
 }
 
-.slide-img:after {
-  content: "";
-  display: flex;
-  padding-bottom: 100%;
+@media all and (max-width: 500px) {
+  .slide-img {
+    opacity: 40%;
+  }
 }
 
 .slide-txt {
