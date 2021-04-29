@@ -10,9 +10,11 @@
     "node-sass": "4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-loader-spinner": "^4.0.0",
     "react-redux": "^7.1.3",
     "react-scripts": "3.4.3",
-    "swiper": "^6.5.8"
+    "swiper": "^6.5.8",
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
