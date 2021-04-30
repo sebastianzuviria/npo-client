@@ -8,14 +8,17 @@ const Footer = () => {
         linkWeb: "https://jonathangomezit.com",
         socialMedia:[
             {
+                icon: "fab fa-instagram-square",
                 name: "Instagram",
                 url: "https://www.instagram.com/"
             },
             {
+                icon: "fab fa-facebook-square",
                 name: "Facebook",
                 url: "https://www.facebook.com/",
             },
             {
+                icon: "fab fa-twitter-square",
                 name: "Twitter",
                 url: "https://www.twitter.com"
             }
@@ -27,7 +30,11 @@ const Footer = () => {
             <a href={mock.linkWeb} className="footer__linkweb" >Test Site</a>
             <div className="footer__content-social">
             {
-                mock.socialMedia.map(({name, url}, index) => <a key= {index} href={url} className="footer__items">{name}</a>)
+                mock.socialMedia.map(({name, url, icon}, index) => (<div>
+                    <i key= {index} href={url} className={`${icon} footer__items`}></i>
+                    <span>{name}</span>
+                    </div>)
+                )
             }
             </div>
         </footer>

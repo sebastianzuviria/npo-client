@@ -20,5 +20,6 @@
     display: grid;
 }
 .footer__items{
+    font-size: 1.4em;
     text-decoration: none ;
 }
