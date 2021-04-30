@@ -1,42 +1,49 @@
 import React from 'react';
 import './Footer.css';
+import IconList from './iconList/IconList';
 
 const Footer = () => {
     const [mock] = React.useState({
-
-        img: "https://picsum.photos/200", 
+        ongName: "ONG - alkemy",
+        img: "https://picsum.photos/200",   
         linkWeb: "https://jonathangomezit.com",
         socialMedia:[
             {
                 icon: "fab fa-instagram-square",
-                name: "Instagram",
+                name: "Instagram/ong",
                 url: "https://www.instagram.com/"
             },
             {
                 icon: "fab fa-facebook-square",
-                name: "Facebook",
+                name: "Facebook/ong",
                 url: "https://www.facebook.com/",
             },
             {
                 icon: "fab fa-twitter-square",
-                name: "Twitter",
+                name: "Twitter/ong",
                 url: "https://www.twitter.com"
             }
         ]
     })
     return(
         <footer className="footer__content">
-            <img src={mock.img} alt="logo" className="footer__logo"/>
-            <a href={mock.linkWeb} className="footer__linkweb" >Test Site</a>
+
+            <div className="footer__content-logo">
+                <img src={mock.img} alt="logo" className="footer__logo"/>
+                <h4>{mock.ongName}</h4>
+            </div>
+
             <div className="footer__content-social">
             {
-                mock.socialMedia.map(({name, url, icon}, index) => (<div>
-                    <i key= {index} href={url} className={`${icon} footer__items`}></i>
-                    <span>{name}</span>
-                    </div>)
-                )
+                mock.socialMedia.map((values, index) => (<IconList key={index} {...values} />))
             }
             </div>
+
+            <div className="footer__content-website">
+                    <span>Web Site: </span>
+                    <a href={mock.linkWeb} target= "_blank" rel="noopener noreferrer" className="footer__linkweb" >{mock.linkWeb}</a>
+            </div>
+
         </footer>
     )
 }
