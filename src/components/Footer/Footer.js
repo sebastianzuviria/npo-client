@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.css';
 import IconList from './iconList/IconList';
 
 const Footer = () => {
-    const [mock] = React.useState({
+    const [mock] = useState({
         ongName: "ONG - alkemy",
         img: "https://picsum.photos/200",   
         linkWeb: "https://jonathangomezit.com",
