@@ -39,6 +39,7 @@
 }
 
 .container {
+  overflow: hidden;
   position: relative;
   width: 100%;
   background-color: #808080;
@@ -48,16 +49,17 @@
   height: auto;
   padding: 15px;
   position: relative;
-  width: 2%;
+  width: 0.5%;
 }
 
 @media all and (max-width: 500px) {
   .slide-img {
-    opacity: 40%;
+    opacity: 30%;
   }
 }
 
 .slide-txt {
+  color: #002924;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 14px;
   position: absolute;
