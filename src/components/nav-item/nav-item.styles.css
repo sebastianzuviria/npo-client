@@ -1,0 +1,11 @@
+.nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 15px;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
