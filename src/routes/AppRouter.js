@@ -18,7 +18,7 @@ const AppRouter = () => {
                 {
                     /* Examples PrivateRoute 
 
-                    <PrivateRoute role='Admin'>
+                    <PrivateRoute path='/backoffice/users role='Admin'>
                         <UserList />
                     </PrivateRoute>
 

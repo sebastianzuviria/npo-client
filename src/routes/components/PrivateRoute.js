@@ -8,6 +8,22 @@ import { userLogged } from '../../slices/userSlice';
 const PrivateRoute = ({ children, role, ...rest }) => {
     const user = useSelector(userLogged);
 
+    if(!user) {
+        return (
+            <Route
+                {...rest}
+                render={({ location }) =>
+                    <Redirect
+                    to={{
+                        pathname: "/",
+                        state: { from: location }
+                    }}
+                    />
+                }
+            />
+        )
+    }
+
     return (
       <Route
         {...rest}
