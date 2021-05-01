@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Table.css'
-import Axios from 'axios'
-import swal from "sweetalert";
+/* import Axios from 'axios'
+import swal from "sweetalert"; */
 
 const Table = () => {
     const [users, setUsers] = useState([])
@@ -13,17 +13,17 @@ const Table = () => {
     
 
     const edit = (id) => {
-        Axios.get(`http://localhost:3000/users/${id}`)
+        /* Axios.get(`http://localhost:3000/users/${id}`)
             .then(data => {
                 setUserID(data.data.id)
                 setFirstName(data.data.firstName)
                 setLastName(data.data.lastName)
                 setEmail(data.data.email)
             })
-            .catch(err => { console.log(err) })
+            .catch(err => { console.log(err) }) */
     };
     const update = () => {
-        swal({
+        /* swal({
             title: "Are you sure?",
             text: "An user is about to be updated",
             icon: "warning",
@@ -40,10 +40,10 @@ const Table = () => {
             } else {
                 swal("User is safe!");
             }
-        });
+        }); */
     }
     const delet = (id) => {
-        swal({
+       /*  swal({
             title: "Are you sure?",
             text: "An User is about to be deleted",
             icon: "warning",
@@ -60,14 +60,14 @@ const Table = () => {
             } else {
                 swal("User is safe!");
             }
-        });
+        }); */
     };
     useEffect(() => {
-        Axios.get('http://localhost:3000/users')
+        /* Axios.get('http://localhost:3000/users')
             .then(res => {
                 console.log(res);
                 setUsers(res.data)
-            })
+            }) */
     }, [])
     return (
         <div className='d-flex justify-content-center'>

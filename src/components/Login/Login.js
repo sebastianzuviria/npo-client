@@ -1,9 +1,12 @@
-import React from 'react'
-import './Login.css'
-import {Formik, Form, Field} from 'formik'
-import * as Yup from 'yup'
+import React from 'react';
+import './Login.css';
+import {Formik, Form, Field} from 'formik';
+import * as Yup from 'yup';
+import {useDispatch} from 'react-redux';
+import {userLogin} from '../../slices/userSlice'
 
 const Login = () => {
+    const dispatch = useDispatch()
     const initialValues ={
         email:'',
         password:''
@@ -18,6 +21,7 @@ const Login = () => {
     })
     const onSubmit=(values)=>{
         console.log(values);
+        dispatch(userLogin(values))
     }
     return (
         <div className="d-flex justify-content-center align-items-center divF-form">
