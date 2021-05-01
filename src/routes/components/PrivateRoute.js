@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { userLogged } from '../../slices/userSlice';
@@ -7,6 +7,22 @@ import { userLogged } from '../../slices/userSlice';
 
 const PrivateRoute = ({ children, role, ...rest }) => {
     const user = useSelector(userLogged);
+
+    if(!user) {
+        return (
+            <Route
+                {...rest}
+                render={({ location }) =>
+                    <Redirect
+                    to={{
+                        pathname: "/",
+                        state: { from: location }
+                    }}
+                    />
+                }
+            />
+        )
+    }
 
     return (
       <Route

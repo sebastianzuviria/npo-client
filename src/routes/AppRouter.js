@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute'
-import UserList from '../views/UserList'
+import PrivateRoute from './components/PrivateRoute';
+import UserList from '../views/UserList';
 import Home from '../views/Home';
 
 const AppRouter = () => {
@@ -18,7 +18,7 @@ const AppRouter = () => {
                 {
                     /* Examples PrivateRoute 
 
-                    <PrivateRoute role='Admin'>
+                    <PrivateRoute path='/backoffice/users role='Admin'>
                         <UserList />
                     </PrivateRoute>
 
