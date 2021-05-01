@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute'
 import UserList from '../views/UserList'
 import Home from '../views/Home';
 
@@ -14,7 +15,18 @@ const AppRouter = () => {
                     /* TODO: use a real component, when the project grows up 
                     Create private and public routes */ 
                 }
-                {/* <Route exact path='/counter' component={ Counter } />  */}
+                {
+                    /* Examples PrivateRoute 
+
+                    <PrivateRoute role='Admin'>
+                        <UserList />
+                    </PrivateRoute>
+
+                    <PrivateRoute role='Standard'>
+                        <Profile />
+                    </PrivateRoute>
+                    */
+                }
                 <Redirect to='/' />
             </Switch>
         </Router>
