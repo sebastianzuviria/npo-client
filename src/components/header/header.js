@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 // Styles
-import './header.styles.css';
+import './Header.styles.css';
 
 // Components
-import NavItem from '../nav-item/nav-item';
+import NavItem from '../NavItem/NavItem';
 
 // Mock Logo
 import logo from '../../assets/logo.png';
