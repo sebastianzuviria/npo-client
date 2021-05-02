@@ -3,9 +3,6 @@ import Swal from 'sweetalert2';
 
 const MySwal = withReactContent(Swal);
 
-// si = return isConfirmed: true
-// no : return isDenied: true
-
 export const confirmAlert = () => {
 
     return MySwal.fire({
@@ -29,6 +26,15 @@ export const successAlert = () => {
         timer: 2000
       })
 
+}
+
+export const cancelAlert = () => {
+    return MySwal.fire({
+        title: 'Cancelado',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 2000
+    })
 }
 
 export const errorAlert = () => {
