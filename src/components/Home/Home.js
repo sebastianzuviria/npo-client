@@ -19,35 +19,35 @@ let news = [
     id: 1,
     name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     image:
-      "https://bitbucket.org/alkemy-dev/t27-client/src/master/public/images/campaign-recent-02.jpg",
+      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
     createdAt: "03/04/2021",
   },
   {
     id: 2,
     name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     image:
-      "https://bitbucket.org/alkemy-dev/t27-client/src/master/public/images/campaign-recent-02.jpg",
+      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
     createdAt: "03/04/2021",
   },
   {
     id: 3,
     name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     image:
-      "https://bitbucket.org/alkemy-dev/t27-client/src/master/public/images/campaign-recent-02.jpg",
+      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
     createdAt: "03/04/2021",
   },
   {
     id: 4,
     name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     image:
-      "https://bitbucket.org/alkemy-dev/t27-client/src/master/public/images/campaign-recent-02.jpg",
+      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
     createdAt: "03/04/2021",
   },
   {
     id: 5,
     name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     image:
-      "https://bitbucket.org/alkemy-dev/t27-client/src/master/public/images/campaign-recent-02.jpg",
+      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
     createdAt: "03/04/2021",
   },
 ];
@@ -76,6 +76,8 @@ function Home() {
               <div>
                 <img src={filteredNews.image} alt="newsImage"></img>
               </div>
+              <br />
+              <div>{filteredNews.createdAt}</div>
               <br />
             </div>
           ))}
