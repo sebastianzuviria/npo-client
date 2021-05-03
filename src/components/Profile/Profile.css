@@ -1,0 +1,15 @@
+.form-container-box{
+    width: 400px;
+    height: 500px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 80px 10px;
+}
+.h-max{
+    height: 100vh;
+}
+.error-message{
+    color:rgb(219, 0, 0);
+    margin-left: 10px;
+    font-size: 14px
+}
