@@ -1,8 +1,17 @@
 import React from "react";
+//import axios from "axios";
 
-/*GET a /news. 
-Devolverá el listado de entries cuyo campo type sea "news". 
-Devolverá solamente los campos name, image y createdAt*/
+/*GET /news. 
+axios.get('/news', {
+    params: {
+      name: '',
+      image: '',
+      createdAt: ''
+    }
+  })
+  .then(function (response) {
+  })
+*/
 
 //mockup array
 let news = [
@@ -49,6 +58,8 @@ let filteredNews = news.filter((lastNews) => lastNews.id < 5);
 function GetNews() {
   return (
     <div>
+      <div>NOVEDADES</div>
+      <br />
       <div key={filteredNews.id}>
         <div>
           {filteredNews.map((filteredNews) => (
