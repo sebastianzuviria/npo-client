@@ -31,12 +31,12 @@ const Table = () => {
         //     dangerMode: true,
         // }).then((willUpdate) => {
         //     if (willUpdate) {
-        //         // Axios.put(`http://localhost:3000/users/${userID}`, {firstName,lastName,email})
-        //         // swal("User has been updated!", {
-        //         //     icon: "success",
-        //         // }).then(() => {
-        //         //     window.location.reload();
-        //         // });
+        //         Axios.put(`http://localhost:3000/users/${userID}`, {firstName,lastName,email})
+        //         swal("User has been updated!", {
+        //             icon: "success",
+        //         }).then(() => {
+        //             window.location.reload();
+        //         });
         //     } else {
         //         swal("User is safe!");
         //     }
@@ -51,12 +51,12 @@ const Table = () => {
         //     dangerMode: true,
         // }).then((willDelete) => {
         //     if (willDelete) {
-        //         // Axios.delete(`http://localhost:3000/users/${id}`);
-        //         // swal("User has been deleted!", {
-        //         //     icon: "success",
-        //         // }).then(() => {
-        //         //     window.location.reload();
-        //         // });
+        //         Axios.delete(`http://localhost:3000/users/${id}`);
+        //         swal("User has been deleted!", {
+        //             icon: "success",
+        //         }).then(() => {
+        //             window.location.reload();
+        //         });
         //     } else {
         //         swal("User is safe!");
         //     }
