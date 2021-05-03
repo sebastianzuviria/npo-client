@@ -52,17 +52,34 @@ let news = [
   },
 ];
 
+let filteredNews = news.filter((lastNews) => lastNews.id < 5);
+
 function Home() {
   return (
     <div>
       <div>
         {welcome.map((content) => (
-          <div className="container" key={content.id}>
+          <div className="welcome-container" key={content.id}>
             <div>{content.title}</div>
             <br />
             <div>{content.text}</div>
           </div>
         ))}
+      </div>
+      <br />
+      <div key={filteredNews.id}>
+        <div>
+          {filteredNews.map((filteredNews) => (
+            <div key={filteredNews.id}>
+              <div>{filteredNews.name}</div>
+              <br />
+              <div>
+                <img src={filteredNews.image} alt="newsImage"></img>
+              </div>
+              <br />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
