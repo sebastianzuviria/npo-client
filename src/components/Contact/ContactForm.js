@@ -1,17 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const initialValues = { name: '', email: '', message: '' };
-const handleSubmit = (values, actions) => {
-  setTimeout(() => {
-    const contactObject = { ...values };
-    console.log(contactObject);
-    actions.setSubmitting(false);
-    return contactObject;
-  }, 2000);
-  return;
-};
+
 const validateFields = (values) => {
   const errors = {};
 
@@ -41,6 +35,17 @@ const validateFields = (values) => {
 };
 
 const ContactForm = () => {
+  const [phone, setPhone] = useState();
+  const handlePhone = (value) => setPhone(value);
+  const handleSubmit = (values, actions) => {
+    setTimeout(() => {
+      const contactObject = { ...values, phone };
+      console.log(contactObject);
+      actions.setSubmitting(false);
+      return contactObject;
+    }, 2000);
+    return;
+  };
   return (
     <>
       <Formik
@@ -66,6 +71,12 @@ const ContactForm = () => {
                 component="div"
                 className="alert alert-danger h6 mt-2"
               />
+            </div>
+            <div className="form-group text-left">
+              <label htmlFor="phone" className="text-left">
+                Teléfono
+              </label>
+              <PhoneInput onChange={handlePhone} country="ar" />
             </div>
             <div className="form-group text-left">
               <label htmlFor="email">Correo electrónico</label>
