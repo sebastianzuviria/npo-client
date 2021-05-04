@@ -9,7 +9,7 @@ function App() {
     <div>
       <div>Welcome to Ong</div>
       <Header />
-      <div className='animate__animated animate__fadeIn animate__delay-1s'>
+      <div className='animate__animated animate__fadeIn'>
         <AppRouter />
       </div>
       <Footer />
