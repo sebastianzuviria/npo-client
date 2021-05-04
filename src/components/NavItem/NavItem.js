@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import './nav-item.styles.css';
+import './NavItem.styles.css';
 
 const NavItem = ( { itemText, itemRoute } ) => {
     return (
