@@ -53,6 +53,8 @@ const NewsForm = ({ id, title, image, category, content }) => {
         }
     };
 
+    console.log(newContent)
+
     return (
         <div>
             <h2>{titleOfForm}</h2>
