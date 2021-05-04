@@ -69,3 +69,8 @@
   padding-right: 4%;
   line-height: 1.8;
 }
+
+/* used by animated lib */
+:root {
+  --animate-delay: 0.3s;
+}
