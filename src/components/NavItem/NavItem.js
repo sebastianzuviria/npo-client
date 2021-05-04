@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 // Styles
-import './nav-item.styles.css';
+import './NavItem.styles.css';
 
 const NavItem = ( { itemText, itemRoute } ) => {
     return (
