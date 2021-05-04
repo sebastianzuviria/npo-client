@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import PhoneInput from 'react-phone-input-2';

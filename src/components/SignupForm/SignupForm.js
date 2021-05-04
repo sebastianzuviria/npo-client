@@ -49,10 +49,10 @@ const SignupForm = () => {
     }
 
     return (
-      <>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <h1>Subscribe!</h1>
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-          <Form >
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
+          <Form style={{display: 'flex', flexDirection: 'column', width: '800px', alignItems: 'center'}}>
             <MyTextInput
               label="First Name"
               name="firstName"
@@ -86,7 +86,7 @@ const SignupForm = () => {
           </Form>
         </Formik>
         {register ? 'Successful registered user' : ''}
-      </>
+      </div>
     );
   };
 
