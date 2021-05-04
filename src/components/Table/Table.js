@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './Table.css'
+import apiGetUsers from '../../services/apiGetService'
 // import Axios from 'axios'
-// import swal from "sweetalert";
+import swal from "sweetalert";
 
 const Table = () => {
     const [users, setUsers] = useState([])
@@ -63,11 +64,11 @@ const Table = () => {
         // });
     };
     useEffect(() => {
-        // Axios.get('http://localhost:3000/users')
-        //     .then(res => {
-        //         console.log(res);
-        //         setUsers(res.data)
-        //     })
+        apiGetUsers('users')
+        .then(data=>{
+            setUsers(data)
+            console.log(data);
+        })
     }, [])
     return (
         <div className='d-flex justify-content-center'>
