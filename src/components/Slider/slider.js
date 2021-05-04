@@ -62,9 +62,13 @@ let content = [
 
 ];
 
+<<<<<<< HEAD
 
 function Slider() {
 
+=======
+function Slider() {
+>>>>>>> 94b9fb9936bb27b3a31349e59d44106e74191c6c
   return (
 
     <div>
@@ -111,5 +115,9 @@ function Slider() {
 
 }
 
+<<<<<<< HEAD
 
 export default Slider;
+=======
+export default Slider;
+>>>>>>> 94b9fb9936bb27b3a31349e59d44106e74191c6c
