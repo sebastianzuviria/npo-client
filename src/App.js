@@ -9,7 +9,6 @@ function App() {
     <div>
       <div>Welcome to Ong</div>
       <Header />
-      { /* This should be the main container.  */ }
       <div className='animate__animated animate__fadeIn animate__delay-1s'>
         <AppRouter />
       </div>

@@ -70,7 +70,7 @@
   line-height: 1.8;
 }
 
-/* used by animated lib */
+/* used by animate lib */
 :root {
   --animate-delay: 0.3s;
 }
