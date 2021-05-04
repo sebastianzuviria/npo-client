@@ -14,19 +14,34 @@ const Header = () => {
         [
             {
                 'id': 1,
-                'text': 'Actividades',
-                'route': 'https://github.com/'
+                'text': 'Home',
+                'route': '/'
             },
             {
                 'id': 2,
-                'text': 'Noticias',
-                'route': 'https://github.com/'
+                'text': 'Contacts',
+                'route': '/contacts'
             },
             {
                 'id': 3,
-                'text': 'Contactanos',
-                'route': 'https://github.com/'
+                'text': 'Signup',
+                'route': '/signup'
             },
+            {
+                'id': 4,
+                'text': 'Profile',
+                'route': '/profile'
+            },
+            {
+                'id': 5,
+                'text': 'Users',
+                'route': '/users'
+            },
+            {
+                'id': 6,
+                'text': 'News Form',
+                'route': '/newsform'
+            }
         ]
     );
 
