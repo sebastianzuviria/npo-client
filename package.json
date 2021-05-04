@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "formik": "^2.2.6",
+    "node-sass": "4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^4.0.0",
@@ -46,5 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0"
   }
 }
