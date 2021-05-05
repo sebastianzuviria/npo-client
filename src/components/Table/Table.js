@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Table.css'
-import apiGetUsers from '../../services/apiGetService'
+import apiGet from '../../services/apiGetService'
 // import Axios from 'axios'
 import swal from "sweetalert";
 
@@ -14,61 +14,28 @@ const Table = () => {
     
 
     const edit = (id) => {
-        // Axios.get(`http://localhost:3000/users/${id}`)
-        //     .then(data => {
-        //         setUserID(data.data.id)
-        //         setFirstName(data.data.firstName)
-        //         setLastName(data.data.lastName)
-        //         setEmail(data.data.email)
-        //     })
-        //     .catch(err => { console.log(err) })
+        (async () => {
+
+            const returnedUser = await apiGet('users', id) ;
+            setFirstName(returnedUser.firstName)
+            setLastName(returnedUser.lastName)
+            setEmail(returnedUser.email)
+            
+        }) ();
     };
     const update = () => {
-        // swal({
-        //     title: "Are you sure?",
-        //     text: "An user is about to be updated",
-        //     icon: "warning",
-        //     buttons: true,
-        //     dangerMode: true,
-        // }).then((willUpdate) => {
-        //     if (willUpdate) {
-        //         Axios.put(`http://localhost:3000/users/${userID}`, {firstName,lastName,email})
-        //         swal("User has been updated!", {
-        //             icon: "success",
-        //         }).then(() => {
-        //             window.location.reload();
-        //         });
-        //     } else {
-        //         swal("User is safe!");
-        //     }
-        // });
+        // 
     }
     const delet = (id) => {
-        // swal({
-        //     title: "Are you sure?",
-        //     text: "An User is about to be deleted",
-        //     icon: "warning",
-        //     buttons: true,
-        //     dangerMode: true,
-        // }).then((willDelete) => {
-        //     if (willDelete) {
-        //         Axios.delete(`http://localhost:3000/users/${id}`);
-        //         swal("User has been deleted!", {
-        //             icon: "success",
-        //         }).then(() => {
-        //             window.location.reload();
-        //         });
-        //     } else {
-        //         swal("User is safe!");
-        //     }
-        // });
+        // 
     };
     useEffect(() => {
-        apiGetUsers('users')
-        .then(data=>{
-            setUsers(data)
-            console.log(data);
-        })
+
+        ( async ( ) => {
+            const returnedUsers = await apiGet('users') ;
+            setUsers ( returnedUsers ) ;
+            } ) ( );
+
     }, [])
     return (
         <div className='d-flex justify-content-center'>
