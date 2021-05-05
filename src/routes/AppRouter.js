@@ -23,7 +23,7 @@ const AppRouter = () => {
         <Route exact path="/signup" component={SignupForm} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/newsform" component={NewsForm} />
-        <Route exact path="/news" component={News} />
+        <Route exact path="/novedades" component={News} />
         <Route exact path="/" component={Home} />
         {/* TODO: use a real component, when the project grows up 
                     Create private and public routes */}
