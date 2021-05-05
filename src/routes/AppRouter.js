@@ -7,6 +7,7 @@ import Home from '../views/Home';
 import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import NewsForm from '../components/NewsForm/NewsForm';
+import ActivitiesList from '../components/TableActivties/Table';
 
 const AppRouter = () => {
     return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Router>
             <Switch>
                 <Route exact path='/users' component={ UserList } />
+                <Route exact path='/activities' component={ ActivitiesList } />
                 <Route exact path='/contacts' component={ Contact } />
                 <Route exact path='/signup' component={ SignupForm } />
                 <Route exact path='/profile' component={ Profile } />
