@@ -7,11 +7,14 @@ const Table = () => {
     const [contentActivity, setContentActivity] = useState('');
 
     const edit = (id) => {
-        apiGet('activities', id)
-        .then(data=>{
-            setNameActivity(data[0].name)
-            setContentActivity(data[0].content)
-        })
+
+        (async() => {
+            const returnedActivity = await apiGet('activities', id);
+            console.log(returnedActivity);
+            setNameActivity(returnedActivity[0].name)
+            setContentActivity(returnedActivity[0].content)
+        })();
+        
     };
     const update = () => {
         //
