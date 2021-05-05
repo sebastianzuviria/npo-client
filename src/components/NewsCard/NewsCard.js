@@ -1,12 +1,11 @@
 import React from 'react';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import './NewsCard.css';
 
 const NewsCard = ({ title, image, id }) => {
   const history = useHistory();
   const viewMore = () => {
-    console.log('click');
-    history.push(`/news/${id}`);
+    history.push(`/novedades/${id}`);
   };
 
   return (
