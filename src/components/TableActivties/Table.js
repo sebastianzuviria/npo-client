@@ -21,10 +21,12 @@ const Table = () => {
     };
 
     useEffect(() => {
-        apiGet('activities')
-        .then(data=>{
-            setActivities(data)
-        })
+        
+        (async() => {
+            const returnedActivities = await apiGet('activities');
+            setActivities ( returnedActivities ) ;
+        })();
+
     }, [])
     return (
         <div className="container">
