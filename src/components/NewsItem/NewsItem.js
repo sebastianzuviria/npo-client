@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewsItem.css';
 
+// Posible modificación de props
 const NewsItem = ({ title, content, type, createdAt, image }) => {
   return (
     <div className="detail-container">
