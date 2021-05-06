@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
@@ -42,6 +42,15 @@ const Login = () => {
         }
 
     }
+
+    useEffect( () => {
+        
+        // TODO: get user state from redux store
+        // Handle routes trough react router
+        const logged  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
+        ( logged ) && history.push('/profile'); 
+        
+    }, [ history] );
 
     return (
         <div className="d-flex justify-content-center align-items-center divF-form">
