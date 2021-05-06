@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import Table from '../components/TableVdos/Table'
+import Table from '../components/TableActivities/Table'
 
 const ActivitiesList = () => {
     return (

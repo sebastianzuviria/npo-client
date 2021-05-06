@@ -8,12 +8,12 @@ const Table = () => {
 
     const edit = (id) => {
 
-        (async() => {
-            const returnedActivity = await apiGet('activities', id);
+        (async(type, ide) => {
+            const returnedActivity = await apiGet(type, ide);
             console.log(returnedActivity);
             setNameActivity(returnedActivity[0].name)
             setContentActivity(returnedActivity[0].content)
-        })();
+        })('activities', id);
         
     };
     const update = () => {
