@@ -3,6 +3,7 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
 import { userLogin } from '../../slices/userSlice';
+import apiGetService from '../../services/apiGetService';
 import apiPostService from '../../services/apiPostService';
 import { useHistory } from 'react-router-dom';
 import { errorAlert } from '../Alert/Alert';
@@ -30,16 +31,16 @@ const Login = () => {
 
     const handleSubmit = async (values) => {
 
-        try {
+            try {
 
-            const authResponse = await apiPostService('auth/login', values);
-            dispatch( userLogin( authResponse ) );
-            history.push('/');  
-            
-        } catch (err) {
-
-            await errorAlert();
-        }
+                const authResponse = await apiPostService('auth/login', values);
+                dispatch( userLogin( authResponse ) );
+                history.push('/');  
+                
+            } catch (err) {
+    
+                await errorAlert();
+            }
 
     }
 
@@ -47,8 +48,23 @@ const Login = () => {
         
         // TODO: get user state from redux store
         // Handle routes trough react router
-        const logged  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
-        ( logged ) && history.push('/profile'); 
+        const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
+
+        if ( id ) {
+
+            try {
+
+                const logged  = async () => await apiGetService('auth/me', id );
+                ( logged ) && history.push('/profile');
+                
+            } catch (error) {
+
+                errorAlert();
+
+            }
+
+            
+        }
         
     }, [ history] );
 

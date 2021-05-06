@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import {useDispatch} from 'react-redux';
 import { userLogout } from '../../slices/userSlice';
 import { useHistory } from 'react-router-dom';
+import apiGetService from '../../services/apiGetService';
+import { confirmAlert, errorAlert } from '../Alert/Alert';
 import './Profile.css';
 
 const Profile = () => {
@@ -54,19 +56,39 @@ const Profile = () => {
 
     const checkAndRedirect =  () => {
 
-        const loggedUser  = localStorage.getItem('ongLoggedUser');
+        const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
 
-        if (!loggedUser)  {
+        if (!id)  {
 
             history.push('/login');
+
+        } else {
+
+            try {
+
+                const logged  = async () => await apiGetService('auth/me', id );
+                ( !logged ) && history.push('/login');
+                
+            } catch (err) {
+                
+                errorAlert();
+
+            }
+
         }
 
     }
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+
+        const confirmLogout = await confirmAlert();
+
+        if ( confirmLogout.isConfirmed ) {
 
         dispatch( userLogout() );
         checkAndRedirect();
+
+        }
     }
 
     useEffect(() => {
