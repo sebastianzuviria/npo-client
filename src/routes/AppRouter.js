@@ -7,6 +7,7 @@ import Home from '../views/Home';
 import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import NewsForm from '../components/NewsForm/NewsForm';
+import Login from '../components/Login/Login';
 
 const AppRouter = () => {
     return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
                 <Route exact path='/signup' component={ SignupForm } />
                 <Route exact path='/profile' component={ Profile } />
                 <Route exact path='/newsform' component={ NewsForm } />
+                <Route exact path='/login' component={ Login } />
                 <Route exact path='/' component={ Home } />
                 { 
                     /* TODO: use a real component, when the project grows up 
