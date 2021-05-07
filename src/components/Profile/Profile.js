@@ -5,10 +5,9 @@ import swal from 'sweetalert';
 import {useDispatch} from 'react-redux';
 import { userLogout } from '../../slices/userSlice';
 import { useHistory } from 'react-router-dom';
-import apiGetService from '../../services/apiGetService';
-import { confirmAlert, errorAlert } from '../Alert/Alert';
-import './Profile.css';
+import { confirmAlert } from '../Alert/Alert';
 import { checkAndRedirect } from '../../helpers/checkAndRedirect';
+import './Profile.css';
 
 const Profile = () => {
 
