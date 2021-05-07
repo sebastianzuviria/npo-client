@@ -6,7 +6,7 @@ import { userLogin } from '../../slices/userSlice';
 import apiGetService from '../../services/apiGetService';
 import apiPostService from '../../services/apiPostService';
 import { useHistory } from 'react-router-dom';
-import { errorAlert } from '../Alert/Alert';
+import { errorAlert, successAlert } from '../Alert/Alert';
 import './Login.css';
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
         .required('Required')
     });
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async ( values ) => {
 
             try {
 
@@ -46,14 +46,14 @@ const Login = () => {
 
     useEffect( () => {
         
-        // TODO: get user state from redux store
-        // Handle routes trough react router
+        // Check user against localStorage
         const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
 
         if ( id ) {
 
             try {
 
+                // Check user against DB
                 const logged  = async () => await apiGetService('auth/me', id );
                 ( logged ) && history.push('/profile');
                 

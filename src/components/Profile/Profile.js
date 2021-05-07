@@ -56,6 +56,7 @@ const Profile = () => {
 
     const checkAndRedirect =  () => {
 
+        // Check user against localStorage
         const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
 
         if (!id)  {
@@ -66,6 +67,7 @@ const Profile = () => {
 
             try {
 
+                // Check user against DB
                 const logged  = async () => await apiGetService('auth/me', id );
                 ( !logged ) && history.push('/login');
                 
@@ -95,7 +97,7 @@ const Profile = () => {
         
         checkAndRedirect();
 
-    }, []);
+    }, [] );
 
     return (
         <div className="d-flex justify-content-center align-items-center h-max">
