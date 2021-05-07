@@ -1,14 +1,20 @@
-import { React } from 'react';
-import './CategoriesList';
+import React from 'react';
+import './CategoriesList.css';
 
 const CategoriesList = ({name}) => {
     return (
         <div className="categories-list">
             <div className="category-container">
-                <h1 className="category-name">{ name }</h1>
+                <div className="category-info">
+                    <p className="category-info__tag">Category Name:</p>
+                    <h2 className="category-info__name">{ name }</h2>
+                </div>
+                <div className="category-actions">
+                
+                </div>
             </div>
         </div>
     )
 }
 
-module.exports = CategoriesList;
+export default CategoriesList;
