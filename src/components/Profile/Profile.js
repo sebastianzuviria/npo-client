@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import apiGetService from '../../services/apiGetService';
 import { confirmAlert, errorAlert } from '../Alert/Alert';
 import './Profile.css';
+import { checkAndRedirect } from '../../helpers/checkAndRedirect';
 
 const Profile = () => {
 
@@ -54,33 +55,6 @@ const Profile = () => {
         console.log(values);
     }
 
-    const checkAndRedirect =  () => {
-
-        // Check user against localStorage
-        const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
-
-        if (!id)  {
-
-            history.push('/login');
-
-        } else {
-
-            try {
-
-                // Check user against DB
-                const logged  = async () => await apiGetService('users/auth/me', id );
-                ( !logged ) && history.push('/login');
-                
-            } catch (err) {
-                
-                errorAlert();
-
-            }
-
-        }
-
-    }
-
     const handleLogout = async () => {
 
         const confirmLogout = await confirmAlert();
@@ -88,14 +62,14 @@ const Profile = () => {
         if ( confirmLogout.isConfirmed ) {
 
         dispatch( userLogout() );
-        checkAndRedirect();
+        checkAndRedirect( history );
 
         }
     }
 
     useEffect(() => {
         
-        checkAndRedirect();
+        checkAndRedirect( history );
 
     }, [] );
 

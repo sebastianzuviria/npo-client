@@ -3,10 +3,10 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
 import { userLogin } from '../../slices/userSlice';
-import apiGetService from '../../services/apiGetService';
 import apiPostService from '../../services/apiPostService';
 import { useHistory } from 'react-router-dom';
-import { errorAlert, successAlert } from '../Alert/Alert';
+import { errorAlert } from '../Alert/Alert';
+import { checkAndRedirect } from '../../helpers/checkAndRedirect';
 import './Login.css';
 
 const Login = () => {
@@ -46,27 +46,10 @@ const Login = () => {
 
     useEffect( () => {
         
-        // Check user against localStorage
-        const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
-
-        if ( id ) {
-
-            try {
-
-                // Check user against DB
-                const logged  = async () => await apiGetService('users/auth/me', id );
-                ( logged ) && history.push('/profile');
-                
-            } catch (error) {
-
-                errorAlert();
-
-            }
-
-            
-        }
+        // Move to profile if user is logged
+        checkAndRedirect( history, '/profile' );
         
-    }, [ history] );
+    }, [] );
 
     return (
         <div className="d-flex justify-content-center align-items-center divF-form">
@@ -109,4 +92,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
