@@ -1,5 +1,4 @@
 .categories-list {
-    background-color: rebeccapurple;
     width: 60%;
     margin: auto;
     padding: 15px;
@@ -7,4 +6,21 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.category-info {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-info__tag {
+    font-size: 15px;
+}
+
+.category-info__name {
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1px;
 }
