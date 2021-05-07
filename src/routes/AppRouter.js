@@ -7,6 +7,7 @@ import Home from '../views/Home';
 import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import NewsForm from '../components/NewsForm/NewsForm';
+import FormActivities from '../components/FormActivities/Form'
 
 const AppRouter = () => {
     return (
