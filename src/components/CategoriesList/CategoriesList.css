@@ -1,0 +1,10 @@
+.categories-list {
+    background-color: rebeccapurple;
+    width: 60%;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
