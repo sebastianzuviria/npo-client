@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import apiPostService from '../../services/apiPostService';
+import { errorAlert, successAlert } from '../Alert/Alert';
 
 const initialValues = { name: '', email: '', message: '' };
 
@@ -36,15 +38,19 @@ const validateFields = (values) => {
 const ContactForm = () => {
   const [phone, setPhone] = useState();
   const handlePhone = (value) => setPhone(value);
-  const handleSubmit = (values, actions) => {
-    setTimeout(() => {
+
+  const handleSubmit = async (values, actions) => {
+    try {
       const contactObject = { ...values, phone };
-      console.log(contactObject);
+      const newContact = await apiPostService('contacts', contactObject);
+      if (newContact) successAlert();
       actions.setSubmitting(false);
-      return contactObject;
-    }, 2000);
-    return;
+    } catch (err) {
+      actions.setSubmitting(false);
+      errorAlert();
+    }
   };
+
   return (
     <>
       <Formik
