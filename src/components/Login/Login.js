@@ -54,7 +54,7 @@ const Login = () => {
             try {
 
                 // Check user against DB
-                const logged  = async () => await apiGetService('auth/me', id );
+                const logged  = async () => await apiGetService('users/auth/me', id );
                 ( logged ) && history.push('/profile');
                 
             } catch (error) {
