@@ -19,8 +19,8 @@ export const checkAndRedirect =  ( history, path ) => {
             // Check user against DB
             const logged  = async () => await apiGetService('users/auth/me', id );
 
-            // Redirect to login if user isn't logged,
-            // Redirect to 'path' if user is logged
+            // Redirect to login if user credentials are ok
+            // Redirect to 'path' if user is credentials doesn't match
             ( !logged && whereIAm !== '/login' ) ? history.push('/login') : history.push( path );
             
         } catch (err) {
