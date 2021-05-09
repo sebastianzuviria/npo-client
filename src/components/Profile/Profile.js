@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import {useDispatch} from 'react-redux';
 import { userLogout } from '../../slices/userSlice';
 import { useHistory } from 'react-router-dom';
-import { confirmAlert } from '../Alert/Alert';
+import { confirmAlert, errorAlert } from '../Alert/Alert';
 import './Profile.css';
 
 const Profile = () => {
@@ -55,14 +55,24 @@ const Profile = () => {
 
     const handleLogout = async () => {
 
-        const confirmLogout = await confirmAlert();
+        try {
 
-        if ( confirmLogout.isConfirmed ) {
+            const confirmLogout = await confirmAlert();
 
-        dispatch( userLogout() );
-        history.push('/login');
+            if ( confirmLogout.isConfirmed ) {
+
+            dispatch( userLogout() );
+            history.push('/login');
 
         }
+            
+        } catch ( err ) {
+
+            await errorAlert();
+            
+        }
+
+        
     }
 
     return (
