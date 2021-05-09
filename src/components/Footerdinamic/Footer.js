@@ -1,48 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Footer.css';
-import IconList from './iconList/IconList';
+import apiGetService from "../../services/apiGetService";
+
 
 const Footer = () => {
-    const [mock] = useState({
-        ongName: "ONG - alkemy",
-        img: "https://picsum.photos/200",   
-        linkWeb: "https://jonathangomezit.com",
-        socialMedia:[
-            {
-                icon: "fab fa-instagram-square",
-                name: "Instagram/ong",
-                url: "https://www.instagram.com/"
-            },
-            {
-                icon: "fab fa-facebook-square",
-                name: "Facebook/ong",
-                url: "https://www.facebook.com/",
-            },
-            {
-                icon: "fab fa-twitter-square",
-                name: "Twitter/ong",
-                url: "https://www.twitter.com"
-            }
-        ]
-    })
+
+    const [name, setName] = useState();
+    const [image, setImage] = useState();
+    const [facebook, setFacebook] = useState();
+    const [instagram, setInstagram] = useState();
+    const [linkedin, setLinkedin] = useState();
+
+    useEffect(() => {
+
+        (async () => {
+
+            console.log(process.env.REACT_APP_API_URL);
+
+            const infoOrganization = await apiGetService('organizations/public') ;
+            setName(infoOrganization.name)
+            setImage(infoOrganization.image)
+            setFacebook(infoOrganization.socialmedia.facebook)
+            setInstagram(infoOrganization.socialmedia.instagram)
+            setLinkedin(infoOrganization.socialmedia.linkedin)
+
+        }) ();
+    }, [])
+
+    
     return(
         <footer className="footer__content">
 
             <div className="footer__content-logo">
-                <img src={mock.img} alt="logo" className="footer__logo"/>
-                <h4>{mock.ongName}</h4>
+                <img src={image} alt="logo" className="footer__logo"/>
+                <h4>{name}</h4>
             </div>
 
             <div className="footer__content-social">
-            {
-                mock.socialMedia.map((values, index) => (<IconList key={index} {...values} />))
-            }
+
+                <a href={instagram} target= "_blank" rel="noopener noreferrer" title="Go to Instagram">
+                    <i  className={`fab fa-instagram-square iconList__items`}></i>
+                </a>
+                <a href={facebook} target= "_blank" rel="noopener noreferrer">
+                    <i  className={`fab fa-facebook-square iconList__items`} title="Go to Facebook"></i>
+                </a>
+                <a href={linkedin} target= "_blank" rel="noopener noreferrer">
+                    <i  className={`fab fa-twitter-square iconList__items`} title="Go to Linkedin"></i>
+                </a>
+
             </div>
 
-            <div className="footer__content-website">
-                    <span>Web Site: </span>
-                    <a href={mock.linkWeb} target= "_blank" rel="noopener noreferrer" className="footer__linkweb" >{mock.linkWeb}</a>
-            </div>
 
         </footer>
     )
