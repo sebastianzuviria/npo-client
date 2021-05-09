@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
@@ -6,7 +6,6 @@ import {useDispatch} from 'react-redux';
 import { userLogout } from '../../slices/userSlice';
 import { useHistory } from 'react-router-dom';
 import { confirmAlert } from '../Alert/Alert';
-import { checkAndRedirect } from '../../helpers/checkAndRedirect';
 import './Profile.css';
 
 const Profile = () => {
@@ -61,16 +60,10 @@ const Profile = () => {
         if ( confirmLogout.isConfirmed ) {
 
         dispatch( userLogout() );
-        checkAndRedirect( history );
+        history.push('/login');
 
         }
     }
-
-    useEffect(() => {
-        
-        checkAndRedirect( history );
-
-    }, [] );
 
     return (
         <div className="d-flex justify-content-center align-items-center h-max">

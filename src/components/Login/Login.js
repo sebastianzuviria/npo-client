@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
@@ -6,7 +6,6 @@ import { userLogin } from '../../slices/userSlice';
 import apiPostService from '../../services/apiPostService';
 import { useHistory } from 'react-router-dom';
 import { errorAlert } from '../Alert/Alert';
-import { checkAndRedirect } from '../../helpers/checkAndRedirect';
 import './Login.css';
 
 const Login = () => {
@@ -43,13 +42,6 @@ const Login = () => {
             }
 
     }
-
-    useEffect( () => {
-        
-        // Move to profile if user is logged
-        checkAndRedirect( history, '/profile' );
-        
-    }, [] );
 
     return (
         <div className="d-flex justify-content-center align-items-center divF-form">
