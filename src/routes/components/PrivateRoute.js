@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { imLogged } from '../../helpers/imLogged';
+import userLogged from '../../helpers/userLogged';
 
 // role must be 'Admin' or 'Standard', and roleId must be send from server when the user is logged
 
 const PrivateRoute = ( { component: Component, fallback = '/login', ...rest } ) => {
   // TODO: use state from reducer
   // TODO: Handle roles
-  const userIsLogged = imLogged();
+  const userIsLogged = userLogged();
 
   return(
 

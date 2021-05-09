@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { imLogged } from '../../helpers/imLogged';
+import userLogged from '../../helpers/userLogged';
 
 const PublicRoute = ({ component: Component, restricted, fallback = '/', ...rest }  ) => {
 
-    const userLogged = imLogged();
+    const userIsLogged = userLogged();
 
     return (
 
     <Route {...rest} render= { props => (
 
-        userLogged && restricted ?  <Redirect to={ fallback } /> : <Component { ...props } />
+        userIsLogged && restricted ?  <Redirect to={ fallback } /> : <Component { ...props } />
 
     ) } />
 
