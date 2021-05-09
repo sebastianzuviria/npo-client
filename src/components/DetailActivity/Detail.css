@@ -1,0 +1,16 @@
+.activity-detail{
+    width: 50%;
+    font-family: sans-serif;
+    margin: 20px 0px;
+    background-color:rgb(245, 245, 245);
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: 1px 1px 10px 0.1px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+.date{
+    font-style: italic;
+    color: rgb(121, 121, 121);
+}
+.img-act{
+    width: 100%;
+}

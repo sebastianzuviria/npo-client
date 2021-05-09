@@ -7,6 +7,7 @@ import Home from '../views/Home';
 import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import NewsForm from '../components/NewsForm/NewsForm';
+import DetailActivity from '../views/DetailActivity'
 
 const AppRouter = () => {
     return (
@@ -19,6 +20,7 @@ const AppRouter = () => {
                 <Route exact path='/profile' component={ Profile } />
                 <Route exact path='/newsform' component={ NewsForm } />
                 <Route exact path='/' component={ Home } />
+                <Route exact path='/activities/:id' component={ DetailActivity } />
                 { 
                     /* TODO: use a real component, when the project grows up 
                     Create private and public routes */ 
