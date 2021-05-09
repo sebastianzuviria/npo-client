@@ -1,0 +1,20 @@
+.category-container {
+    width: 70%;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.category-info__tag {
+    font-size: 15px;
+}
+
+.category-info__name {
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1px;
+}
