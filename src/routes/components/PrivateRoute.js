@@ -4,16 +4,16 @@ import { imLogged } from '../../helpers/imLogged';
 
 // role must be 'Admin' or 'Standard', and roleId must be send from server when the user is logged
 
-const PrivateRoute = ( { component: Component, fallback = '/login'} ) => {
+const PrivateRoute = ( { component: Component, fallback, ...rest } ) => {
   // TODO: use state from reducer
   // TODO: Handle roles
   const userIsLogged = imLogged();
 
   return(
 
-    <Route render={ () => (
+    <Route {...rest} render={ props => (
 
-      userIsLogged ? <Component /> : <Redirect to={ fallback }/>
+      userIsLogged ? <Component { ...props } /> : <Redirect to='/login' />
 
     ) } />
   )
