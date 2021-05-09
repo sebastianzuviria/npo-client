@@ -24,7 +24,6 @@
     "sweetalert2": "^10.16.6",
     "sweetalert2-react-content": "^3.3.2",
     "sweetalert": "^2.1.2",
-    "node-sass": "4.14.1",
     "swiper": "^6.5.8"
   },
   "scripts": {

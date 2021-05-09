@@ -18,6 +18,7 @@ const AppRouter = () => {
                 <Route exact path='/signup' component={ SignupForm } />
                 <Route exact path='/profile' component={ Profile } />
                 <Route exact path='/newsform' component={ NewsForm } />
+                <Route exact path='/updateorganization' component={ } />
                 <Route exact path='/' component={ Home } />
                 { 
                     /* TODO: use a real component, when the project grows up 
