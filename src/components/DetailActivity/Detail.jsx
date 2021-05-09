@@ -18,10 +18,12 @@ const Detail = ({id}) => {
         
             <div className='activity-detail'>
                 <h2>{activity.name}</h2>
-                <div>
+                <div className='d-flex justify-content-center'>
                     <img className='img-act' src={activity.image} />
-                    {activity.content}
                 </div>
+                    <div>
+                        {activity.content}
+                    </div>
                 <br />
                 <div className='d-flex justify-content-between'>
                     <span className='date'>{activity.createdAt && activity.createdAt.slice(0,10)}</span>
