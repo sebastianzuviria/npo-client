@@ -1,11 +1,11 @@
-import React, {useState} from'react'
+import React from'react'
 import { Formik , Form  } from 'formik' ;   
 import * as Yup from 'yup';
 import MyTextInput from './Textfield'
+import apiPostService from '../../services/apiPostService';
+import { errorAlert, successAlert } from '../Alert/Alert';
 
 const SignupForm = () => {
-
-    const [register, setRegister]= useState(false);    
 
     const initialValues={
 
@@ -34,24 +34,26 @@ const SignupForm = () => {
           .required('Password is required')
       })
 
-      const onSubmit=(data)=>{
-        /*Axios.post("", data)
-            .then((result) => {
-                console.log('Registered User')
+      const handleSubmit = async ( values, { resetForm } )=>{
+        
+        try {
 
-            })
-            .catch((err) => {
-              console.log("Sorry, unregistered user");
-            });
-        */
-        setRegister(true);
-        console.log(data)
+          await apiPostService('users/auth/register', values );
+          resetForm();
+          await successAlert();
+          
+      } catch (err) {
+          
+          await errorAlert( err );
+
+      }
+        
     }
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <h1>Subscribe!</h1>
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit} >
           <Form style={{display: 'flex', flexDirection: 'column', width: '800px', alignItems: 'center'}}>
             <MyTextInput
               label="First Name"
@@ -85,10 +87,9 @@ const SignupForm = () => {
             <button type="submit">Submit</button>
           </Form>
         </Formik>
-        {register ? 'Successful registered user' : ''}
       </div>
     );
   };
 
 
-  export default SignupForm
+  export default SignupForm;
