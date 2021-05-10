@@ -13,6 +13,7 @@ import PublicRoute from './components/PublicRoute';
 import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
+import DetailActivity from '../views/DetailActivity'
 
 const AppRouter = () => {
 
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <PublicRoute exact path='/users' component={ UserList } />
         <PublicRoute exact path='/contacts' component={ Contact } />
         <PublicRoute exact path="/novedades" component={News} />
+        <PublicRoute exact path="/activities/:id" component={DetailActivity} />
         <PublicRoute exact path='/' component={ Home } />        
 
         { /*  Restricted routes for logged users */ }
