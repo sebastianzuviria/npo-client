@@ -1,6 +1,7 @@
 import React from 'react';
 import AppRouter from './routes/AppRouter';
-import Footer from './components/Footer/Footer';
+//import Footer from './components/Footer/Footer';
+import Footer from './components/Footerdinamic/Footer';
 import Header from './components/Header/Header';
 import './App.css';
 
