@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Get token from local storage
-const token = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
+const { token }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
 
 // Get api url from env
 const apiService = axios.create({
