@@ -1,10 +1,18 @@
 import React from 'react'
-import './Profile.css'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import {useDispatch} from 'react-redux';
+import { userLogout } from '../../slices/userSlice';
+import { useHistory } from 'react-router-dom';
+import { confirmAlert, errorAlert } from '../Alert/Alert';
+import './Profile.css';
 
 const Profile = () => {
+
+    const history = useHistory();
+
+    const dispatch = useDispatch();
 
     let deleteA=(id)=>{
         swal({
@@ -26,7 +34,6 @@ const Profile = () => {
           });
     }
 
-
     const initialValues ={
         name:'',
         lastName:'',
@@ -45,6 +52,29 @@ const Profile = () => {
         /* aca debe estar la logica del inicio de sesion */
         console.log(values);
     }
+
+    const handleLogout = async () => {
+
+        try {
+
+            const confirmLogout = await confirmAlert();
+
+            if ( confirmLogout.isConfirmed ) {
+
+            dispatch( userLogout() );
+            history.push('/login');
+
+        }
+            
+        } catch ( err ) {
+
+            await errorAlert();
+            
+        }
+
+        
+    }
+
     return (
         <div className="d-flex justify-content-center align-items-center h-max">
             <div className="form-container-box">
@@ -93,6 +123,15 @@ const Profile = () => {
                                     onClick={(e) => deleteA(1, e)}
                                 >Delete Account</button>
                             </div>
+                            <div className="d-flex justify-content-center">
+                                <button 
+                                    className='btn btn-warning mt-4'
+                                    onClick={ handleLogout }
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                            
             </div>
         </div>
     )
