@@ -28,6 +28,24 @@ const AppRouter = () => {
         {/* TODO: use a real component, when the project grows up 
                     Create private and public routes */}
         {/* Examples PrivateRoute 
+import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
+
+const AppRouter = () => {
+    return (
+
+        <Router>
+            <Switch>
+                <Route exact path='/users' component={ UserList } />
+                <Route exact path='/contacts' component={ Contact } />
+                <Route exact path='/signup' component={ SignupForm } />
+                <Route exact path='/profile' component={ Profile } />
+                <Route exact path='/newsform' component={ NewsForm } />
+                <Route exact path='/updateorganization' component={UpdateformOrganization} />
+                <Route exact path='/' component={ Home } />
+                { 
+                    /* TODO: use a real component, when the project grows up 
+                    Create private and public routes */}
+        {/* Examples PrivateRoute 
 
                     <PrivateRoute path='/backoffice/users role='Admin'>
                         <UserList />
