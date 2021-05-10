@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../SignupForm/Textfield";
-import apiGet from "../../services/apiGetService";
+import apiGetService from "../../services/apiGetService";
 
 const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
@@ -20,12 +20,15 @@ const UpdateformOrganization = () => {
 
   //Info organization
   useEffect(() => {
-    /*
-      const organization = async () => {
-          const infoorganization = await apiGetService('organization');
+    
+      ( async () => {
+        console.log(process.env.REACT_APP_API_URL);
+          const infoorganization = await apiGetService('organizations/public');
+          
+          console.log(infoorganization, "infoorganization");
           setName(infoorganization.name);
           setImage(infoorganization.image);
-      };*/
+      })();
   }, []);
 
   const validationSchema = Yup.object({
