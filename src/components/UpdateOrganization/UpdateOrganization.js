@@ -22,10 +22,7 @@ const UpdateformOrganization = () => {
   useEffect(() => {
     
       ( async () => {
-        console.log(process.env.REACT_APP_API_URL);
           const infoorganization = await apiGetService('organizations/public');
-          
-          console.log(infoorganization, "infoorganization");
           setName(infoorganization.name);
           setImage(infoorganization.image);
       })();
