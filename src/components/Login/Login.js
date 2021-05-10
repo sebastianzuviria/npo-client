@@ -1,33 +1,53 @@
 import React from 'react';
-import './Login.css';
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
-import {userLogin} from '../../slices/userSlice'
+import { userLogin } from '../../slices/userSlice';
+import apiPostService from '../../services/apiPostService';
+import { useHistory } from 'react-router-dom';
+import { errorAlert } from '../Alert/Alert';
+import './Login.css';
 
 const Login = () => {
-    const dispatch = useDispatch()
-    const initialValues ={
+
+    const history = useHistory();
+
+    const dispatch = useDispatch();
+
+    const initialValues = {
         email:'',
         password:''
     }
+
     const validationSchema = Yup.object().shape({
         email: Yup.string()
         .email('Please enter valid email')
         .required('Required'),
         password: Yup.string()
         .min(6, 'The password must be at least 6 characters')
-        .required('Requiered')
-    })
-    const onSubmit=(values)=>{
-        console.log(values);
-        dispatch(userLogin(values))
+        .required('Required')
+    });
+
+    const handleSubmit = async ( values ) => {
+
+            try {
+
+                const authResponse = await apiPostService('auth/login', values);
+                dispatch( userLogin( authResponse ) );
+                history.push('/');  
+                
+            } catch (err) {
+    
+                await errorAlert();
+            }
+
     }
+
     return (
         <div className="d-flex justify-content-center align-items-center divF-form">
             <Formik 
                 initialValues={initialValues} 
-                onSubmit={onSubmit} 
+                onSubmit={ handleSubmit } 
                 validationSchema={validationSchema}
             >
                 {({errors, touched})=>(
@@ -64,4 +84,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
