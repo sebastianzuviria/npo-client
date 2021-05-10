@@ -10,6 +10,7 @@ import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import Login from '../components/Login/Login';
 import PublicRoute from './components/PublicRoute';
+import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
 
@@ -20,7 +21,8 @@ const AppRouter = () => {
       <Switch>
         <PublicRoute exact path='/users' component={ UserList } />
         <PublicRoute exact path='/contacts' component={ Contact } />
-        <PublicRoute exact path='/' component={ Home } />
+        <PublicRoute exact path="/novedades" component={News} />
+        <PublicRoute exact path='/' component={ Home } />        
 
         { /*  Restricted routes for logged users */ }
         <PublicRoute exact path='/login' component={ Login } restricted={ true } fallback={ '/profile' } />
@@ -35,7 +37,6 @@ const AppRouter = () => {
         <PrivateRoute exact path='/updateorganization' component={ UpdateformOrganization } />
 
         <Redirect to='/' />
-
       </Switch>
     </Router>
 
