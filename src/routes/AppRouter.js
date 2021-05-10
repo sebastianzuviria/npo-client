@@ -12,6 +12,7 @@ import Home from '../views/Home';
 import SignupForm from '../components/SignupForm/SignupForm';
 import Profile from '../components/Profile/Profile';
 import NewsForm from '../components/NewsForm/NewsForm';
+import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 
 const AppRouter = () => {
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route exact path="/signup" component={SignupForm} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/newsform" component={NewsForm} />
+        <Route exact path="/novedades" component={News} />
         <Route path="/novedades/:id" component={DetailedNew} />
         <Route exact path="/" component={Home} />
         {/* TODO: use a real component, when the project grows up 

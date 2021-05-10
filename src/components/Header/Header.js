@@ -40,7 +40,8 @@ const Header = () => {
       id: 6,
       text: 'News Form',
       route: '/newsform'
-    }
+    },
+    { id: 7, text: 'Novedades', route: '/novedades' }
   ]);
 
   return (
