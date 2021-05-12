@@ -21,7 +21,7 @@ const MembersOrganization= ()=>{
             {members.length > 0 ? (
                 members.map((item) => 
                 <div>
-                <img src={item.image}>
+                <img src={item.image} alt={`Picture of ${item.name}`}>
                 </img>
                 
                 <p>{item.name}</p>
