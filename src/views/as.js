@@ -1,5 +1,5 @@
 import React from 'react';
-import MembersOrganization from '../components/Members/members'
+import MembersOrganization from '../components/Members/Members'
 
 
 
