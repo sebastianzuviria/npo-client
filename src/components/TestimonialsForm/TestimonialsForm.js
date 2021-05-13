@@ -39,35 +39,41 @@ const TestimonialsForm = ({ id, name, content }) => {
     }
   };
 
-  console.log(newContent);
-
   return (
-    <div>
-      <h1>{formTitle}</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name
-          <input
-            type='text'
-            value={newName}
-            onChange={({ target }) => {
-              setNewName(target.value);
-            }}
-          />
-        </label>
-        <label>
-          Content
-          <CKEditor
-            editor={ClassicEditor}
-            data={newContent}
-            onChange={(e, editor) => {
-              const data = editor.getData();
-              setNewContent(data);
-            }}
-          />
-        </label>
-        <button type='submit'> {isEdit ? 'Edit' : 'Create'} </button>
-      </form>
+    <div className='d-flex justify-content-center'>
+      <div className='testimonials-form'>
+        <h3 className='text-center'>{formTitle}</h3>
+        <form onSubmit={handleSubmit}>
+          <label className='form-content'>
+            Name
+            <input
+              className='form-input'
+              type='text'
+              value={newName}
+              placeholder='Name'
+              onChange={({ target }) => {
+                setNewName(target.value);
+              }}
+              required
+            />
+          </label>
+          <label className='form-content'>
+            Content
+            <CKEditor
+              editor={ClassicEditor}
+              data={newContent}
+              onChange={(e, editor) => {
+                const data = editor.getData();
+                setNewContent(data);
+              }}
+            />
+          </label>
+          <button type='submit' className='form-button'>
+            {' '}
+            {isEdit ? 'Edit' : 'Create'}{' '}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
