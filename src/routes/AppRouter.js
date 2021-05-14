@@ -16,6 +16,7 @@ import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrgan
 import DetailActivity from '../views/DetailActivity'
 import FormActivities from '../components/FormActivities/Form'
 import ActivitiesList from '../views/ActivitiesList'
+import CategoriesList from '../components/CategoriesList/CategoriesList'
 
 const AppRouter = () => {
 
@@ -41,6 +42,7 @@ const AppRouter = () => {
         <PrivateRoute exact path='/updateorganization' component={ UpdateformOrganization } />
         <PublicRoute exact path="/FormActivities" component={FormActivities} />
         <PublicRoute exact path="/backoffice/activities" component={ActivitiesList} />
+        <PrivateRoute exact path='/categories' component={ CategoriesList } />
 
 
         <Redirect to='/' />
