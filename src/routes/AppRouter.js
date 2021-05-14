@@ -14,7 +14,8 @@ import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
 import DetailActivity from '../views/DetailActivity'
-import FormActivities from '../components/FormActivities/Form'
+import FormActivities from '../components/FormActivities/FormContent'
+import FormCategories from '../components/FormCategories/FormContent'
 import ActivitiesList from '../views/ActivitiesList'
 
 const AppRouter = () => {
@@ -40,6 +41,7 @@ const AppRouter = () => {
         <PrivateRoute exact path="/novedades/:id" component={ DetailedNew } />
         <PrivateRoute exact path='/updateorganization' component={ UpdateformOrganization } />
         <PublicRoute exact path="/FormActivities" component={FormActivities} />
+        <PublicRoute exact path="/FormCategories" component={FormCategories} />
         <PublicRoute exact path="/backoffice/activities" component={ActivitiesList} />
 
 
