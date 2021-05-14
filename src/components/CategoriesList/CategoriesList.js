@@ -8,8 +8,10 @@ const CategoriesList = () => {
     const [categories, setCategories] = useState([]);
 
     const allcategories = async () => {
-        const info = await apiGetService('categories');
-        setCategories(info);
+
+            const info = await apiGetService('categories');
+            setCategories(info);
+        
     };
 
     useEffect(() => {
