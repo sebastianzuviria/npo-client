@@ -1,5 +1,4 @@
 import React from 'react';
-import './Category.css';
 import apiDeleteService from '../../../services/apiDeleteService';
 import { successAlert ,cancelAlert, confirmAlert } from '../../Alert/Alert';
 
@@ -29,17 +28,30 @@ const Category = ({ name, id }) => {
 
 
     return (
-        <div className="category-container">
-            <div className="category-info">
-                <p className="category-info__tag">Category Name: </p>
-                <p className="category-info__name">{ name }{id}</p>
-            </div>
-            <div className="category-actions">
-                <button >Edit</button>
 
-                <button onClick={() => deletecategory()}>Delete</button>
-            </div>
-        </div>
+        <tr key={id}>
+            <td>{name}</td>
+            <td>
+                <button
+                    
+                    type="button"
+                    className="btn btn-info"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    style={{ color: "white", marginRight: "5px" }}
+                >
+                    <i className="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+                <button
+                    onClick={() => deletecategory()}
+                    className="btn btn-danger"
+                >
+                    <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+
+
     )
 }
 
