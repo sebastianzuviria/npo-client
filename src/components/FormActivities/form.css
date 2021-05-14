@@ -34,3 +34,19 @@
 .button-activity:hover{
     cursor: pointer;
 }
+
+@media (min-width: 425px) {
+    .form-Activites{
+        width: 380px;
+    }
+}
+@media (min-width: 768px) {
+    .form-Activites{
+        width: 650px;
+    }
+}
+@media (min-width: 1024px) {
+    .form-Activites{
+        width: 750px;
+    }
+}

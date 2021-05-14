@@ -14,7 +14,7 @@ import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
 import DetailActivity from '../views/DetailActivity'
-import FormActivities from '../components/FormActivities/Form'
+import FormActivities from '../components/FormActivities/FormContent'
 import ActivitiesList from '../views/ActivitiesList'
 
 const AppRouter = () => {
