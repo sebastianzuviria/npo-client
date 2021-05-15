@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import './NavItem.styles.css';
 
-const NavItem = ( { itemText, itemRoute } ) => {
-    return (
-        <div>
-            <a className="nav-item" href={ itemRoute }> { itemText } </a>
-        </div>
-    )
-}
+const NavItem = ({ itemText, itemRoute }) => {
+  return (
+    <NavLink className="nav-item" to={itemRoute}>
+      {itemText}
+    </NavLink>
+  );
+};
 
 export default NavItem;
