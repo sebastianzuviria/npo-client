@@ -1,45 +1,33 @@
 import React from 'react';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Contact from '../views/Contact';
 import Home from '../views/Home';
-import SignupForm from '../components/SignupForm/SignupForm';
-import Login from '../components/Login/Login';
-import PublicRoute from './components/PublicRoute';
+import RestrictedRoute from './components/RestrictedRoute';
 import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import DetailActivity from '../views/DetailActivity';
 import BackOfficeRoutes from './BackOfficeRoutes';
+import Signup from '../views/Signup';
+import Login from '../views/Login';
 
-const AppRouter = () => {
+const AppRouter = ({ children }) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/contacts" component={Contact} />
-        <Route exact path="/novedades" component={News} />
-        <Route exact path="/novedades/:id" component={DetailedNew} />
-        <PublicRoute exact path="/activities/:id" component={DetailActivity} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/news" component={News} />
+        <Route exact path="/news/:id" component={DetailedNew} />
+        <Route exact path="/activities/:id" component={DetailActivity} />
 
         {/*  Restricted routes for logged users */}
-        <PublicRoute
-          exact
-          path="/login"
-          component={Login}
-          restricted={true}
-          fallback={'/'}
-        />
-        <PublicRoute
-          exact
-          path="/signup"
-          component={SignupForm}
-          restricted={true}
-          fallback={'/'}
-        />
+        <RestrictedRoute exact path="/login" component={Login} />
+        <RestrictedRoute exact path="/signup" component={Signup} />
 
         {/*  TODO: implement admin routes */}
-        <BackOfficeRoutes />
 
-        <Route exact path="/" component={Home} />
+        <BackOfficeRoutes />
+        {children}
       </Switch>
     </Router>
   );
