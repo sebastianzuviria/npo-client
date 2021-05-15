@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@300&Roboto:wght@300&family=Coming+Soon:wght@600&display=swap');
+
+:root{
+
+    --font-roboto: 'Roboto', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-nunito: 'Nunito', sans-serif;
+    --font-comic: 'Coming Soon', cursive;
+
+    --color-primary: rgb(231, 231, 231);
+    --color-secondary: rgba(167, 163, 163, 0.5);
+    --color-red-light: rgba(219, 60, 86, .4);
+    --color-green-light: rgba(115, 187, 42, 0.4);
+    
+}
+
+*{
+    font-family: var(--font-roboto);
+    font-size: 1rem;
+    text-decoration: none !important;
+}
+
+
+
+
+
