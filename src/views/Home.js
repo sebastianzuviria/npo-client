@@ -6,7 +6,6 @@ import GetNews from '../components/GetNews/GetNews'
 const Home = () => {
     return (
         <div>
-            <div>Home</div>
             <WelcomeText />
             <Slider />
             <GetNews />
