@@ -1,11 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { userLogged } from '../../../slices/userSlice';
+import userLogged from '../../../helpers/userLogged';
 import './Sidebar.css';
 import SideLink from './SideLink';
 
 const Sidebar = () => {
-  const user = useSelector(userLogged);
+  const user = userLogged();
 
   return (
     <div className="col-md-4 col-lg-3 col-xl-2 p-0 sidebar bg-light">
@@ -13,11 +12,11 @@ const Sidebar = () => {
         <SideLink path="/backoffice" name="Perfil" />
         {user && user.role === 'Admin' && (
           <>
-            <SideLink path="/backoffice/usuarios" name="Usuarios" />
-            <SideLink path="/backoffice/categorias" name="Categorias" />
-            <SideLink path="/backoffice/actividades" name="Actividades" />
-            <SideLink path="/backoffice/novedades" name="Novedades" />
-            <SideLink path="/backoffice/organizacion" name="Organizacion" />
+            <SideLink path="/backoffice/users" name="Usuarios" />
+            <SideLink path="/backoffice/categories" name="Categorias" />
+            <SideLink path="/backoffice/activities" name="Actividades" />
+            <SideLink path="/backoffice/news" name="Novedades" />
+            <SideLink path="/backoffice/organization" name="Organizacion" />
           </>
         )}
       </ul>
