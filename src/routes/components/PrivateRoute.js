@@ -1,31 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { userLogged } from '../../slices/userSlice';
-// role must be 'Admin' or 'Standard', and roleId must be send from server when the user is logged
+import userLogged from '../../helpers/userLogged';
 
 const PrivateRoute = ({
   component: Component,
-  fallback = '/',
+  fallback = '/backoffice',
+  path = '/',
   role = '',
   ...rest
 }) => {
-  /*<Route {...rest} render={(props) => <Component {...props} />} />*/
-  const user = useSelector(userLogged);
-  const authorized = user && user.role === role;
-
   return (
     <Route
+      path={path}
       {...rest}
       render={(props) => {
-        console.log(' is authorized? ', authorized);
-        return authorized ? (
+        const user = userLogged();
+        return (user && role === '') || (user && user.role === role) ? (
           <Component {...props} />
         ) : (
-          <Redirect
-            push
-            to={{ pathname: fallback, state: { from: props.location } }}
-          />
+          <Redirect push to={fallback} />
         );
       }}
     />
