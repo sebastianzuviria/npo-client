@@ -10,6 +10,7 @@ import NavItem from '../NavItem/NavItem';
 import logo from '../../assets/logo.png';
 
 const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [navbarItems, setNavbarItems] = useState([
     {
       id: 1,
@@ -45,11 +46,22 @@ const Header = () => {
   ]);
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={logo} />
+    <div className="header__container">
+
+      <div className={`header__toggle ${ isNavOpen && 'header__action-open' }`}
+        onClick={() => setIsNavOpen(!isNavOpen)}>
+
+        <span></span>
+
       </div>
-      <div className="nav-container">
+
+      <div className="header__logo-container">
+
+        <img className="header__logo" src={logo} />
+
+      </div>
+
+      <nav className={`header__nav-container ${isNavOpen && 'header__action-show'}`}>
         {navbarItems.map((item) => {
           return (
             <NavItem
@@ -59,7 +71,7 @@ const Header = () => {
             />
           );
         })}
-      </div>
+      </nav>
     </div>
   );
 };

@@ -1,11 +1,19 @@
-.nav-item {
-    color: white;
-    text-decoration: none;
-    padding: 0 10px;
-    font-size: 15px;
+
+.navItem__item {
+    color: var(--color-secondary);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none !important;
+    /* width: 100%; */    
+    /* text-align: center; */
+    
+    /* padding: 0 1.5rem; */
+    /* font-size: 15px; */
 }
 
-.nav-item:hover {
-    cursor: pointer;
-    text-decoration: underline;
+
+.navItem__item:hover {
+    
+    color: var(--color-red-light);
+    
 }

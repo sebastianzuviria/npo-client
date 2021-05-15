@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   return (
     <div>
-      <div>Welcome to Ong</div>
+      {/* <div>Welcome to Ong</div> */}
       <Header />
       <div className='animate__animated animate__fadeIn'>
         <AppRouter />

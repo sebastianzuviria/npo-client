@@ -6,9 +6,9 @@ import './NavItem.styles.css';
 
 const NavItem = ( { itemText, itemRoute } ) => {
     return (
-        <div>
-            <a className="nav-item" href={ itemRoute }> { itemText } </a>
-        </div>
+        
+        <a className="navItem__item" href={ itemRoute }> { itemText } </a>
+        
     )
 }
 

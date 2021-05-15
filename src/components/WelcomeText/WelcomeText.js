@@ -1,5 +1,5 @@
 import React from "react";
-
+import './WelcomeText.css';
 
 //welcome title
 
@@ -24,27 +24,27 @@ function WelcomeText() {
 
   return (
 
+    
+  <div>
     <div>
 
-      <div>
+      {welcome.map((content) => (
 
-        {welcome.map((content) => (
+        <div className="welcome-container" key={content.id}>
 
-          <div className="welcome-container" key={content.id}>
+          <div>{content.title}</div>
 
-            <div>{content.title}</div>
+          <br />
 
-            <br />
+          <div>{content.text}</div>
 
-            <div>{content.text}</div>
+        </div>
 
-          </div>
-
-        ))}
-
-      </div>
+      ))}
 
     </div>
+  </div>
+    
 
   );
 
