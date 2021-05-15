@@ -1,5 +1,6 @@
 import React ,{useEffect, useState} from 'react';
 import apiGetService from '../../services/apiGetService'
+import './member.css';
 
 const MembersOrganization= ()=>{
 
@@ -17,18 +18,19 @@ const MembersOrganization= ()=>{
 
     return (
         
-        <div>
+        <div class="container">
+            <div class="row">
             {members.length > 0 ? (
                 members.map((item) => 
-                <div>
-                <img src={item.image} alt={`Picture of ${item.name}`}>
-                </img>
-                
+                <div class="col-sm-6 member">
+                <img src={item.image} alt={`Picture of ${item.name}`} class="rounded-circle" />
+                                
                 <p>{item.name}</p>
                 </div>
                 
                 )
             ) : <p>There is no registered member</p>}
+            </div>
         </div>
     )
 }
