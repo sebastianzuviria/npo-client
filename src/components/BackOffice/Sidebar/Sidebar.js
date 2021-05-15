@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { isLogged, userLogged } from '../../../slices/userSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { userLogged } from '../../../slices/userSlice';
 import './Sidebar.css';
 import SideLink from './SideLink';
-import store from '../../../store';
 
 const Sidebar = () => {
-  const [user, setUser] = useState();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(isLogged());
-    setUser(userLogged(store.getState()));
-  }, []);
+  const user = useSelector(userLogged);
 
   return (
     <div className="col-md-4 col-lg-3 col-xl-2 p-0 sidebar bg-light">
       <ul className="nav flex-column">
         <SideLink path="/backoffice" name="Perfil" />
-        {user && user.roleId === 1 && (
+        {user && user.role === 'Admin' && (
           <>
             <SideLink path="/backoffice/usuarios" name="Usuarios" />
             <SideLink path="/backoffice/categorias" name="Categorias" />
