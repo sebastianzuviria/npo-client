@@ -1,6 +1,6 @@
 import React from 'react';
-import BackOfficeLayout from '../components/BackOffice/BackOfficeLayout';
-import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
+import BackOfficeLayout from '../../Layouts/BackOfficeLayout';
+import UpdateformOrganization from '../../components/UpdateOrganization/UpdateOrganization';
 
 const Organization = () => {
   return (
