@@ -4,11 +4,6 @@
     cursor: pointer;
     font-weight: 600;
     text-decoration: none !important;
-    /* width: 100%; */    
-    /* text-align: center; */
-    
-    /* padding: 0 1.5rem; */
-    /* font-size: 15px; */
 }
 
 
@@ -16,4 +11,11 @@
     
     color: var(--color-red-light);
     
+}
+
+@media  screen and (min-width: 768px) {
+    .navItem__item{
+        text-align: center;
+        font-size: .8rem;
+    }
 }

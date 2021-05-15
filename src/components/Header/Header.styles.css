@@ -101,13 +101,41 @@
 }
 
 @media screen and (min-width: 768px){
-
+    .header__container{
+        display: flex;
+    }
     .header__logo-container{
-        /* left: 0;
-        transform: translateX(0); */
+        position: static;
+        padding: .5rem;
+        left: 0;
+        transform: translateX(0);
         
     }
-    /* .header__ */
+    .header__toggle{
+        display: none;
+    }
+    .header__nav-container{
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        width:100%;
+        background-color:var(--color-primary);
+        
+        left:0;
+        height: 3.7rem;
+        padding: 0 1rem;
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 70px));
+        justify-content: space-around;
+        align-items: center;
+        transition: ease .5s;
+    }
+
+    @media screen and (min-width: 1024px){
+
+        
+
+    }
 
 
 
