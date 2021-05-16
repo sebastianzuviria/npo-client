@@ -5,24 +5,14 @@ import apiUpdateService from '../../services/apiUpdateService'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 
 const TableNovelties = () => {
-    const [id, setId] = useState('')
     const [novelties, setNovelties] = useState([])
-    const [image, setImage] = useState('')
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const [category, setCategory] = useState('')
-    const [createdAt, setCreatedAt] = useState('')
-
+    const [newObject, setNewObject] = useState({})
+    console.log(novelties);
+    
     const edit = (id) => {
         (async (type, id) => {
             const returnedNovelty = await apiGetService(type, id) ;
-            console.log(returnedNovelty);
-            setId(returnedNovelty.id)
-            setTitle(returnedNovelty.title)
-            setContent(returnedNovelty.content)
-            setCategory(returnedNovelty.categoryId)
-            setImage(returnedNovelty.image)
-            setCreatedAt(returnedNovelty.createdAt)
+            setNewObject(returnedNovelty)
         }) ('news', id);
     };
     const delet = async (id) => {
@@ -32,7 +22,10 @@ const TableNovelties = () => {
                     await apiDeleteService(type, id)
                 }) ('news', id);
                 return successAlert().then(()=>{
-                    window.location.reload();
+                    let newNovelties = novelties.filter(novelty=>{
+                        return novelty.id !== id
+                    })
+                    setNovelties(newNovelties)
                 })
             } else{
                 cancelAlert();
@@ -40,23 +33,13 @@ const TableNovelties = () => {
         
     };
     const update = async () => {
-        const noveltyObject ={
-            title,
-            image,
-            title,
-            content,
-            category
-        }
         const res = await confirmAlert();
         if(res.isConfirmed){
             (async () => {
-                await apiUpdateService('news',id, noveltyObject)
+                await apiUpdateService('news',newObject.id, newObject)
+                setNovelties(novelties.map(novelty=>(novelty.id===newObject.id?newObject:novelty)))
             }) ();
-            return successAlert().then(()=>{
-                console.log(`se actulizo la novdead con id: ${id} con este objeto`);
-                console.log(noveltyObject);
-                window.location.reload();
-            })
+            return successAlert()
         } else{
             cancelAlert();
         }
@@ -121,11 +104,11 @@ const TableNovelties = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={title}
+                                placeholder=""
+                                name="title"
+                                value={newObject.title}
                                 onChange={(e) => {
-                                    setTitle(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                             />
                             <br/>
@@ -133,11 +116,23 @@ const TableNovelties = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={image}
+                                placeholder=""
+                                name="image"
+                                value={newObject.image}
                                 onChange={(e) => {
-                                    setImage(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
+                                }}
+                                />
+                            <br/>
+                            <label className="form-label">Content</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder=""
+                                name="content"
+                                value={newObject.content}
+                                onChange={(e) => {
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                                 />
                             <br/>
@@ -145,11 +140,11 @@ const TableNovelties = () => {
                             <input
                                 type="email"
                                 className="form-control"
-                                placeholder="0"
+                                placeholder=""
                                 name="createdAt"
-                                value={createdAt}
+                                value={newObject.createdAt}
                                 onChange={(e) => {
-                                    setCreatedAt(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                                 />
 
@@ -157,7 +152,7 @@ const TableNovelties = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button onClick={update} type="button" className="btn btn-primary">Update</button>
+                            <button onClick={update} type="button" className="btn btn-primary" data-dismiss="modal">Update</button>
                         </div>
                     </div>
                 </div>
