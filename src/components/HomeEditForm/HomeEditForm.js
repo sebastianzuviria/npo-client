@@ -28,7 +28,7 @@ const HomeEditForm = (props) => {
         e.preventDefault();
 
         if(currentData.message.length < 20) return await infoAlert(`El texto de bienvenida debe contener al menos 20 caracteres`);
-        
+
         await successAlert()
         
     }
@@ -63,7 +63,7 @@ const HomeEditForm = (props) => {
                 }
 
             </div>
-            <button type="submit">Guardar Cambios</button>
+            <button className="HomeEditForm__button" type="submit">Guardar Cambios</button>
         </form>
     );
 }
