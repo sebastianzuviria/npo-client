@@ -26,10 +26,11 @@ const HomeEditForm = (props) => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(currentData.message.length < 20){
-            const res = await infoAlert(`El texto de bienvenida debe contener al menos 20 caracteres`);
-            // console.log(res)
-        }
+
+        if(currentData.message.length < 20) return await infoAlert(`El texto de bienvenida debe contener al menos 20 caracteres`);
+        
+        await successAlert()
+        
     }
       
     return(
