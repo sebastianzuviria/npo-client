@@ -10,19 +10,21 @@ const EditSlides = ({url, text, handleOnChangeSlides}) => {
                     <img className="EditSlides__img" src={url} alt="images"/>
 
                     <div className="EditSlides__content-input">
-                        <label htmlFor="url" className="EditSlides__label-url">URL:</label>
-                        <input type="text" id="url" name="url" className="HomeEditForm__input-url" autoComplete="off"
-                            value={url} 
-                            onChange={handleOnChangeSlides}
-                        />
+                        <label className="EditSlides__label-url">URL:
+                            <input type="text" name="url" className="HomeEditForm__input-url" autoComplete="off"
+                                value={url} 
+                                onChange={handleOnChangeSlides}
+                            />
+                        </label>
                     </div>
 
                     <div className="EditSlides__content-input">
-                        <label htmlFor="text" className="EditSlides__label-text" >Text:</label>
-                        <input type="text" id="text" name="text" className="EditSlides__input-text" autoComplete="off"
-                            value={text}
-                            onChange={handleOnChangeSlides}
-                        />
+                        <label className="EditSlides__label-text" >Descripción que se mostrará con la imagen:
+                            <input type="text" name="text" className="EditSlides__input-text" autoComplete="off"
+                                value={text}
+                                onChange={handleOnChangeSlides}
+                            />
+                        </label>
                     </div>
                 </div>
 
