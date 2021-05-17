@@ -1,10 +1,8 @@
 import apiService from './apiService';
 
-// Use 'type' for api sub-route
-// id isn't mandatory. Call Example: apiGetService( 'users' ), apiGetService( 'users', 1 )
-const apiUpdateService = async ( type, id = '', object={} ) => {
+const apiUpdateService = async ( type, id, payload ) => {
 
-    const response = await apiService.put(`/${ type }/${ id }`,object);
+    const response = await apiService.put(`/${ type }/${ id }`, payload);
     return await response.data;
 
 }
