@@ -9,6 +9,10 @@ import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrgan
 import FormActivities from '../components/FormActivities/FormContent'
 import ActivitiesList from '../views/ActivitiesList'
 import DetailActivity from '../views/DetailActivity';
+import FormActivities from '../components/FormActivities/Form'
+import ActivitiesList from '../views/ActivitiesList'
+import TestimonialsList from '../components/TestimonialsList/TestimonialsList';
+import TestimonialsForm from '../components/TestimonialsForm/TestimonialsForm';
 import BackOfficeRoutes from './BackOfficeRoutes';
 import Signup from '../views/Signup';
 import Login from '../views/Login';
@@ -34,7 +38,25 @@ const AppRouter = () => {
         <PublicRoute exact path="/FormActivities" component={FormActivities} />
         <PublicRoute exact path="/FormCategories" component={FormCategories} />
         <PublicRoute exact path="/backoffice/activities" component={ActivitiesList} />
+
         {/*  TODO: implement admin routes */}
+        <PrivateRoute
+          exact
+          path='/updateorganization'
+          component={UpdateformOrganization}
+        />
+        <PublicRoute
+          exact
+          path='/testimonialsform'
+          component={TestimonialsForm}
+        />
+        <PublicRoute exact path='/FormActivities' component={FormActivities} />
+        <PublicRoute
+          exact
+          path='/backoffice/activities'
+          component={ActivitiesList}
+        />
+        <PublicRoute exact path="/backoffice/testimonials" component={ TestimonialsList } />
 
         <BackOfficeRoutes />
       </Switch>
