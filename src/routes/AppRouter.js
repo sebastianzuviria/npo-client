@@ -1,40 +1,31 @@
 import React from 'react';
-
-import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Contact from '../views/Contact';
-import NewsForm from '../components/NewsForm/NewsForm';
 import Home from '../views/Home';
-import UserList from '../views/UserList';
-import SignupForm from '../components/SignupForm/SignupForm';
-import Profile from '../components/Profile/Profile';
-import Login from '../components/Login/Login';
-import PublicRoute from './components/PublicRoute';
+import RestrictedRoute from './components/RestrictedRoute';
 import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrganization';
-import DetailActivity from '../views/DetailActivity'
 import FormActivities from '../components/FormActivities/FormContent'
-import FormCategories from '../components/FormCategories/FormContent'
 import ActivitiesList from '../views/ActivitiesList'
+import DetailActivity from '../views/DetailActivity';
+import BackOfficeRoutes from './BackOfficeRoutes';
+import Signup from '../views/Signup';
+import Login from '../views/Login';
 
 const AppRouter = () => {
-
   return (
     <Router>
       <Switch>
-        <PublicRoute exact path='/users' component={ UserList } />
-        <PublicRoute exact path='/contacts' component={ Contact } />
-        <PublicRoute exact path="/novedades" component={News} />
-        <PublicRoute exact path="/activities/:id" component={DetailActivity} />
-        <PublicRoute exact path='/' component={ Home } />        
+        <Route exact path="/" component={Home} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/news" component={News} />
+        <Route exact path="/news/:id" component={DetailedNew} />
+        <Route exact path="/activities/:id" component={DetailActivity} />
 
-        { /*  Restricted routes for logged users */ }
-        <PublicRoute exact path='/login' component={ Login } restricted={ true } fallback={ '/profile' } />
-        <PublicRoute exact path='/signup' component={ SignupForm } restricted={ true } fallback={ '/profile' } />
-
-        { /*  Private routes for logged users */ }
-        <PrivateRoute exact path='/profile' component={ Profile } />
+        {/*  Restricted routes for logged users */}
+        <RestrictedRoute exact path="/login" component={Login} />
+        <RestrictedRoute exact path="/signup" component={Signup} />
 
         { /*  TODO: implement admin routes */ }
         <PrivateRoute exact path='/newsform' component={ NewsForm } />
@@ -43,14 +34,12 @@ const AppRouter = () => {
         <PublicRoute exact path="/FormActivities" component={FormActivities} />
         <PublicRoute exact path="/FormCategories" component={FormCategories} />
         <PublicRoute exact path="/backoffice/activities" component={ActivitiesList} />
+        {/*  TODO: implement admin routes */}
 
-
-        <Redirect to='/' />
+        <BackOfficeRoutes />
       </Switch>
     </Router>
-
-    )
-}
-
+  );
+};
 
 export default AppRouter;
