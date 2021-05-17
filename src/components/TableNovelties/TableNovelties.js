@@ -7,20 +7,15 @@ import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 const TableNovelties = () => {
     const [novelties, setNovelties] = useState([])
     const [newObject, setNewObject] = useState({})
-    console.log(novelties);
     
-    const edit = (id) => {
-        (async (type, id) => {
-            const returnedNovelty = await apiGetService(type, id) ;
-            setNewObject(returnedNovelty)
-        }) ('news', id);
+    const edit = async (type, id) => {
+        const returnedNovelty = await apiGetService(type, id);
+        setNewObject(returnedNovelty)
     };
-    const delet = async (id) => {
+    const delet = async (type, id) => {
             const res = await confirmAlert();
             if(res.isConfirmed){
-                (async (type, id) => {
-                    await apiDeleteService(type, id)
-                }) ('news', id);
+                await apiDeleteService(type, id)
                 return successAlert().then(()=>{
                     let newNovelties = novelties.filter(novelty=>{
                         return novelty.id !== id
@@ -30,15 +25,12 @@ const TableNovelties = () => {
             } else{
                 cancelAlert();
             }
-        
     };
     const update = async () => {
         const res = await confirmAlert();
         if(res.isConfirmed){
-            (async () => {
                 await apiUpdateService('news',newObject.id, newObject)
                 setNovelties(novelties.map(novelty=>(novelty.id===newObject.id?newObject:novelty)))
-            }) ();
             return successAlert()
         } else{
             cancelAlert();
@@ -70,7 +62,7 @@ const TableNovelties = () => {
                             <td>{novelty.createdAt}</td>
                             <td>
                                 <button
-                                    onClick={(e) => edit(novelty.id, e)}
+                                    onClick={() => edit('news', novelty.id)}
                                     type="button"
                                     className="btn btn-info"
                                     data-toggle="modal"
@@ -80,7 +72,7 @@ const TableNovelties = () => {
                                     <i className="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button
-                                    onClick={(e) => delet(novelty.id, e)}
+                                    onClick={() => delet('news', novelty.id)}
                                     className="btn btn-danger"
                                 >
                                     <i className="fa fa-trash" aria-hidden="true"></i>
