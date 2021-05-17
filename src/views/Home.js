@@ -1,17 +1,17 @@
 import React from 'react';
-import Slider from "../components/Slider/Slider"
-import WelcomeText from '../components/WelcomeText/WelcomeText'
-import GetNews from '../components/GetNews/GetNews'
+import Slider from '../components/Slider/Slider';
+import WelcomeText from '../components/WelcomeText/WelcomeText';
+import GetNews from '../components/GetNews/GetNews';
+import BasicLayout from '../Layouts/BasicLayout';
 
 const Home = () => {
-    return (
-        <div>
-            <WelcomeText />
-            <Slider />
-            <GetNews />
-        </div>
-        
-    )
-}
+  return (
+    <BasicLayout>
+      <WelcomeText />
+      <Slider />
+      <GetNews />
+    </BasicLayout>
+  );
+};
 
-export default Home
+export default Home;
