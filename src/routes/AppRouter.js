@@ -10,7 +10,7 @@ import BackOfficeRoutes from './BackOfficeRoutes';
 import Signup from '../views/Signup';
 import Login from '../views/Login';
 
-const AppRouter = ({ children }) => {
+const AppRouter = () => {
   return (
     <Router>
       <Switch>
@@ -27,7 +27,6 @@ const AppRouter = ({ children }) => {
         {/*  TODO: implement admin routes */}
 
         <BackOfficeRoutes />
-        {children}
       </Switch>
     </Router>
   );
