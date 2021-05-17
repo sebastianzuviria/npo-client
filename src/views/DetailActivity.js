@@ -1,12 +1,13 @@
-import React from 'react'
-import Detail from '../components/DetailActivity/Detail'
+import React from 'react';
+import Detail from '../components/DetailActivity/Detail';
+import BasicLayout from '../Layouts/BasicLayout';
 
-const DetailActivity = ({match}) => {
-    return (
-        <div>
-            <Detail id={match.params.id} />
-        </div>
-    )
-}
+const DetailActivity = ({ match }) => {
+  return (
+    <BasicLayout>
+      <Detail id={match.params.id} />
+    </BasicLayout>
+  );
+};
 
-export default DetailActivity
+export default DetailActivity;
