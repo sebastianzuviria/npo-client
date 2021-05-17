@@ -16,7 +16,7 @@ import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrgan
 import DetailActivity from '../views/DetailActivity';
 import FormActivities from '../components/FormActivities/Form';
 import ActivitiesList from '../views/ActivitiesList';
-import testimonialsForm from '../components/TestimonialsForm/TestimonialsForm';
+import TestimonialsForm from '../components/TestimonialsForm/TestimonialsForm';
 
 const AppRouter = () => {
   return (
@@ -58,7 +58,7 @@ const AppRouter = () => {
         <PublicRoute
           exact
           path='/testimonialsform'
-          component={testimonialsForm}
+          component={TestimonialsForm}
         />
         <PublicRoute exact path='/FormActivities' component={FormActivities} />
         <PublicRoute
