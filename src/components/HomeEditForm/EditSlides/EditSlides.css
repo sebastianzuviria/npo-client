@@ -1,0 +1,11 @@
+.EditSlides__content-img{
+    box-shadow: 0 0 3px 2px rgba(139, 139, 139, .7);
+    display: grid;
+}
+
+.HomeEditForm__input-url, .EditSlides__input-text{
+    border: none;
+    outline: 0; 
+    background: none;
+}
+

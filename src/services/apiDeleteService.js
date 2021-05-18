@@ -18,3 +18,4 @@ const apiDeleteService = async ( type, id = '' ) => {
 
 
 export default apiDeleteService;
+
