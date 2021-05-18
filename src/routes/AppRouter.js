@@ -6,7 +6,6 @@ import RestrictedRoute from './components/RestrictedRoute';
 import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
 import DetailActivity from '../views/DetailActivity';
-import TestimonialsForm from '../components/TestimonialsForm/TestimonialsForm';
 import BackOfficeRoutes from './BackOfficeRoutes';
 import Signup from '../views/Signup';
 import Login from '../views/Login';
@@ -16,16 +15,16 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/news" component={News} />
-        <Route exact path="/news/:id" component={DetailedNew} />
-        <Route exact path="/activities/:id" component={DetailActivity} />
-        <Route exact path="/testimonialsform" component={TestimonialForms} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/contact' component={Contact} />
+        <Route exact path='/news' component={News} />
+        <Route exact path='/news/:id' component={DetailedNew} />
+        <Route exact path='/activities/:id' component={DetailActivity} />
+        <Route exact path='/testimonialsform' component={TestimonialForms} />
 
         {/*  Restricted routes for logged users */}
-        <RestrictedRoute exact path="/login" component={Login} />
-        <RestrictedRoute exact path="/signup" component={Signup} />
+        <RestrictedRoute exact path='/login' component={Login} />
+        <RestrictedRoute exact path='/signup' component={Signup} />
 
         <BackOfficeRoutes />
       </Switch>
