@@ -1,13 +1,13 @@
 import React from 'react';
-import NewList from '../components/NewList/NewList';
 import BasicLayout from '../Layouts/BasicLayout';
+import LoginForm from '../components/Login/Login';
 
-const News = () => {
+const Login = () => {
   return (
     <BasicLayout>
-      <NewList />
+      <LoginForm />
     </BasicLayout>
   );
 };
 
-export default News;
+export default Login;

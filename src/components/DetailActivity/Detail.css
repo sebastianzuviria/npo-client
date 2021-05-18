@@ -11,3 +11,19 @@
     font-style: italic;
     color: rgb(121, 121, 121);
 }
+
+@media (min-width: 425px) {
+    .activity-detail{
+        width: 380px;
+    }
+}
+@media (min-width: 768px) {
+    .activity-detail{
+        width: 650px;
+    }
+}
+@media (min-width: 1024px) {
+    .activity-detail{
+        width: 750px;
+    }
+}

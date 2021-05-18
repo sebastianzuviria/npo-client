@@ -5,7 +5,7 @@ import './NewsCard.css';
 const NewsCard = ({ title, image, id }) => {
   const history = useHistory();
   const viewMore = () => {
-    history.push(`/novedades/${id}`);
+    history.push(`/news/${id}`);
   };
 
   return (
