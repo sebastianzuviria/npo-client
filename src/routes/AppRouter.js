@@ -9,6 +9,7 @@ import UpdateformOrganization from '../components/UpdateOrganization/UpdateOrgan
 import DetailActivity from '../views/DetailActivity';
 import FormActivities from '../components/FormActivities/FormContent'
 import ActivitiesList from '../views/ActivitiesList'
+import HomeEditForm from '../components/HomeEditForm/HomeEditForm';
 import TestimonialsList from '../components/TestimonialsList/TestimonialsList';
 import TestimonialsForm from '../components/TestimonialsForm/TestimonialsForm';
 import BackOfficeRoutes from './BackOfficeRoutes';
@@ -36,6 +37,7 @@ const AppRouter = () => {
         <PublicRoute exact path="/FormActivities" component={FormActivities} />
         <PublicRoute exact path="/FormCategories" component={FormCategories} />
         <PublicRoute exact path="/backoffice/activities" component={ActivitiesList} />
+        <PublicRoute exact path="/backoffice/editHome" component={ HomeEditForm } />
 
         {/*  TODO: implement admin routes */}
         <PrivateRoute
