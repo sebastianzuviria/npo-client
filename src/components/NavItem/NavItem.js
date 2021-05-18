@@ -6,7 +6,7 @@ import './NavItem.styles.css';
 
 const NavItem = ({ itemText, itemRoute }) => {
   return (
-    <NavLink className="nav-item" to={itemRoute}>
+    <NavLink className="navItem__item" to={itemRoute}>
       {itemText}
     </NavLink>
   );

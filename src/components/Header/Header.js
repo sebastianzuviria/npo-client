@@ -14,6 +14,7 @@ import { userLogged } from '../../slices/userSlice';
 //import userLogged from '../../helpers/userLogged';
 
 const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [navItems, setNavItems] = useState([]);
   const user = useSelector(userLogged, shallowEqual);
   //const user = userLogged();
@@ -30,15 +31,25 @@ const Header = () => {
     }
   }, [user]);
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={logo} />
+    <div className="header__container">
+
+      <div className={`header__toggle ${ isNavOpen && 'header__action-open' }`}
+        onClick={() => setIsNavOpen(!isNavOpen)}>
+
+        <span></span>
+
       </div>
-      <div className="nav-container">
+      <div className="header__logo-container">
+
+        <img className="header__logo" src={logo} />
+
+      </div>
+
+      <nav className={`header__nav-container ${isNavOpen && 'header__action-show'}`}>
         {navItems.map(({ text, route }, idx) => {
           return <NavItem key={idx} itemText={text} itemRoute={route} />;
         })}
-      </div>
+      </nav>
     </div>
   );
 };
