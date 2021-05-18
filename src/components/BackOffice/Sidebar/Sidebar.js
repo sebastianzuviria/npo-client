@@ -17,6 +17,8 @@ const Sidebar = () => {
             <SideLink path="/backoffice/activities" name="Actividades" />
             <SideLink path="/backoffice/news" name="Novedades" />
             <SideLink path="/backoffice/organization" name="Organizacion" />
+            <SideLink path="/backoffice/testimonials" name="Testimonios" />
+            <SideLink path="/backoffice/editHome" name="Editar Inicio" />
           </>
         )}
       </ul>
