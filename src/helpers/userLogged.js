@@ -1,6 +1,6 @@
-import apiGetService from '../services/apiGetService';
+//import apiGetService from '../services/apiGetService';
 
-const userLogged =  () => {
+/*const userLogged =  () => {
 
     // Check user against localStorage
     const { id }  = JSON.parse( localStorage.getItem('ongLoggedUser') ) || '';
@@ -26,6 +26,10 @@ const userLogged =  () => {
 
     }
 
-}
+}*/
+const userLogged = () => {
+  const user = JSON.parse(localStorage.getItem('ongLoggedUser'));
+  return user || false;
+};
 
 export default userLogged;

@@ -1,4 +1,4 @@
-.form-Activites{
+.form-Categories{
     font-family: sans-serif;
     margin: 20px 0px;
     background-color:rgb(245, 245, 245);
@@ -8,19 +8,19 @@
     box-shadow: 1px 1px 10px 0.1px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
-.input-act{
+.input-cat{
     width: 100%;
     border: none;
     height: 40px;
     padding-left: 10px;
 }
-.input-act:focus{
+.input-cat:focus{
     outline: none;
 }
-.content-act{
+.description-cat{
     width: 100%;
 }
-.button-activity{
+.button-category{
     border: none;
     height: 50px;
     width: 100px;
@@ -28,25 +28,25 @@
     color: white;
     font-weight: 600;
 }
-.button-activity:focus{
+.button-category:focus{
     outline: none;
 }
-.button-activity:hover{
+.button-category:hover{
     cursor: pointer;
 }
 
 @media (min-width: 425px) {
-    .form-Activites{
+    .form-Categories{
         width: 380px;
     }
 }
 @media (min-width: 768px) {
-    .form-Activites{
+    .form-Categories{
         width: 650px;
     }
 }
 @media (min-width: 1024px) {
-    .form-Activites{
+    .form-Categories{
         width: 750px;
     }
 }

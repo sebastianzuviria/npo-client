@@ -1,7 +1,7 @@
 
 .footer__content{
     padding: 5rem;
-    background-color: rgba(167, 163, 163, 0.5);
+    background-color: var(--color-primary);
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     
