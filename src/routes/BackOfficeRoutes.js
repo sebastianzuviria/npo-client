@@ -6,6 +6,8 @@ import Categories from '../views/Backoffice/Categories';
 import BackofficeNews from '../views/Backoffice/News';
 import Organization from '../views/Backoffice/Organization';
 import BackOffice from '../views/Backoffice/BackOffice';
+import Testimonials from '../views/Backoffice/Testimonials';
+import HomeEdit from '../views/Backoffice/HomeEdit';
 
 const BackOfficeRoutes = () => {
   return (
@@ -40,6 +42,19 @@ const BackOfficeRoutes = () => {
         exact
         path="/backoffice/categories"
         component={Categories}
+        role="Admin"
+      />
+      <PrivateRoute
+        exact
+        path="/backoffice/editHome"
+        component={HomeEdit}
+        role="Admin"
+      />
+
+      <PrivateRoute
+        exact
+        path="/backoffice/testimonials"
+        component={Testimonials}
         role="Admin"
       />
     </>

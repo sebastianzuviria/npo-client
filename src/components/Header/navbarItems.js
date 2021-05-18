@@ -9,6 +9,10 @@ export default [
     route: '/contact'
   },
   {
+    text: 'Testimonios',
+    route: '/testimonialsform'
+  },
+  {
     text: 'Backoffice',
     route: '/backoffice'
   },
