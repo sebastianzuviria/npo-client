@@ -1,29 +1,31 @@
 import React from 'react';
 import apiDeleteService from '../../../services/apiDeleteService';
-import { successAlert ,cancelAlert, confirmAlert } from '../../Alert/Alert';
+import apiGetService from "../../../services/apiGetService";
+import { successAlert ,cancelAlert, confirmAlert, errorAlert } from '../../Alert/Alert';
 
-const Category = ({ name, id }) => {
+const Category = ({ name, id , setCategories}) => {
 
     const deletecategory = async()=>{
 
         const res = await confirmAlert();
 
         if(res.isConfirmed){
-
-            (async () => {
-
-
+            try{
                 await apiDeleteService('categories', id);
-                return successAlert().then(()=>{
-                    window.location.reload();
-                })
-            }) ();
-
+                    setCategories(prev=>{
+                        return prev.filter((val)=>{
+                           return val.id !=id
+                         })
+                   });
+                   return await successAlert()
+                }
+                catch(e){
+                    errorAlert();
+                }
         }
         else{
             cancelAlert();
         }
-
     }
 
 
