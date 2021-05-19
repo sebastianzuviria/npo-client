@@ -1,18 +1,21 @@
-import React from'react'
-import { ErrorMessage,useField } from 'formik' ;  
+import React from 'react';
+import { ErrorMessage, useField } from 'formik';
 
 const MyTextInput = ({ label, ...props }) => {
-    //useField is a custom React hook that will automagically help you hook up inputs to Formik
-    const [field, meta]=useField(props);
+  //useField is a custom React hook that will automagically help you hook up inputs to Formik
+  const [field] = useField(props);
 
-    return (
-      <>
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <input {...field} {...props}  />
-        <ErrorMessage name={field.name} component="div" />
+  return (
+    <div className="form-floating mt-4">
+      <input {...field} {...props} className="form-control" />
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <ErrorMessage
+        name={field.name}
+        className="invalid-feedback ml-2 d-block"
+        component="div"
+      />
+    </div>
+  );
+};
 
-      </>
-    );
-  };
-
-export default MyTextInput
+export default MyTextInput;
