@@ -15,14 +15,19 @@ const Footer = () => {
 
         (async () => {
 
-            console.log(process.env.REACT_APP_API_URL);
 
             const infoOrganization = await apiGetService('organizations/public') ;
-            setName(infoOrganization.name)
-            setImage(infoOrganization.image)
-            setFacebook(infoOrganization.socialmedia.facebook)
-            setInstagram(infoOrganization.socialmedia.instagram)
-            setLinkedin(infoOrganization.socialmedia.linkedin)
+            if(infoOrganization){
+                setName(infoOrganization.name)
+                setImage(infoOrganization.image)
+                if(infoOrganization.socialmedia){
+                    setFacebook(infoOrganization.socialmedia.facebook)
+                    setInstagram(infoOrganization.socialmedia.instagram)
+                    setLinkedin(infoOrganization.socialmedia.linkedin)
+                }
+            }
+
+ 
 
         }) ();
     }, [])
