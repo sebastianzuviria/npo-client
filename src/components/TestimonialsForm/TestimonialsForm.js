@@ -40,9 +40,8 @@ const TestimonialsForm = ({ id, name, content }) => {
 
   return (
     <div className='container-fluid'>
-      <div>
-        <br />
-        <h3 className='text-center'>{formTitle}</h3>
+      <div className='pb-3'>
+        <h3 className='text-center pt-2'>{formTitle}</h3>
         <form className='form-control' onSubmit={handleSubmit}>
           <label className='text-center'>
             Name
@@ -74,7 +73,6 @@ const TestimonialsForm = ({ id, name, content }) => {
             {isEdit ? 'Edit' : 'Create'}
           </button>
         </form>
-        <br />
       </div>
     </div>
   );
