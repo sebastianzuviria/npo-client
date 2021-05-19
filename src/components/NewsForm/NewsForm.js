@@ -56,28 +56,31 @@ const NewsForm = ({ id, title, image, category, content }) => {
     console.log(newContent)
 
     return (
-        <div>
-            <h2>{titleOfForm}</h2>
-            <form style={{ display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
-                <label>
+        <div className='d-flex justify-content-center'>
+            <form className='form-new' /* style={{ display: 'flex', flexDirection: 'column'}} */ onSubmit={handleSubmit}>
+            <h2 className='text-center'>{titleOfForm}</h2>
+                <label className='w-100'>
                     Title
                     <input 
+                        className='input-new'
                         type='text'
                         value={newTitle}
                         onChange={({target}) => { setNewTitle(target.value) }}
                     />
                 </label>
-                <label>
+                <label className='w-100'>
                     Image
                     <input 
+                        className='input-new'
                         type='text'
                         value={newImage}
                         onChange={({target}) => { setNewImage(target.value) }}
                     />
                 </label>
-                <label>
+                <label className='w-100'>
                     Category
                     <select
+                        className='select-new'
                         value={newCategory}
                         onChange={({ target }) => setNewCategory(target.value)}
                     >
@@ -87,7 +90,7 @@ const NewsForm = ({ id, title, image, category, content }) => {
                         )}
                     </select>
                 </label>
-                <label>
+                <label className='content-new'>
                     Content
                     <CKEditor
                         editor={ ClassicEditor }
@@ -98,7 +101,9 @@ const NewsForm = ({ id, title, image, category, content }) => {
                         } }
                     />
                 </label>
-                <button type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
+                <div className='d-flex justify-content-center'>
+                    <button className='button-new' type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
+                </div>
             </form>
         </div>
     );

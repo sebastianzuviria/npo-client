@@ -3,6 +3,7 @@ import apiGetService from '../../services/apiGetService'
 import apiDeleteService from '../../services/apiDeleteService'
 import apiUpdateService from '../../services/apiUpdateService'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
+import './TableNovelties.css'
 
 const TableNovelties = () => {
     const [novelties, setNovelties] = useState([])
@@ -59,7 +60,7 @@ const TableNovelties = () => {
                         <tr key={i}>
                             <td>{novelty.title}</td>
                             <td>{novelty.image}</td>
-                            <td>{novelty.createdAt}</td>
+                            <td className='excerpt'>{novelty.createdAt}</td>
                             <td>
                                 <button
                                     onClick={() => edit('news', novelty.id)}
