@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import './FormStyles.css';
 
 const TestimonialsForm = ({ id, name, content }) => {
   const [newName, setNewName] = useState('');
@@ -40,24 +39,24 @@ const TestimonialsForm = ({ id, name, content }) => {
   };
 
   return (
-    <div className='d-flex justify-content-center'>
-      <div className='testimonials-form'>
+    <div className='container-fluid'>
+      <div>
+        <br />
         <h3 className='text-center'>{formTitle}</h3>
-        <form onSubmit={handleSubmit}>
-          <label className='form-content'>
+        <form className='form-control' onSubmit={handleSubmit}>
+          <label className='text-center'>
             Name
             <input
-              className='form-input'
+              className='form-control'
               type='text'
               value={newName}
-              placeholder='Name'
               onChange={({ target }) => {
                 setNewName(target.value);
               }}
               required
             />
           </label>
-          <label className='form-content'>
+          <label className='text-center'>
             Content
             <CKEditor
               editor={ClassicEditor}
@@ -68,11 +67,14 @@ const TestimonialsForm = ({ id, name, content }) => {
               }}
             />
           </label>
-          <button type='submit' className='form-button'>
-            {' '}
-            {isEdit ? 'Edit' : 'Create'}{' '}
+          <button
+            type='submit'
+            className='btn btn-outline-dark btn-sm btn-block'
+          >
+            {isEdit ? 'Edit' : 'Create'}
           </button>
         </form>
+        <br />
       </div>
     </div>
   );
