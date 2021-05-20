@@ -1,14 +1,15 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 import slideImg from '../../assets/sideshow-img.jpg';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/effect-fade/effect-fade.scss';
 import './Slider.css';
 
 //install Swiper modules
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
 const content = [
   {
@@ -37,22 +38,25 @@ const Slider = () => {
 
     <div>
       <Swiper
+        autoplay={{ delay: 3000 }}
         effect='fade'
+        fadeEffect={{
+          crossFade: true
+        }}
+        loop={true}
         spaceBetween={30}
-        speed={200}
+        speed={2000}
         slidesPerView={1}
         navigation
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, dynamicBullets: true }}
       >
 
         {content.map((slide) => (
 
           <SwiperSlide key={slide.id}>
-            <div className='slider__container'>
-              <div className='slider__img'>
-                <img src={slide.imageUrl} alt='slider__img'></img>
-              </div>
-              <div className='slider__txt'>{slide.text}</div>
+            <div className='container-fluid p-0'>
+              <img className='img-fluid slider__img' src={slide.imageUrl} alt='slider__img'></img>
+              <span className='slider__text text-center'>{slide.text}</span>
             </div>
           </SwiperSlide>
 

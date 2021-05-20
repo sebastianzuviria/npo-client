@@ -1,30 +1,18 @@
-.slider__container {
-    overflow: hidden;
+.slider_img {
+    filter: contrast(50%);
     position: relative;
-    width: 100%;
-    background-color: #808080;
 }
 
-.slider__img {
-    height: auto;
-    position: relative;
-    width: 0.5%;
-}
-
-@media all and (max-width: 500px) {
-    .slider__img {
-        opacity: 30%;
-    }
-}
-
-.slider__txt {
-    color: #002924;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 14px;
+.slider__text {
+    color: #ffffff;
+    font-size: 2rem;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
     position: absolute;
-    top: 182px;
     right: 0;
-    width: 50%;
-    padding-right: 4%;
-    line-height: 1.8;
+    top: 50%;
+    text-shadow: 1px 1px rgb(41, 41, 41);
+    width:50%;
+    word-wrap: break-word;
 }
