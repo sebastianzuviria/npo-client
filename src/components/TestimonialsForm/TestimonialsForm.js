@@ -40,10 +40,10 @@ const TestimonialsForm = ({ id, name, content }) => {
 
   return (
     <div className='container-fluid'>
-      <div className='pb-3'>
+      <div className='row align-items-center justify-content-center pb-3'>
         <h3 className='text-center pt-2'>{formTitle}</h3>
-        <form className='form-control' onSubmit={handleSubmit}>
-          <label className='text-center'>
+        <form className='card shadow col-sm-6 pb-3' onSubmit={handleSubmit}>
+          <label className='text-center form-control pb-3'>
             Name
             <input
               className='form-control'
@@ -55,7 +55,7 @@ const TestimonialsForm = ({ id, name, content }) => {
               required
             />
           </label>
-          <label className='text-center'>
+          <label className='text-center form-control pb-3'>
             Content
             <CKEditor
               editor={ClassicEditor}
@@ -68,7 +68,7 @@ const TestimonialsForm = ({ id, name, content }) => {
           </label>
           <button
             type='submit'
-            className='btn btn-outline-dark btn-sm btn-block'
+            className='btn btn-outline-dark col-6 btn-block'
           >
             {isEdit ? 'Edit' : 'Create'}
           </button>
