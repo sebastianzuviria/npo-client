@@ -17,7 +17,7 @@ const TestimonialsForm = ({ id, name, content }) => {
       setNewContent(content);
       setFormTitle('Edit a testimonial');
     }
-  }, [id, name, content]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
