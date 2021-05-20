@@ -35,7 +35,7 @@ const Slider = () => {
 
   return (
 
-    <div className='my-5'>
+    <div>
       <Swiper
         effect='fade'
         spaceBetween={30}

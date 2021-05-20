@@ -7,8 +7,8 @@ import BasicLayout from '../Layouts/BasicLayout';
 const Home = () => {
   return (
     <BasicLayout>
-      <WelcomeText />
       <Slider />
+      <WelcomeText />
       <GetNews />
     </BasicLayout>
   );
