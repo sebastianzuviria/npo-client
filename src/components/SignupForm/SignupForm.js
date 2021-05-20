@@ -1,12 +1,12 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import MyTextInput from './Textfield';
 import apiPostService from '../../services/apiPostService';
 import { errorAlert, successAlert } from '../Alert/Alert';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../slices/userSlice';
+import InputField from './InputField';
 
 const SignupForm = () => {
   const history = useHistory();
@@ -56,28 +56,28 @@ const SignupForm = () => {
           <Form className="card shadow col-md-8 col-lg-6">
             <div className="card-body">
               <h2 className="card-title py-3">Registrate</h2>
-              <MyTextInput
+              <InputField
                 label="Nombre"
                 name="firstName"
                 type="text"
                 placeholder=".."
               />
 
-              <MyTextInput
+              <InputField
                 label="Apellido"
                 name="lastName"
                 type="text"
                 placeholder="..."
               />
 
-              <MyTextInput
+              <InputField
                 label="Email"
                 name="email"
                 type="email"
                 placeholder="..."
               />
 
-              <MyTextInput
+              <InputField
                 label="Contraseña"
                 name="password"
                 type="password"

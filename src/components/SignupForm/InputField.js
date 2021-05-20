@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 
-const MyTextInput = ({ label, ...props }) => {
+const InputField = ({ label, ...props }) => {
   //useField is a custom React hook that will automagically help you hook up inputs to Formik
   const [field] = useField(props);
 
@@ -18,4 +18,4 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-export default MyTextInput;
+export default InputField;
