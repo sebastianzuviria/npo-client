@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
+import slideImg from '../../assets/sideshow-img.jpg';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
@@ -12,36 +13,36 @@ SwiperCore.use([Navigation, Pagination]);
 const content = [
   {
     id: 1,
-    imageUrl: 'https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-big-item.jpg',
+    imageUrl: slideImg,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
   },
 
   {
     id: 2,
-    imageUrl: 'https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg',
+    imageUrl: slideImg,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
   },
   {
     id: 3,
-    imageUrl: 'https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-03.jpg',
+    imageUrl: slideImg,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
   },
 
 ];
 
 
-function Slider() {
+const Slider = () => {
 
   return (
 
-    <div>
-
+    <div className='my-5'>
       <Swiper
+        effect='fade'
         spaceBetween={30}
+        speed={200}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
       >
 
         {content.map((slide) => (
@@ -53,17 +54,14 @@ function Slider() {
               </div>
               <div className='slider__txt'>{slide.text}</div>
             </div>
-
           </SwiperSlide>
 
         ))}
-
       </Swiper>
     </div>
 
   );
 
 }
-
 
 export default Slider;
