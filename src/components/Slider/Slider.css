@@ -1,0 +1,31 @@
+.slider__container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-color: #808080;
+}
+
+.slider__img {
+    height: auto;
+    padding: 15px;
+    position: relative;
+    width: 0.5%;
+}
+
+@media all and (max-width: 500px) {
+    .slider__img {
+        opacity: 30%;
+    }
+}
+
+.slider__txt {
+    color: #002924;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    position: absolute;
+    top: 182px;
+    right: 0;
+    width: 50%;
+    padding-right: 4%;
+    line-height: 1.8;
+}
