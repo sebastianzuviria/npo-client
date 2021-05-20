@@ -1,4 +1,4 @@
-.welcomeText__container{
-    padding: 1rem;
+.welcomeText__title{
+    color: black;
+    font-weight: bold;
 }
-
