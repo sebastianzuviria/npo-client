@@ -4,7 +4,7 @@ import './TopButton.css';
 export const TopButton = () => {
 
     const [visible, setVisible] = useState(false)
-  
+
     const toggleVisibility = () => {
 
         const scrolled = document.documentElement.scrollTop;
@@ -15,8 +15,8 @@ export const TopButton = () => {
     const goToTop = () =>{
 
         window.scrollTo({
-          top: 0, 
-          behavior: 'smooth'
+            top: 0, 
+            behavior: 'smooth'
         });
 
     }
@@ -28,7 +28,7 @@ export const TopButton = () => {
             className={ `goToTopButton__btn px-3 py-2 rounded-circle ${visible ? 'goToTopButton__btn__show' : 'goToTopButton__btn__hidden' }` }
             onClick={ goToTop }
         >
-            <i class='fas fa-arrow-up'></i>
+            <i className='fas fa-arrow-up'></i>
         </button>  
     )
 }
