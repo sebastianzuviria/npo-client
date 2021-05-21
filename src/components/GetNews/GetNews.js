@@ -19,7 +19,7 @@ const GetNews = () => {
     <div className='container'>
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
-                news.map(({ id, image, title }) => (
+                news.map(({ id, content, image, title }) => (
                     <div className='col my-3' key={id}>
                         <div className='card news__card h-100 border-0'>
                             <img
@@ -33,10 +33,7 @@ const GetNews = () => {
                                 </h5>
                                 <hr />
                                 <p className='card-text text-muted'>
-                                    This is a wider card with supporting text
-                                    below as a natural lead-in to additional
-                                    content. This content is a little bit
-                                    longer.
+                                    { content }
                                 </p>
                             </div>
                         </div>

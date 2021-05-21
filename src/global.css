@@ -9,7 +9,7 @@
     --font-nunito: 'Nunito', sans-serif;
     --font-comic: 'Coming Soon', cursive;
 
-    --color-font: #6c757d;
+    --color-font: #4a4c4e;
     --color-primary: rgb(52, 58, 64);
     --color-secondary: rgb(231, 231, 231);
     --color-red-light: rgba(219, 60, 86, .4);
@@ -20,7 +20,7 @@
 *{
     
     font-family: var(--font-lato);
-    /* color: var(--color-font); */
+    color: var(--color-font);
     
 }
 
