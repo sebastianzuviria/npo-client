@@ -10,6 +10,7 @@ import BackOfficeRoutes from './BackOfficeRoutes';
 import Signup from '../views/Signup';
 import Login from '../views/Login';
 import TestimonialForms from '../views/TestimonialForms';
+import As from '../views/as';
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
         <Route exact path='/news/:id' component={DetailedNew} />
         <Route exact path='/activities/:id' component={DetailActivity} />
         <Route exact path='/testimonialsform' component={TestimonialForms} />
+        <Route exact path='/as' component={As} />
 
         {/*  Restricted routes for logged users */}
         <RestrictedRoute exact path='/login' component={Login} />
