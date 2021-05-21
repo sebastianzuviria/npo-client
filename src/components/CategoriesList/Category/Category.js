@@ -7,15 +7,15 @@ import * as Yup from "yup";
 
 import {Modal, Button} from 'react-bootstrap';
 
-const Category = ({ name, id, setCategories }) => {
+const Category = ({ name, description, id, setCategories }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const initialValues = {
-    	namecategory: name,
-    	descriptioncategory: "",
+    	name: name,
+    	description:description,
     };
 
     const validationSchema=Yup.object({
@@ -48,10 +48,26 @@ const Category = ({ name, id, setCategories }) => {
     };
 
     const onSubmit = async(data)=>{
-        console.log(data);
 
-        const info=await apiUpdateService("categories",id);
-        console.log(info, 'info');
+        try{
+            const info = await apiUpdateService("categories",id, data);
+            await handleClose();
+            await successAlert();
+            setCategories((prev) => {
+                return prev.map((val) => {
+
+                    return val.id==id? {name:data.name, description:data.description}: val
+                });
+            });
+
+        }
+        catch(e){
+
+            await handleClose();
+            errorAlert();
+
+        }
+ 
 
     }
 
@@ -87,13 +103,13 @@ const Category = ({ name, id, setCategories }) => {
                     onSubmit={onSubmit}
                     >
                     <Form>
-                        <label htmlFor="namecategory: ">Category</label>
-                        <Field name="namecategory" type="text" />
-                        <ErrorMessage name="namecategory" />
+                        <label htmlFor="name">Category</label>
+                        <Field name="name" type="text" />
+                        <ErrorMessage name="name" />
                 
-                        <label htmlFor="descriptioncategory">Description</label>
-                        <Field name="descriptioncategory" type="text" />
-                        <ErrorMessage name="descriptioncategory" />
+                        <label htmlFor="description">Description</label>
+                        <Field name="description" type="text" />
+                        <ErrorMessage name="description" />
 
                         <button type="submit">Submit</button>
                     </Form>
@@ -104,9 +120,6 @@ const Category = ({ name, id, setCategories }) => {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save 
                     </Button>
                 </Modal.Footer>
         </Modal>

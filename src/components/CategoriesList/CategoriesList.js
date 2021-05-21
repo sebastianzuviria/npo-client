@@ -36,7 +36,7 @@ const CategoriesList = () => {
                         <tbody>
                             {categories.map((item, i) => (
 
-                                <Category key={item.id} name={item.name} id={item.id}  setCategories={setCategories}/>
+                                <Category key={item.id} name={item.name} description={item.description} id={item.id}  setCategories={setCategories}/>
 
                             ))}
                         </tbody>
