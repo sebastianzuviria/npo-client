@@ -16,6 +16,6 @@ input, select {
     margin-top: 10px;
 }
 
-button {
+.newsForm__button {
     width: 60px;
 }

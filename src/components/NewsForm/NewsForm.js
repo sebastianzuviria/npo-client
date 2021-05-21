@@ -98,7 +98,7 @@ const NewsForm = ({ id, title, image, category, content }) => {
                         } }
                     />
                 </label>
-                <button type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
+                <button className='newsFrom__button' type='submit'>{isEdit ? 'Edit' : 'Create'}</button>
             </form>
         </div>
     );

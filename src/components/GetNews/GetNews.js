@@ -16,14 +16,14 @@ const GetNews = () => {
     }, []);
 
     return (
-      <div className='container'>
+    <div className='container'>
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
                 news.map(({ id, image, title }) => (
-                    <div className='col'>
-                        <div className='card h-100 border-0'>
+                    <div className='col my-3'>
+                        <div className='card news__card h-100 border-0'>
                             <img
-                                className='card-img-top'
+                                className='card-img-top news__img'
                                 src={image}
                                 alt={image}
                             />

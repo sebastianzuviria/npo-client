@@ -2,3 +2,17 @@
     color: rgb(48, 47, 47);
     font-weight: bold;
 }
+
+.news__img:hover {
+    filter: brightness(70%);
+}
+
+
+.news__card {
+    transition: transform .2s; 
+}
+
+.news__card:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
