@@ -24,6 +24,7 @@ const Footer = () => {
                     setLinkedin(infoOrganization.socialmedia.linkedin)
                 }
             }
+            
         }) ();
     }, [])
 
