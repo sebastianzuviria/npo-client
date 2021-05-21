@@ -25,10 +25,10 @@ export const TopButton = () => {
 
     return (
         <button
-            className={ `goToTopButton__btn px-3 py-2 rounded-circle ${visible ? 'goToTopButton__btn__show' : 'goToTopButton__btn__hidden' }` }
+            className={ `TopButton__btn px-3 py-2 ${visible ? 'TopButton__btn__show' : 'TopButton__btn__hidden' }` }
             onClick={ goToTop }
         >
-            <i className='fas fa-arrow-up'></i>
+            <i className='fas fa-arrow-up TopButton__fa-arrow-up'></i>
         </button>  
     )
 }

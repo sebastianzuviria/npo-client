@@ -1,8 +1,7 @@
-.goToTopButton__btn {
+.TopButton__btn {
     background: grey;
     border: none;
     bottom: 2rem;  
-    color: white;
     cursor: pointer;
     font-size: 2rem;
     position: fixed;
@@ -10,14 +9,18 @@
     z-index: 1;
 }
 
-.goToTopButton__btn__show {
-    opacity: 70%;
+.TopButton__btn__show {
+    opacity: 60%;
     transition: visibility 0s linear 0s, opacity 400ms;
     visibility: visible;
 }
 
-.goToTopButton__btn__hidden {
+.TopButton__btn__hidden {
     opacity: 0;
     transition: visibility 0s linear 300ms, opacity 400ms;
     visibility: hidden;
+}
+
+.TopButton__fa-arrow-up {
+    color: white;
 }
