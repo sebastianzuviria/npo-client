@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import apiGetService from '../../services/apiGetService';
 import './News.css';
 
-const GetNews = () => {
+const News = () => {
 
     const [news, setNews] = useState([]);
 
@@ -19,7 +19,7 @@ const GetNews = () => {
     <div className='container'>
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
-                news.map(({ id, content, image, title }) => (
+                news.slice(0, 3).map(({ id, content, image, title }) => (
                     <div className='col my-3' key={id}>
                         <div className='card news__card h-100 border-0'>
                             <img
@@ -35,6 +35,7 @@ const GetNews = () => {
                                 <p className='card-text text-muted'>
                                     { content }
                                 </p>
+                                <button className='btn my-3 px-3 py-3 news__btn-info'>MAS INFORMACION</button>
                             </div>
                         </div>
                     </div>
@@ -44,4 +45,4 @@ const GetNews = () => {
     );
 }
 
-export default GetNews;
+export default News;

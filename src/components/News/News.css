@@ -1,0 +1,25 @@
+.news__btn-info {
+    color: white;
+    background-color: orange;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.news__btn-info:hover {
+    color: white;
+}
+
+.news__title {
+    color: rgb(48, 47, 47);
+    font-weight: bolder;
+}
+
+.news__img {
+    transition: transform .2s; 
+}
+
+.news__img:hover {
+    filter: brightness(70%);
+    transform: scale(1.01);
+    cursor: pointer;
+}
