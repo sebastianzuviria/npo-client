@@ -20,7 +20,7 @@ const GetNews = () => {
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
                 news.map(({ id, image, title }) => (
-                    <div className='col my-3'>
+                    <div className='col my-3' key={id}>
                         <div className='card news__card h-100 border-0'>
                             <img
                                 className='card-img-top news__img'
