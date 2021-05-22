@@ -28,14 +28,15 @@ const News = () => {
                                 alt={image}
                             />
                             <div className='card-body'>
+                                <p className='news__date mb-1 ms-1'>21 mayo, 2021</p>
                                 <h5 className='card-title news__title'>
                                     {title}
                                 </h5>
                                 <hr />
-                                <p className='card-text text-muted'>
-                                    { content }
+                                <p className='card-text text-muted text-justify'>
+                                    { content.slice(0,230) } ...
                                 </p>
-                                <button className='btn my-3 px-3 py-3 news__btn-info'>MAS INFORMACION</button>
+                                {/* <button className='btn my-3 px-3 py-3 news__btn-info'>Leer Más</button> */}
                             </div>
                         </div>
                     </div>

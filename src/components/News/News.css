@@ -1,6 +1,6 @@
 .news__btn-info {
     color: white;
-    background-color: orange;
+    background-color: var(--color-primary);
     font-weight: bold;
     font-size: smaller;
 }
@@ -9,8 +9,13 @@
     color: white;
 }
 
+.news__date{
+    font-size:x-small;
+    font-weight: lighter;
+}
+
 .news__title {
-    color: rgb(48, 47, 47);
+    color: rgb(52, 58, 64);
     font-weight: bolder;
 }
 
