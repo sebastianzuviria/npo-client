@@ -14,9 +14,6 @@ const Footer = () => {
     useEffect(() => {
 
         (async () => {
-
-            console.log(process.env.REACT_APP_API_URL);
-
             const infoOrganization = await apiGetService('organizations/public') ;
             if(infoOrganization){
                 setName(infoOrganization.name)
@@ -26,9 +23,8 @@ const Footer = () => {
                     setInstagram(infoOrganization.socialmedia.instagram)
                     setLinkedin(infoOrganization.socialmedia.linkedin)
                 }
-
             }
-
+            
         }) ();
     }, [])
 
