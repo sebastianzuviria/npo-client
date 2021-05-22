@@ -19,7 +19,7 @@ const News = () => {
     <div className='container'>
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
-                news.slice(0, 3).map(({ id, content, image, title }) => (
+                news.slice(0, 3).map(({ id, createdAt, content, image, title }) => (
                     <div className='col my-3' key={id}>
                         <div className='card news__card h-100 border-0'>
                             <img
@@ -28,7 +28,7 @@ const News = () => {
                                 alt={image}
                             />
                             <div className='card-body'>
-                                <p className='news__date mb-1 ms-1'>21 mayo, 2021</p>
+                                <p className='news__date mb-1 ms-1'>{ new Date( createdAt ).toLocaleDateString("es-ES") }</p>
                                 <h5 className='card-title news__title'>
                                     {title}
                                 </h5>
