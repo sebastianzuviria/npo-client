@@ -10,9 +10,9 @@ function App() {
     dispatch(isLogged());
   });
   return (
-    <div className="animate__animated animate__fadeIn">
+    <>
       <AppRouter />
-    </div>
+    </>
   );
 }
 

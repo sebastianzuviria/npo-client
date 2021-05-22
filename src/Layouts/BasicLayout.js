@@ -6,7 +6,9 @@ const BasicLayout = ({ children }) => {
   return (
     <React.Fragment>
       <Header />
-      {children}
+      <div className="animate__animated animate__fadeIn">
+        {children}
+      </div>
       <Footer />
     </React.Fragment>
   );
