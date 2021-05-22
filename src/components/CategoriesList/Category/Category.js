@@ -13,7 +13,7 @@ const Category = ({ name, description, id, setCategories }) => {
 
     const initialValues = {
     	name: name,
-    	description:description,
+    	description:description
     };
 
     const validationSchema=Yup.object({
