@@ -1,11 +1,11 @@
 export default [
   {
-    text: 'Home',
+    text: 'Inicio',
     route: '/'
   },
-  { text: 'News', route: '/news' },
+  { text: 'Noticias', route: '/news' },
   {
-    text: 'Contact',
+    text: 'Contacto',
     route: '/contact'
   },
   {
@@ -13,12 +13,12 @@ export default [
     route: '/testimonialsform'
   },
   {
-    text: 'Backoffice',
+    text: 'Administración',
     route: '/backoffice'
   },
-  { text: 'Login', route: '/login' },
+  { text: 'Ingresar', route: '/login' },
   {
-    text: 'Signup',
+    text: 'Registrarse',
     route: '/signup'
   }
 ];
