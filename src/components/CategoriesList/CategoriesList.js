@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import apiGetService from "../../services/apiGetService";
 import Category from "./Category/Category";
-import '../Table/Table.css'
+import './CategoriesList.css';
+// import '../Table/Table.css'
 
 
 const CategoriesList = () => {
@@ -24,9 +25,9 @@ const CategoriesList = () => {
         <div>
             <h3>Categories</h3>
 
-            <div className='d-flex justify-content-center'>
+            <div className='container-sm'>
                 {categories.length > 0 ?(
-                    <table className="table table-bordered table-hw">
+                    <table className="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">Category</th>
