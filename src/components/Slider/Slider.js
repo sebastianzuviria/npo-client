@@ -15,18 +15,18 @@ const content = [
   {
     id: 1,
     imageUrl: slideImg,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
+    text: 'Solidaridad ',
   },
 
   {
     id: 2,
     imageUrl: slideImg,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
+    text: 'Donaciones ',
   },
   {
     id: 3,
     imageUrl: slideImg,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ',
+    text: 'Acción Social',
   },
 
 ];
@@ -55,7 +55,7 @@ const Slider = () => {
 
           <SwiperSlide key={slide.id}>
             <div className='container-fluid p-0'>
-              <img className='img-fluid slider__img' src={slide.imageUrl} alt='slider__img'></img>
+              <img className='slider__img img-fluid' src={slide.imageUrl} alt='slider__img'></img>
               <span className='slider__text text-center'>{slide.text}</span>
             </div>
           </SwiperSlide>

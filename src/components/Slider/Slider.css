@@ -1,5 +1,5 @@
-.slider_img {
-    filter: contrast(50%);
+.slider__img {
+    filter: brightness(60%);
     position: relative;
 }
 

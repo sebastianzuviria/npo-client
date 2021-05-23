@@ -31,9 +31,8 @@ const Header = () => {
     }, [user]);
 
     return (
-        <nav className='navbar navbar-expand-lg navbar-light fixed-top bg-light py-3 shadow-sm'>
-            <div className='container-fluid'>
-                <img className='img-fluid my-2' src={ logo } alt={ logo } />
+        <nav className='navbar navbar-expand-lg navbar-light sticky-top bg-light py-3 shadow-sm'>
+            <div className='container-fluid mx-auto'>
                 <button
                     className='navbar-toggler border-0'
                     type='button'
@@ -45,6 +44,9 @@ const Header = () => {
                 >
                     <i className='fas fa-bars'></i>
                 </button>
+                <NavLink className='mx-auto' to='/'>
+                    <img className='my-2 navbar-brand img-fluid' src={ logo } alt={ logo } />
+                </NavLink>
                 <div
                     className='collapse navbar-collapse justify-content-center'
                     id='appHeader'
