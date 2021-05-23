@@ -1,5 +1,5 @@
 .welcomeText__title{
-    color: black;
+    color: var(--color-brand);
     font-weight: bold;
 }
 

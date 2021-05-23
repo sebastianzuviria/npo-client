@@ -1,5 +1,5 @@
 .TopButton__btn {
-    background: grey;
+    background: var(--color-brand);
     border: none;
     bottom: 2rem;  
     cursor: pointer;
