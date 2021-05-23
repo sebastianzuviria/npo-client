@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import apiGetService from '../../services/apiGetService';
-import './News.css';
 import { Link } from 'react-router-dom';
+import './News.css';
 
 const News = () => {
 

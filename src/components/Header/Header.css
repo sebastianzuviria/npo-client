@@ -1,0 +1,9 @@
+.header__ul {
+    font-weight: bold;
+}
+
+.header__ul:hover {
+    background-color: var(--color-brand);
+    color: white;
+    opacity: 60%;
+}
