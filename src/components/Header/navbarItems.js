@@ -8,6 +8,7 @@ export default [
     text: 'Contact',
     route: '/contact'
   },
+  { text: 'Miembros', route: '/members' },
   {
     text: 'Testimonios',
     route: '/testimonialsform'
