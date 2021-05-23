@@ -50,13 +50,14 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
                 <td>{testimonial.name}</td>
                 <td>
                     <button style={{cursor:"pointer"}} 
-                        type="button" className="btn btn-info mr-1">
-                        <i className="fa fa-pencil" 
-                        onClick={ () => setIsEdit(!isEdit) } ></i>
+                        type="button" className="btn btn-info mr-1"
+                        onClick={ () => setIsEdit(!isEdit) } >
+                        <i className="fa fa-pencil" ></i>
                     </button>
                     <button style={{cursor:"pointer"}}
-                        type="button" className="btn btn-danger">
-                        <i className="fas fa-trash-alt" onClick={deleteTestimonial} ></i>
+                        type="button" className="btn btn-danger"
+                        onClick={deleteTestimonial} >
+                        <i className="fas fa-trash-alt" ></i>
                     </button>
                 </td>
             </tr>
