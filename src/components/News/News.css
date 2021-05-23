@@ -1,12 +1,13 @@
-.news__btn-info {
+.news__btn-more {
     color: white;
-    background-color: var(--color-primary);
+    background-color: var(--color-brand);
     font-weight: bold;
     font-size: smaller;
 }
 
-.news__btn-info:hover {
+.news__btn-more:hover {
     color: white;
+    background-color: rgb(118, 165, 180);
 }
 
 .news__date{
@@ -15,16 +16,15 @@
 }
 
 .news__title {
-    color: rgb(52, 58, 64);
+    color: var(--color-brand);
     font-weight: bolder;
 }
 
-.news__img {
-    transition: transform .2s; 
+.news__hr {
+    color: #b3b3b3;
 }
 
 .news__img:hover {
     filter: brightness(70%);
-    transform: scale(1.01);
     cursor: pointer;
 }
