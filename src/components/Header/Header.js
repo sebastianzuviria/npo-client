@@ -45,7 +45,7 @@ const Header = () => {
                     <i className='fas fa-bars'></i>
                 </button>
                 <NavLink className='mx-auto' to='/'>
-                    <img className='my-2 navbar-brand img-fluid' src={ logo } alt={ logo } />
+                    <img className='navbar-brand img-fluid' src={ logo } alt={ logo } />
                 </NavLink>
                 <div
                     className='collapse navbar-collapse justify-content-center'
