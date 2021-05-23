@@ -6,16 +6,19 @@ import BasicLayout from '../Layouts/BasicLayout';
 const Contact = () => {
   return (
     <BasicLayout>
-      <div className="mt-5 container">
-        <div className="mt-5 row d-flex align-items-start justify-content-center">
-          <div className="col-12 col-lg-6">
+      <div className="container">
+        <main>
+          <div className="py-5 text-center">
             <ContactInfo />
           </div>
-          <div className="col-12 col-lg-6">
-            <ContactForm />
+          <div className="row g-5 form-contacto">
+              <div className="col-md-10 col-lg-10">
+                  <ContactForm />
+              </div>
           </div>
-        </div>
+        </main>
       </div>
+
     </BasicLayout>
   );
 };
