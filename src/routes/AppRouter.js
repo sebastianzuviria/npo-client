@@ -11,6 +11,7 @@ import Signup from '../views/Signup';
 import Login from '../views/Login';
 import TestimonialForms from '../views/TestimonialForms';
 import As from '../views/as';
+import PrivateRoute from './components/PrivateRoute';
 
 const AppRouter = () => {
   return (
@@ -26,7 +27,8 @@ const AppRouter = () => {
         {/*  Restricted routes for logged users */}
         <RestrictedRoute exact path="/login" component={Login} />
         <RestrictedRoute exact path="/signup" component={Signup} />
-        <RestrictedRoute
+
+        <PrivateRoute
           exact
           path="/testimonialsform"
           component={TestimonialForms}

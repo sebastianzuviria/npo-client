@@ -19,7 +19,6 @@ const Header = () => {
   const user = useSelector(userLogged, shallowEqual);
   //const user = userLogged();
   useEffect(() => {
-    console.log(user, 'user has changed');
     if (user) {
       setNavItems(
         navbarItems.filter(
@@ -27,25 +26,26 @@ const Header = () => {
         )
       );
     } else {
-      setNavItems(navbarItems.filter((item) => item.route !== '/backoffice'));
+      setNavItems(navbarItems.filter((item) => item.restricted !== true));
     }
   }, [user]);
   return (
     <div className="header__container">
-
-      <div className={`header__toggle ${ isNavOpen && 'header__action-open' }`}
-        onClick={() => setIsNavOpen(!isNavOpen)}>
-
+      <div
+        className={`header__toggle ${isNavOpen && 'header__action-open'}`}
+        onClick={() => setIsNavOpen(!isNavOpen)}
+      >
         <span></span>
-
       </div>
       <div className="header__logo-container">
-
         <img className="header__logo" src={logo} />
-
       </div>
 
-      <nav className={`header__nav-container ${isNavOpen && 'header__action-show'}`}>
+      <nav
+        className={`header__nav-container ${
+          isNavOpen && 'header__action-show'
+        }`}
+      >
         {navItems.map(({ text, route }, idx) => {
           return <NavItem key={idx} itemText={text} itemRoute={route} />;
         })}
