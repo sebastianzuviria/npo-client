@@ -4,6 +4,7 @@ import apiDeleteService from '../../services/apiDeleteService'
 import apiUpdateService from '../../services/apiUpdateService'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 
+
 const TableNovelties = () => {
     const [novelties, setNovelties] = useState([])
     const [newObject, setNewObject] = useState({})
