@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import apiGetService from '../../../services/apiGetService';
 import apiUpdateService from '../../../services/apiUpdateService';
 import { successAlert } from '../../Alert/Alert';
+
 const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
     
     const [testimonial, setTestimonial] = useState({id, name, content});
@@ -44,30 +45,34 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
         }
     }
     
-        return(
-
-            <div className="TestimonialItem__content">
-                
-                <h5 className="TestimonialItem__h5" >{testimonial.name}</h5>
-                <p className="TestimonialItem_p" >{testimonial.content}</p>
-                <i className="fas fa-edit" onClick={ () => setIsEdit(!isEdit) } ></i>
-                <i className="fas fa-trash-alt" onClick={deleteTestimonial} ></i>
-                
-            
-                {
-                    isEdit && (
-                        <div className="TestimonialItem__modal-content">    
-                            <form onSubmit={handleSubmit} >
-                                <input type="text" name="name" autoComplete="off" value={ testimonial.name } onChange={handleOnChange}/>
-                                <textarea type="textarea" name="content" autoComplete="off" value={ testimonial.content } onChange={handleOnChange}></textarea>
-                                <button type="submit">Guardar Cambios</button>
-                                <button type="button" onClick = { () => handleCancel(id) } > Cancelar </button>
-                            </form>
-                        </div>
-                        )
-                }
-
-            </div>
-        )
+        return(<>
+            <tr>
+                <td>{testimonial.name}</td>
+                <td>
+                    <button style={{cursor:"pointer"}} 
+                        type="button" className="btn btn-info mr-1"
+                        onClick={ () => setIsEdit(!isEdit) } >
+                        <i className="fa fa-pencil" ></i>
+                    </button>
+                    <button style={{cursor:"pointer"}}
+                        type="button" className="btn btn-danger"
+                        onClick={deleteTestimonial} >
+                        <i className="fas fa-trash-alt" ></i>
+                    </button>
+                </td>
+            </tr>
+            {
+                isEdit && (
+                <div className="TestimonialItem__modal-content">
+                    <form onSubmit={handleSubmit} >
+                        <input type="text" name="name" autoComplete="off" value={ testimonial.name } onChange={handleOnChange}/>
+                        <textarea type="textarea" name="content" autoComplete="off" value={ testimonial.content } onChange={handleOnChange}></textarea>
+                        <button type="submit">Guardar Cambios</button>
+                        <button type="button" onClick = { () => handleCancel(id) } > Cancelar </button>
+                    </form>
+                </div>
+                )
+            }
+        </>)
 }
 export default TestimonialItem;

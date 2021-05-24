@@ -3,6 +3,7 @@ import {confirmAlert, successAlert} from '../Alert/Alert';
 import apiGetService from '../../services/apiGetService';
 import apiDeleteService from '../../services/apiDeleteService';
 import TestimonialItem from './TestimonialItem';
+import Spinner from '../Spinner/Spinner';
 
 const TestimonialsList = () => {
 
@@ -42,25 +43,40 @@ const TestimonialsList = () => {
     // }
 
     useEffect(() => {
-
+        
         getTestimonials();
-
+        
     },[])
-
     
     return(
-        <div className="TestimonialsList__content">
-
+        <div className="TestimonialsList__content container">
+            
             {
-                testimonials.map(value => <TestimonialItem key={value.id} {...value} 
+                
+            testimonials.length === 0 ? <Spinner/> : (
+                
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        testimonials?.map(value => <TestimonialItem key={value.id} {...value} 
 
-                    deleteTestimonial={ () => deleteTestimonial(value.id) }
-                    
-                    
-                    />
-                    
-                )
+                            deleteTestimonial={ () => deleteTestimonial(value.id) }
+                            
+                            />
+                            
+                        )
+                    }
+                    </tbody>
+                </table>
+            )
             }
+            
         </div>
     )
 }
