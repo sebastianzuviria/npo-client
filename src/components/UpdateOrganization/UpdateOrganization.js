@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import MyTextInput from "../SignupForm/Textfield";
-import apiGetService from "../../services/apiGetService";
+import React, { useState, useEffect } from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import apiGetService from '../../services/apiGetService';
+import InputField from '../SignupForm/InputField';
 
 const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
   const [register, setRegister] = useState(false);
   const [fieldempty, setFieldempty] = useState(false);
   const [typeimage, setTypeimage] = useState(false);
 
   const initialValues = {
-    name: "",
-    image: "",
+    name: '',
+    image: ''
   };
 
   //Info organization
   useEffect(() => {
-    
-      ( async () => {
-          const infoorganization = await apiGetService('organizations/public');
-          setName(infoorganization.name);
-          setImage(infoorganization.image);
-      })();
+    (async () => {
+      const infoorganization = await apiGetService('organizations/public');
+      setName(infoorganization.name);
+      setImage(infoorganization.image);
+    })();
   }, []);
 
   const validationSchema = Yup.object({
-    name: Yup.string().min(3, "organization name must be at least 3 characters"),
+    name: Yup.string().min(3, 'organization name must be at least 3 characters')
   });
 
   const onSubmit = (data) => {
@@ -40,7 +39,7 @@ const UpdateformOrganization = () => {
 
       //Information by default that would be in the database
       if (!data.name.length > 0) {
-        data.name = "Default information name";
+        data.name = 'Default information name';
       } else {
         if (data.image.length > 0) {
           if (extensions.test(data.image)) {
@@ -53,13 +52,12 @@ const UpdateformOrganization = () => {
           } else {
             setTypeimage(true);
           }
-
         }
       }
     }
     //Empty fields
     else {
-      console.log("vacios");
+      console.log('vacios');
       setFieldempty(true);
     }
     console.log(data);
@@ -67,7 +65,7 @@ const UpdateformOrganization = () => {
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <h1>Update organization!</h1>
       <p>{name}</p>
@@ -79,29 +77,24 @@ const UpdateformOrganization = () => {
       >
         <Form
           style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "800px",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            width: '800px',
+            alignItems: 'center'
           }}
         >
-          <MyTextInput label="organization name" name="name" type="text" />
+          <InputField label="organization name" name="name" type="text" />
 
-          <MyTextInput
-            label="Logo"
-            name="image"
-            type="file"
-            placeholder="..."
-          />
+          <InputField label="Logo" name="image" type="file" placeholder="..." />
 
-          {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
+          {typeimage ? 'the file must be of type jpg, jpeg, png' : ''}
 
           <br />
           <button type="submit">Submit</button>
         </Form>
       </Formik>
-      {register ? "Successful registered organization information" : ""}
-      {fieldempty ? "Fields cannot be empty" : ""}
+      {register ? 'Successful registered organization information' : ''}
+      {fieldempty ? 'Fields cannot be empty' : ''}
     </div>
   );
 };

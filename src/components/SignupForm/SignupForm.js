@@ -1,95 +1,101 @@
-import React from'react'
-import { Formik , Form  } from 'formik' ;   
+import React from 'react';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import MyTextInput from './Textfield'
 import apiPostService from '../../services/apiPostService';
 import { errorAlert, successAlert } from '../Alert/Alert';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../../slices/userSlice';
+import InputField from './InputField';
 
 const SignupForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const initialValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  };
 
-    const initialValues={
+  const validationSchema = Yup.object({
+    firstName: Yup.string()
+      .max(15, 'Debe contener menos de 15 caracteres.')
+      .required('Campo requerido.'),
 
-        firstName: '',
-        lastName: '',
-        email: '',
-        password:''
+    lastName: Yup.string()
+      .max(20, 'Debe contener menos de 20 caracteres.')
+      .required('Campo requerido.'),
+
+    email: Yup.string().email('Email no válido.').required('Campo requerido.'),
+
+    password: Yup.string()
+      .min(6, 'Debe tener un mínimo de 6 caracteres.')
+      .required('Campo requerido.')
+  });
+
+  const handleSubmit = async (values) => {
+    try {
+      const authResponse = await apiPostService('users/auth/register', values);
+      dispatch(userLogin(authResponse));
+      await successAlert();
+      history.push('/');
+    } catch (err) {
+      await errorAlert(err);
     }
+  };
 
-    const validationSchema= Yup.object({
+  return (
+    <div className="container d-flex wrapper">
+      <div className="row align-items-center justify-content-center vw-100 mx-1">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form className="card shadow col-md-8 col-lg-6">
+            <div className="card-body">
+              <h2 className="card-title py-3">Registrate</h2>
+              <InputField
+                label="Nombre"
+                name="firstName"
+                type="text"
+                placeholder=".."
+              />
 
-        firstName: Yup.string()
-          .max(15, 'Must be 15 characters or less')
-          .required('The firstName field is required'),
+              <InputField
+                label="Apellido"
+                name="lastName"
+                type="text"
+                placeholder="..."
+              />
 
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
-          .required('The last name field is required'),
+              <InputField
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="..."
+              />
 
-        email: Yup.string()
-          .email('Invalid email address')
-          .required('The email field is required'),
+              <InputField
+                label="Contraseña"
+                name="password"
+                type="password"
+                placeholder="..."
+              />
 
-        password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required')
-      })
-
-      const handleSubmit = async ( values, { resetForm } )=>{
-        
-        try {
-
-          await apiPostService('users/auth/register', values );
-          resetForm();
-          await successAlert();
-          
-      } catch (err) {
-          
-          await errorAlert( err );
-
-      }
-        
-    }
-
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h1>Subscribe!</h1>
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit} >
-          <Form style={{display: 'flex', flexDirection: 'column', width: '800px', alignItems: 'center'}}>
-            <MyTextInput
-              label="First Name"
-              name="firstName"
-              type="text"
-              placeholder=".."
-            />
-  
-            <MyTextInput
-              label="Last Name"
-              name="lastName"
-              type="text"
-              placeholder="..."
-            />
-  
-            <MyTextInput
-              label="Email Address"
-              name="email"
-              type="email"
-              placeholder="..."
-            />
-
-            <MyTextInput
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="..."
-            />
-
-  
-            <button type="submit">Submit</button>
+              <button className="w-100 btn-lg btn-primary my-3" type="submit">
+                Enviar
+              </button>
+              <div className="form-text my-2">
+                Ya estás registrado? <Link to="/login">Inicia sesión</Link>
+              </div>
+            </div>
           </Form>
         </Formik>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-
-  export default SignupForm;
+export default SignupForm;
