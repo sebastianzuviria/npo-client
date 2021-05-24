@@ -1,18 +1,18 @@
 .form-Categories{
     font-family: sans-serif;
-    margin: 20px 0px;
+    /* margin: 20px 0px; */
     background-color:rgb(245, 245, 245);
-    height: 500px;
-    width: 750px;
+    /* height: 500px; */
+    /* width: 750px; */
     border: 1px solid rgb(235, 235, 235);
     box-shadow: 1px 1px 10px 0.1px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 1rem;
 }
 .input-cat{
     width: 100%;
     border: none;
-    height: 40px;
-    padding-left: 10px;
+    /* height: 40px; */
+    /* padding-left: 10px; */
 }
 .input-cat:focus{
     outline: none;
@@ -22,8 +22,8 @@
 }
 .button-category{
     border: none;
-    height: 50px;
-    width: 100px;
+    height: 3rem;
+    width: 10rem;
     background-color: rgb(130, 204, 173);
     color: white;
     font-weight: 600;
@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 
-@media (min-width: 425px) {
+/* @media (min-width: 425px) {
     .form-Categories{
         width: 380px;
     }
@@ -49,4 +49,4 @@
     .form-Categories{
         width: 750px;
     }
-}
+} */

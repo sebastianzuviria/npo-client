@@ -9,13 +9,11 @@ import {Modal, Button} from 'react-bootstrap';
 
 const Category = ({ name, description, id, setCategories }) => {
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const initialValues = {
     	name: name,
-    	description:description,
+    	description:description
     };
 
     const validationSchema=Yup.object({
@@ -51,7 +49,7 @@ const Category = ({ name, description, id, setCategories }) => {
 
         try{
             const info = await apiUpdateService("categories",id, data);
-            await handleClose();
+            setIsModalOpen(false);
             await successAlert();
             setCategories((prev) => {
                 return prev.map((val) => {
@@ -63,7 +61,7 @@ const Category = ({ name, description, id, setCategories }) => {
         }
         catch(e){
 
-            await handleClose();
+            setIsModalOpen(false);
             errorAlert();
 
         }
@@ -82,7 +80,7 @@ const Category = ({ name, description, id, setCategories }) => {
                 data-toggle="modal"
                 data-target="#exampleModal"
                 style={{ color: "white", marginRight: "5px" }}
-                onClick={handleShow}
+                onClick={() => setIsModalOpen(!isModalOpen)}
             >
                 <i className="fa fa-pencil" aria-hidden="true"></i>
             </button>
@@ -92,7 +90,7 @@ const Category = ({ name, description, id, setCategories }) => {
             </td>
         </tr>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={isModalOpen} onHide={() => setIsModalOpen(!isModalOpen)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
@@ -118,7 +116,7 @@ const Category = ({ name, description, id, setCategories }) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={() => setIsModalOpen(!isModalOpen)}>
                         Close
                     </Button>
                 </Modal.Footer>
