@@ -8,13 +8,16 @@ export default [
     text: 'Contact',
     route: '/contact'
   },
+  { text: 'Miembros', route: '/members' },
   {
     text: 'Testimonios',
-    route: '/testimonialsform'
+    route: '/testimonialsform',
+    restricted: true
   },
   {
     text: 'Backoffice',
-    route: '/backoffice'
+    route: '/backoffice',
+    restricted: true
   },
   { text: 'Login', route: '/login' },
   {

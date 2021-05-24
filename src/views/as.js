@@ -1,16 +1,14 @@
 import React from 'react';
-import MembersOrganization from '../components/Members/Members'
-
-
+import MembersOrganization from '../components/Members/Members';
+import BasicLayout from '../Layouts/BasicLayout';
 
 const As = () => {
-    return (
-        <div>
-            <h2>As</h2>
-            <MembersOrganization/>
-        </div>
-        
-    )
-}
+  return (
+    <BasicLayout>
+      <h2>As</h2>
+      <MembersOrganization />
+    </BasicLayout>
+  );
+};
 
-export default As
+export default As;
