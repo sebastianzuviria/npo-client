@@ -4,12 +4,17 @@ const navBarItems = [
     route: '/' 
   },
   { 
+    text: 'Miembros', 
+    route: '/members' 
+  },
+  { 
     text: 'Noticias', 
     route: '/news' 
   },
   {
     text: 'Testimonios',
-    route: '/testimonialsform'
+    route: '/testimonialsform',
+    restricted: true
   },
   {
     text: 'Contacto',
@@ -17,7 +22,8 @@ const navBarItems = [
   },
   {
     text: 'Administración',
-    route: '/backoffice'
+    route: '/backoffice',
+    restricted: true
   },
   { 
     text: 'Ingresar', 
