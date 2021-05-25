@@ -1,15 +1,15 @@
 import React from 'react';
 import Slider from '../components/Slider/Slider';
 import WelcomeText from '../components/WelcomeText/WelcomeText';
-import GetNews from '../components/GetNews/GetNews';
+import News from '../components/News/News';
 import BasicLayout from '../Layouts/BasicLayout';
 
 const Home = () => {
   return (
     <BasicLayout>
-      <WelcomeText />
       <Slider />
-      <GetNews />
+      <WelcomeText />
+      <News />
     </BasicLayout>
   );
 };

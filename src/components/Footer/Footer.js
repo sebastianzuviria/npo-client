@@ -1,51 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import apiGetService from '../../services/apiGetService';
 import './Footer.css';
-import IconList from './iconList/IconList';
 
 const Footer = () => {
-    const [mock] = useState({
-        ongName: "ONG - alkemy",
-        img: "https://picsum.photos/200",   
-        linkWeb: "https://jonathangomezit.com",
-        socialMedia:[
-            {
-                icon: "fab fa-instagram-square",
-                name: "Instagram/ong",
-                url: "https://www.instagram.com/"
-            },
-            {
-                icon: "fab fa-facebook-square",
-                name: "Facebook/ong",
-                url: "https://www.facebook.com/",
-            },
-            {
-                icon: "fab fa-twitter-square",
-                name: "Twitter/ong",
-                url: "https://www.twitter.com"
-            }
-        ]
-    })
-    return(
-        <footer className="footer__content">
 
-            <div className="footer__content-logo">
-                <img src={mock.img} alt="logo" className="footer__logo"/>
-                <h4>{mock.ongName}</h4>
+    const [{ name, image, facebook, instagram, linkedin }, setFooterState] = useState({
+        name: '',
+        image: '',
+        facebook: '',
+        instagram: '',
+        linkedin: '',
+    });
+
+    useEffect(() => {
+
+        ( async () => {
+
+            const { name, image, socialmedia } = await apiGetService(
+                'organizations/public'
+            );
+            const { facebook, instagram, linkedin } = socialmedia;
+
+            setFooterState({
+                name,
+                image,
+                facebook,
+                instagram,
+                linkedin,
+            });
+        } )();
+
+    }, []);
+
+    return (
+        <footer className='footer__content py-5 px-3'>
+            <div className='container'>
+                <div className='row'>
+                <div className='col d-flex flex-column justify-content-center align-items-center footer__about'>
+                        <div className='footer__about-title'>
+                            ACERCA DE { name.toUpperCase() }
+                        </div>
+                        <img src={ image } className='img-fluid my-4 footer__img' alt={ image } />
+                        <div className='footer__about-desc mt-2'>
+                        <i  className='fas fa-phone footer__social-icon-phone me-2'></i> 
+                        <span className='footer__span-text'>011-12345678</span>
+                        </div>
+                    </div>
+                    <div className='col'>
+                    </div>
+                    <div className='col'>
+                        <div className='footer_social-container my-2'>
+                            <a target='_blank' href='mailto: email@zonasgrises.com' rel='noreferrer' className='footer__linkweb'>
+                                <span>
+                                    <i  className='fas fa-envelope footer__social-icons me-3'></i>
+                                    <span className='footer__span-text'>email@email.com</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div className='footer_social-container my-2'>
+                            <a target='_blank' href={ instagram } rel='noreferrer' className='footer__linkweb'>
+                                <span>
+                                    <i  className='fab fa-instagram footer__social-icons me-3'></i>
+                                    <span className='footer__span-text'>@zonasgrises</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div className='footer_social-container my-2'>
+                            <a target='_blank' href={ facebook } rel='noreferrer' className='footer__linkweb'>
+                                <span>
+                                    <i  className='fab fa-facebook-square footer__social-icons me-3'></i>
+                                    <span className='footer__span-text'>@zonasgrises</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div className='footer_social-container my-2'>
+                            <a href={ linkedin } rel='noreferrer' className='footer__linkweb'>
+                                <span>
+                                    <i  className='fab fa-linkedin footer__social-icons me-3'></i>
+                                    <span className='footer__span-text'>@zonasgrises</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div className="footer__content-social">
-            {
-                mock.socialMedia.map((values, index) => (<IconList key={index} {...values} />))
-            }
-            </div>
-
-            <div className="footer__content-website">
-                    <span>Web Site: </span>
-                    <a href={mock.linkWeb} target= "_blank" rel="noopener noreferrer" className="footer__linkweb" >{mock.linkWeb}</a>
-            </div>
-
         </footer>
-    )
-}
+
+    );
+};
 
 export default Footer;

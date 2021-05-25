@@ -1,29 +1,17 @@
 import React from "react";
 import './WelcomeText.css';
 
-//welcome title
-
-const welcome = {
-
-    title: "Bienvenido a nuestra página",
-    text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero non libero luctus feugiat. Aliquam erat volutpat. Integer et dapibus nibh, at aliquam urna. Fusce faucibus lacus sit amet tellus bibendum elementum. Phasellus elit nunc, ornare nec ultrices sit amet, imperdiet at eros. Praesent sem nisl, euismod vel urna ut, mollis gravida est. Etiam ut velit at leo venenatis. ",
-
-};
-
-function WelcomeText() {
+const WelcomeText = () => {
 
   return (
 
-    <div className="welcomeText__container">
-
-        <div className="welcomeText__box-container">
-
-          <h3 className="welcomeText__h3">{welcome.title}</h3>
-
-          <p className="welcomeText__p">{welcome.text}</p>
-
-        </div>
-
+    <div className="container text-center my-5">
+      <h1 className='welcomeText__title'>
+        ¡Bienvenid@ a nuestra página!
+      </h1>
+      <p className="lead mt-4 welcomeText__text">
+        Lorem ipsum dolor sit amet, consectetur <strong>adipiscing</strong> elit. Vestibulum mattis libero non libero luctus feugiat. Aliquam erat volutpat. Integer et dapibus nibh, at aliquam urna. Fusce faucibus lacus sit amet <strong>tellus</strong> bibendum elementum. Phasellus elit nunc, ornare nec <strong>ultrices</strong> sit amet, imperdiet at eros. Praesent sem nisl, euismod vel urna ut, mollis gravida est. <strong>Etiam</strong> ut velit at leo venenatis.
+      </p>
     </div>
   
   );

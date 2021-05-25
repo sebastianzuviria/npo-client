@@ -1,4 +1,17 @@
-.welcomeText__container{
-    padding: 1rem;
+.welcomeText__title{
+    color: rgb(100, 100, 100);
+    font-weight: bold;
 }
 
+
+@media only screen and (max-width: 600px) {
+
+    .welcomeText__title {
+        font-size: 1.4em;
+    }
+
+    .welcomeText__text {
+        font-size: 1.0em;
+    }
+
+}

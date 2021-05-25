@@ -17,6 +17,7 @@
     "react-bootstrap": "^1.6.0",
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^4.0.0",
+    "react-observer-api": "^1.0.8",
     "react-phone-input-2": "^2.14.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.2.0",

@@ -1,115 +1,71 @@
-import React, { Component } from "react";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import SwiperCore, { Navigation, Pagination } from "swiper";
-
-import "swiper/swiper.scss";
-
-import "swiper/components/navigation/navigation.scss";
-
-import "swiper/components/pagination/pagination.scss";
-
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
+import slideImg from '../../assets/sideshow-img.jpg';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/effect-fade/effect-fade.scss';
+import './Slider.css';
 
 //install Swiper modules
+SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
-SwiperCore.use([Navigation, Pagination]);
-
-
-let content = [
-
+const content = [
   {
-
     id: 1,
-
-    imageUrl:
-
-      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-big-item.jpg",
-
-    text:
-
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ",
-
+    imageUrl: slideImg,
+    text: 'Solidaridad ',
   },
 
   {
-
     id: 2,
-
-    imageUrl:
-
-      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-02.jpg",
-
-    text:
-
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ",
-
+    imageUrl: slideImg,
+    text: 'Donaciones ',
   },
-
   {
-
     id: 3,
-
-    imageUrl:
-
-      "https://bitbucket.org/alkemy-dev/t27-client/raw/0e3ef885e245070cba961e22b3553acc08c99dec/public/images/campaign-recent-03.jpg",
-
-    text:
-
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed fringilla leo, id varius orci. ",
-
+    imageUrl: slideImg,
+    text: 'Acción Social',
   },
 
 ];
 
 
-function Slider() {
+const Slider = () => {
 
   return (
 
     <div>
-
       <Swiper
-
+        autoplay={{ delay: 3000 }}
+        effect='fade'
+        fadeEffect={{
+          crossFade: true
+        }}
+        loop={true}
         spaceBetween={30}
-
+        speed={2000}
         slidesPerView={1}
-
         navigation
-
-        pagination={{ clickable: true }}
-
-        onSwiper={(swiper) => console.log(swiper)}
-
+        pagination={{ clickable: true, dynamicBullets: true }}
       >
 
         {content.map((slide) => (
 
           <SwiperSlide key={slide.id}>
-
-            <div className="container">
-
-              <div className="slide-img">
-
-                <img src={slide.imageUrl} alt="slider-img"></img>
-
-              </div>
-
-              <div className="slide-txt">{slide.text}</div>
-
+            <div className='container-fluid p-0'>
+              <img className='slider__img img-fluid' src={slide.imageUrl} alt='slider__img'></img>
+              <span className='slider__text text-center'>{slide.text}</span>
             </div>
-
           </SwiperSlide>
 
         ))}
-
       </Swiper>
-
     </div>
 
   );
 
 }
-
 
 export default Slider;

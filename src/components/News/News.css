@@ -1,0 +1,30 @@
+.news__btn-more {
+    color: white;
+    background-color: var(--color-brand);
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.news__btn-more:hover {
+    color: white;
+    background-color: rgb(118, 165, 180);
+}
+
+.news__date{
+    font-size:x-small;
+    font-weight: lighter;
+}
+
+.news__title {
+    color: rgb(100, 100, 100);
+    font-weight: bolder;
+}
+
+.news__hr {
+    color: #b3b3b3;
+}
+
+.news__img:hover {
+    filter: brightness(70%);
+    cursor: pointer;
+}

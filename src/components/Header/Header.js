@@ -1,57 +1,71 @@
 import React, { useEffect, useState } from 'react';
-
-// Styles
-import './Header.styles.css';
-
-// Components
-import NavItem from '../NavItem/NavItem';
-
-// Mock Logo
-import logo from '../../assets/logo.png';
-import navbarItems from './navbarItems';
+import { NavLink, useLocation } from 'react-router-dom';
 import { shallowEqual, useSelector } from 'react-redux';
 import { userLogged } from '../../slices/userSlice';
-//import userLogged from '../../helpers/userLogged';
+import navBarItems from './navBarItems';
+import logo from '../../assets/logo.png';
+import './Header.css'
 
 const Header = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [navItems, setNavItems] = useState([]);
-  const user = useSelector(userLogged, shallowEqual);
-  //const user = userLogged();
-  useEffect(() => {
-    if (user) {
-      setNavItems(
-        navbarItems.filter(
-          (item) => item.route !== '/login' && item.route !== '/signup'
-        )
-      );
-    } else {
-      setNavItems(navbarItems.filter((item) => item.restricted !== true));
-    }
-  }, [user]);
-  return (
-    <div className="header__container">
-      <div
-        className={`header__toggle ${isNavOpen && 'header__action-open'}`}
-        onClick={() => setIsNavOpen(!isNavOpen)}
-      >
-        <span></span>
-      </div>
-      <div className="header__logo-container">
-        <img className="header__logo" src={logo} />
-      </div>
 
-      <nav
-        className={`header__nav-container ${
-          isNavOpen && 'header__action-show'
-        }`}
-      >
-        {navItems.map(({ text, route }, idx) => {
-          return <NavItem key={idx} itemText={text} itemRoute={route} />;
-        })}
-      </nav>
-    </div>
-  );
+    const [navItems, setNavItems] = useState([]);
+    const user = useSelector(userLogged, shallowEqual);
+    const location = useLocation();
+
+    useEffect(() => {
+
+        console.log(user, 'user has changed');
+
+        if (user) {
+            setNavItems(
+                navBarItems.filter(
+                    (item) =>
+                        item.route !== '/login' && item.route !== '/signup'
+                )
+            );
+        } else {
+            setNavItems(navBarItems.filter((item) => item.restricted !== true));
+        }
+    }, [user]);
+
+    return (
+        <nav className='navbar navbar-expand-lg navbar-light sticky-top bg-light py-3 shadow-sm'>
+            <div className='container-fluid mx-auto'>
+                <button
+                    className='navbar-toggler border-0'
+                    type='button'
+                    data-bs-toggle='collapse'
+                    data-bs-target='#appHeader'
+                    aria-controls='appHeader'
+                    aria-expanded='false'
+                    aria-label='Cambiar Navegación'
+                >
+                    <i className='fas fa-bars'></i>
+                </button>
+                <NavLink className='mx-auto' to='/'>
+                    <img className='navbar-brand img-fluid' src={ logo } alt={ logo } />
+                </NavLink>
+                <div
+                    className='collapse navbar-collapse justify-content-center'
+                    id='appHeader'
+                >
+                        {
+                            navItems.map(({ text, route }, idx) => {
+                                return (
+                                    <ul className='navbar-nav mb-2 mb-lg-0 mx-5 px-2 header__ul rounded' key={idx}>
+                                        <li className='nav-item'>
+                                            <NavLink className={ `nav-link ${ location.pathname === route && 'disabled' }` } to={route}>
+                                                { text }
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                )
+                            })
+                        }
+                </div>
+            </div>
+        </nav>
+    );
 };
 
 export default Header;

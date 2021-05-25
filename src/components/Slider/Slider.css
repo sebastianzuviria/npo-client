@@ -1,0 +1,28 @@
+.slider__img {
+    filter: brightness(80%);
+    position: relative;
+}
+
+.slider__text {
+    color: #ffffff;
+    font-size: 2em;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    text-shadow: 1px 1px rgb(41, 41, 41);
+    width:50%;
+    word-wrap: break-word;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .slider__text {
+        top: 25%;
+        font-size: 0.8em;
+    }
+
+}
