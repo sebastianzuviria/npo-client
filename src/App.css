@@ -38,12 +38,16 @@
   }
 }
 
-.container {
+/* ¡¡¡ 'container' clase reservada de boostrap sy!!!
+
+ .container {
   overflow: hidden;
   position: relative;
   width: 100%;
 
 }
+  background-color: #808080;
+} */
 
 .slide-img {
   height: auto;

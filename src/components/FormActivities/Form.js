@@ -53,7 +53,7 @@ const Form = ({activity}) => {
                                 onChange={(e)=>{setName(e.target.value)}}
                             />
                         </label>
-                        <label className='content-act'>
+                        <label className='content-act mt-3'>
                             Content
                             <CKEditor
                                 editor={ ClassicEditor }
@@ -64,7 +64,9 @@ const Form = ({activity}) => {
                                 } }
                             />
                         </label>
-                        <button className='button-activity'>{(activity?'Update':'Create')}</button>
+                        <div className='d-flex justify-content-center mt-3 mb-3'>
+                            <button className='button-activity'>{(activity?'Update':'Create')}</button>
+                        </div>
                 </form>
             </div>
         </div>
