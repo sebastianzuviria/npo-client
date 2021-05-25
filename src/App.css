@@ -44,6 +44,8 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+
+}
   background-color: #808080;
 } */
 
@@ -70,4 +72,8 @@
   width: 50%;
   padding-right: 4%;
   line-height: 1.8;
+}
+
+.form-contacto{
+  justify-content: center;
 }

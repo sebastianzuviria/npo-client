@@ -18,20 +18,19 @@ const MembersOrganization= ()=>{
 
     return (
         
-        <div class="container">
-            <div class="row">
+        <div class="row" >
+            
             {members.length > 0 ? (
                 members.map((item) => 
-                <div class="col-sm-6 member">
-                <img src={item.image} alt={`Picture of ${item.name}`} class="rounded-circle" />
-                                
-                <p>{item.name}</p>
+                <div class="col-lg-4 col-sm-4">
+                    <img src={item.image} alt={`Picture of ${item.name}`} class="bd-placeholder-img rounded-circle" width="140" height="140" />
+                        <p>{item.name}</p>
                 </div>
                 
                 )
             ) : <p>There is no registered member</p>}
-            </div>
         </div>
+
     )
 }
 
