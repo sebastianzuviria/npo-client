@@ -7,7 +7,7 @@ const FormContent = () => {
         description:'<h2>Titulo</h2><p>Parrafo</p>'
     }
     return (
-        <div>
+        <div className="container-sm">
             <Form category='' />
         </div>
     )

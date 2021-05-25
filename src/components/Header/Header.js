@@ -24,9 +24,7 @@ const Header = () => {
                 )
             );
         } else {
-            setNavItems(
-                navBarItems.filter((item) => item.route !== '/backoffice')
-            );
+            setNavItems(navBarItems.filter((item) => item.restricted !== true));
         }
     }, [user]);
 

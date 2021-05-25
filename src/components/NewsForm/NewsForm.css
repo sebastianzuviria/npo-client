@@ -1,4 +1,4 @@
-form {
+/* form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,4 +18,63 @@ input, select {
 
 .newsForm__button {
     width: 60px;
+} */
+
+.form-new{
+    font-family: sans-serif;
+    margin: 20px 0px;
+    background-color:rgb(245, 245, 245);
+    height: 550px;
+    width: 750px;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: 1px 1px 10px 0.1px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+.input-new{
+    width: 100%;
+    border: none;
+    height: 40px;
+    padding-left: 10px;
+}
+.select-new{
+    width: 100%;
+    border: none;
+    height: 40px;
+    padding-left: 10px;
+}
+.input-new:focus{
+    outline: none;
+}
+.content-new{
+    width: 100%;
+}
+.button-new{
+    border: none;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(130, 204, 173);
+    color: white;
+    font-weight: 600;
+}
+.button-new:focus{
+    outline: none;
+}
+.button-new:hover{
+    cursor: pointer;
+}
+
+@media (min-width: 425px) {
+    .form-new{
+        width: 380px;
+    }
+}
+@media (min-width: 768px) {
+    .form-new{
+        width: 510px;
+    }
+}
+@media (min-width: 1024px) {
+    .form-new{
+        width: 750px;
+    }
 }
