@@ -5,8 +5,7 @@ const navBarItems = [
   },
   { 
     text: 'Miembros', 
-    route: '/members',
-    restricted: true 
+    route: '/members' 
   },
   { 
     text: 'Noticias', 
