@@ -1,3 +1,23 @@
-.sidebar {
-  height: 100vh;
+.scroll-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.scrolling-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 1200px) {
+  .scrolling-wrapper,
+  .scroll-menu {
+    justify-content: flex-start;
+  }
+}
+.scrolling-wrapper::-webkit-scrollbar {
+  display: none;
 }

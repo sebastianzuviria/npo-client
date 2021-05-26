@@ -1,0 +1,24 @@
+.nav__color,
+.nav__color > span {
+  color: var(--color-font);
+  transition: all 0.1s ease-in;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.nav__color:hover {
+  color: whitesmoke;
+  background: var(--color-brand);
+  transition: all 0.1s ease-in;
+}
+
+.nav__color:hover > span {
+  color: whitesmoke;
+}
+
+.nav__color.active_link,
+.nav__color.active_link > span {
+  color: whitesmoke;
+  background-color: var(--color-brand);
+  transition: all 0.1s ease-in;
+}
