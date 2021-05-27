@@ -9,7 +9,7 @@ import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 const Table = () => {
     const [users, setUsers] = useState([])
     const [newObject, setNewObject] = useState({})
-    console.log(newObject[0]);
+    console.log(newObject);
 
     const edit = async (type, id) => {
             const returnedUser = await apiGetService(type, id);
@@ -27,16 +27,16 @@ const Table = () => {
     }
     const delet = async (type, id) => {
         const res = await confirmAlert();
-            if(res.isConfirmed){
-                await apiDeleteService(type, id)
-                return successAlert().then(()=>{
-                    let newUser = users.filter(user=>{
-                        return user.id !== id
-                    })
-                    setUsers(newUser)
+            if(!res.isConfirmed){
+                return await cancelAlert();
+            }
+            const deleted = await apiDeleteService(type, id)
+            if (deleted) {
+                let newUser = users.filter(user=>{
+                    return user.id !== id
                 })
-            } else{
-                cancelAlert();
+                setUsers(newUser)
+                return successAlert()
             }
     };
     useEffect(() => {

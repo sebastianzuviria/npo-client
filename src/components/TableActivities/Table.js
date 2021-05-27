@@ -25,17 +25,17 @@ const Table = () => {
     }
     const delet = async (type, id) => {
         const res = await confirmAlert();
-            if(res.isConfirmed){
-                await apiDeleteService(type, id)
-                return successAlert().then(()=>{
-                    let newActivity = activities.filter(activity=>{
-                        return activity.id !== id
-                    })
-                    setActivities(newActivity)
-                })
-            } else{
-                cancelAlert();
-            }
+        if(!res.isConfirmed){
+            return await cancelAlert();
+        }
+        const deleted = await apiDeleteService(type, id)
+        if (deleted) {
+            let newActivity = activities.filter(activity=>{
+                return activity.id !== id
+            })
+            setActivities(newActivity)
+            return successAlert();
+        }
     };
 
     useEffect(() => {
