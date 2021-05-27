@@ -4,13 +4,35 @@ import './Footer.css';
 
 const Footer = () => {
 
-    const [{ name, image, facebook, instagram, linkedin }, setFooterState] = useState({
+    const [{ address, name, image, facebook, instagram, linkedin, phone }, setFooterState] = useState({
+        address: '',
         name: '',
         image: '',
         facebook: '',
         instagram: '',
         linkedin: '',
+        phone: ''
     });
+
+    useEffect(() => {
+
+        ( async () => {
+
+            const { address, name, image, phone, socialmedia } = await apiGetService('organizations/public');
+            const { facebook, instagram, linkedin } = socialmedia;
+
+            setFooterState({
+                address,
+                name,
+                image,
+                facebook,
+                instagram,
+                linkedin,
+                phone
+            });
+        } )();
+
+    }, []);
 
     const actualDate = new Date();
 
@@ -19,14 +41,14 @@ const Footer = () => {
             id: 1,
             icon: 'fa-map-marker-alt',
             link: 'https://goo.gl/maps/KYAFS1RoRG9XUWe8A',
-            text: 'Melide 1404, A. Brown'
+            text: address
 
         },
         {
             id: 2,
             icon: 'fa-phone',
             link: 'tel:+54111562332380',
-            text: '(011) 15-6233-2380'
+            text: phone
 
         },
         {
@@ -55,24 +77,6 @@ const Footer = () => {
             link: linkedin
         },
     ]
-
-    useEffect(() => {
-
-        ( async () => {
-
-            const { name, image, socialmedia } = await apiGetService('organizations/public');
-            const { facebook, instagram, linkedin } = socialmedia;
-
-            setFooterState({
-                name,
-                image,
-                facebook,
-                instagram,
-                linkedin,
-            });
-        } )();
-
-    }, []);
 
     return (
         <footer className='footer__content py-5 px-3'>
