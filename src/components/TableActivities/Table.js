@@ -1,32 +1,47 @@
 import React, { useState, useEffect } from 'react'
-import apiGet from '../../services/apiGetService'
+import apiGetService from '../../services/apiGetService'
+import apiDeleteService from '../../services/apiDeleteService'
+import apiUpdateService from '../../services/apiUpdateService'
+import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 
 const Table = () => {
     const [activities, setActivities] = useState([]);
-    const [nameActivity, setNameActivity] = useState('');
-    const [contentActivity, setContentActivity] = useState('');
+    const [newObject, setNewObject] = useState({})
+    console.log(newObject);
 
-    const edit = (id) => {
-
-        (async(type, ide) => {
-            const returnedActivity = await apiGet(type, ide);
-            console.log(returnedActivity);
-            setNameActivity(returnedActivity[0].name)
-            setContentActivity(returnedActivity[0].content)
-        })('activities', id);
-        
+    const edit = async (type,id) => {
+        const returnedActivity = await apiGetService(type, id);
+        setNewObject(returnedActivity)
     };
-    const update = () => {
-        //
+    const update = async () => {
+        const res = await confirmAlert();
+        if(res.isConfirmed){
+                await apiUpdateService('activities',newObject.id, newObject)
+                setActivities(activities.map(activity=>(activity.id===newObject.id?newObject:activity)))
+            return successAlert()
+        } else{
+            cancelAlert();
+        }
     }
-    const delet = (id) => {
-        //
+    const delet = async (type, id) => {
+        const res = await confirmAlert();
+            if(res.isConfirmed){
+                await apiDeleteService(type, id)
+                return successAlert().then(()=>{
+                    let newActivity = activities.filter(activity=>{
+                        return activity.id !== id
+                    })
+                    setActivities(newActivity)
+                })
+            } else{
+                cancelAlert();
+            }
     };
 
     useEffect(() => {
         
         (async() => {
-            const returnedActivities = await apiGet('activities');
+            const returnedActivities = await apiGetService('activities');
             setActivities ( returnedActivities ) ;
         })();
 
@@ -47,7 +62,7 @@ const Table = () => {
                                 <td>{act.name}</td>
                                 <td>
                                     <button
-                                        onClick={(e) => edit(act.id, e)}
+                                        onClick={() => edit('activities',act.id)}
                                         type="button"
                                         className="btn btn-info"
                                         data-toggle="modal"
@@ -57,7 +72,7 @@ const Table = () => {
                                         <i className="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
                                     <button
-                                        onClick={(e) => delet(act.id, e)}
+                                        onClick={() => delet('activities',act.id)}
                                         className="btn btn-danger"
                                     >
                                         <i className="fa fa-trash" aria-hidden="true"></i>
@@ -82,11 +97,10 @@ const Table = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={nameActivity}
+                                name="name"
+                                value={newObject.name}
                                 onChange={(e) => {
-                                    setNameActivity(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                             />
                             <br/>

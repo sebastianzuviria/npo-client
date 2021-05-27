@@ -1,38 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import './Table.css'
-import apiGet from '../../services/apiGetService'
-// import Axios from 'axios'
-import swal from "sweetalert";
+import apiGetService from '../../services/apiGetService'
+import apiDeleteService from '../../services/apiDeleteService'
+import apiUpdateService from '../../services/apiUpdateService'
+import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
+
 
 const Table = () => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
-    const [userID, setUserID] = useState('')
-    const [firstName, setFirstName]= useState('')
-    const [lastName, setLastName]= useState('')
-    const [email, setEmail]= useState('')
-    
+    const [newObject, setNewObject] = useState({})
+    console.log(newObject[0]);
 
-    const edit = (id) => {
-        (async () => {
-
-            const returnedUser = await apiGet('users', id) ;
-            setFirstName(returnedUser.firstName)
-            setLastName(returnedUser.lastName)
-            setEmail(returnedUser.email)
-            
-        }) ();
+    const edit = async (type, id) => {
+            const returnedUser = await apiGetService(type, id);
+            setNewObject(returnedUser[0])
     };
-    const update = () => {
-        // 
+    const update = async () => {
+        const res = await confirmAlert();
+        if(res.isConfirmed){
+            await apiUpdateService('users',newObject.id, newObject)
+            setUsers(users.map(user=>(user.id===newObject.id?newObject:user)))
+            return successAlert()
+        } else{
+            cancelAlert();
+        }
     }
-    const delet = (id) => {
-        // 
+    const delet = async (type, id) => {
+        const res = await confirmAlert();
+            if(res.isConfirmed){
+                await apiDeleteService(type, id)
+                return successAlert().then(()=>{
+                    let newUser = users.filter(user=>{
+                        return user.id !== id
+                    })
+                    setUsers(newUser)
+                })
+            } else{
+                cancelAlert();
+            }
     };
     useEffect(() => {
 
         ( async ( ) => {
-            const returnedUsers = await apiGet('users') ;
+            const returnedUsers = await apiGetService('users') ;
             setUsers ( returnedUsers ) ;
             } ) ( );
 
@@ -56,7 +66,7 @@ const Table = () => {
                             <td>{user.email}</td>
                             <td>
                                 <button
-                                    onClick={(e) => edit(user.id, e)}
+                                    onClick={() => edit('users',user.id)}
                                     type="button"
                                     className="btn btn-info"
                                     data-toggle="modal"
@@ -66,7 +76,7 @@ const Table = () => {
                                     <i className="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button
-                                    onClick={(e) => delet(user.id, e)}
+                                    onClick={() => delet('users', user.id)}
                                     className="btn btn-danger"
                                 >
                                     <i className="fa fa-trash" aria-hidden="true"></i>
@@ -91,11 +101,10 @@ const Table = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={firstName}
+                                name="name"
+                                value={newObject.name}
                                 onChange={(e) => {
-                                    setFirstName(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                             />
                             <br/>
@@ -103,26 +112,12 @@ const Table = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={lastName}
+                                name="lastName"
+                                value={newObject.lastName}
                                 onChange={(e) => {
-                                    setLastName(e.target.value);
+                                    setNewObject({...newObject, [e.target.name]:e.target.value})
                                 }}
                                 />
-                            <br/>
-                            <label className="form-label">Email</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder="0"
-                                name="amount"
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                }}
-                                />
-
                             <br/>
                         </div>
                         <div className="modal-footer">
