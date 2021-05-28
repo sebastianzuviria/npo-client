@@ -41,14 +41,14 @@ const Footer = () => {
             id: 1,
             icon: 'fa-map-marker-alt',
             link: 'https://goo.gl/maps/KYAFS1RoRG9XUWe8A',
-            text: address
+            text: address || 'No address provided'
 
         },
         {
             id: 2,
             icon: 'fa-phone',
             link: 'tel:+54111562332380',
-            text: phone
+            text: phone || 'No phone provided'
 
         },
         {
