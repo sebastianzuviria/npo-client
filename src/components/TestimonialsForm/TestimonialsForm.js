@@ -1,77 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import apiPostService from '../../services/apiPostService';
+import { errorAlert, successAlert } from '../Alert/Alert';
 
-const TestimonialsForm = ({ id, name, content }) => {
+const TestimonialsForm = () => {
   const [newName, setNewName] = useState('');
   const [newContent, setNewContent] = useState('');
-  const [formTitle, setFormTitle] = useState('Create a new testimonial');
-  const [isEdit, setIsEdit] = useState(false);
 
-  useEffect(() => {
-    const verifyContent = id && name && content;
-    const isContentToEdit = verifyContent ? true : false;
-    if (isContentToEdit) {
-      setIsEdit(true);
-      setNewName(name);
-      setNewContent(content);
-      setFormTitle('Edit a testimonial');
-    }
-  }, []);
-
+  //in case there is no content, the error alert pops up, otherwise the success alert does
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const testimonialsObject = {
-      newName,
-      newContent,
+      name: newName,
+      content: newContent,
     };
-
     try {
-      if (isEdit) {
-        console.log(testimonialsObject, 'Testimonial edited');
-      } else {
-        console.log(testimonialsObject, 'Testimonial created');
-      }
+      const newTestimonial = await apiPostService(
+        'testimonials',
+        testimonialsObject
+      );
+      await successAlert();
     } catch (error) {
+      await errorAlert();
       console.log({ error: error.message });
     }
   };
 
   return (
-    <div className='container-fluid'>
-      <div className='row align-items-center justify-content-center pb-3'>
-        <h3 className='text-center pt-2'>{formTitle}</h3>
-        <form className='card shadow col-sm-6 pb-3' onSubmit={handleSubmit}>
-          <label className='text-center form-control pb-3'>
-            Name
-            <input
-              className='form-control'
-              type='text'
-              value={newName}
-              onChange={({ target }) => {
-                setNewName(target.value);
-              }}
-              required
-            />
+    <div className='container-fluid pt-2'>
+      <div className='row align-items-center justify-content-center vw-10 mx-auto pb-3'>
+        <h3 className='text-center pt-2'>Crear nuevo testimonio</h3>
+        <form
+          className='card shadow col-md-6 col-lg-6 pb-3'
+          onSubmit={handleSubmit}
+        >
+          <label className='text-center pt-2'>
+            Nombre
+            <div className='pt-1'>
+              <input
+                className='form-control'
+                type='text'
+                value={newName}
+                onChange={({ target }) => {
+                  setNewName(target.value);
+                }}
+                required
+              />
+            </div>
           </label>
-          <label className='text-center form-control pb-3'>
-            Content
-            <CKEditor
-              editor={ClassicEditor}
-              data={newContent}
-              onChange={(e, editor) => {
-                const data = editor.getData();
-                setNewContent(data);
-              }}
-            />
-          </label>
-          <button
-            type='submit'
-            className='btn btn-outline-dark col-6 btn-block'
-          >
-            {isEdit ? 'Edit' : 'Create'}
-          </button>
+          <div className='pt-3'>
+            <label className='form-control text-center pb-3'>
+              Contenido
+              <CKEditor
+                editor={ClassicEditor}
+                data={newContent}
+                onChange={(e, editor) => {
+                  const data = editor.getData();
+                  setNewContent(data);
+                }}
+              />
+            </label>
+          </div>
+
+          <div className='d-grid gap-2 col-6 mx-auto pt-3'>
+            <button type='submit' className='btn btn-outline-dark btn-block'>
+              Crear
+            </button>
+          </div>
         </form>
       </div>
     </div>
