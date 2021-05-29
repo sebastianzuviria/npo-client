@@ -4,53 +4,52 @@ import PhoneInput from "react-phone-input-2";
 import * as Yup from "yup";
 import apiGetService from "../../services/apiGetService";
 import InputField from "../SignupForm/InputField";
+import { successAlert, cancelAlert, confirmAlert, errorAlert,} from "../Alert/Alert";
+
 
 const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
   const [
-    { address, name, image, facebook, instagram, linkedin, phone },
+    { address, name, image, welcomeText, facebook, instagram, linkedin, phone },
     setOrganizationState,
   ] = useState({
     address: "",
     name: "",
     image: "",
+    welcomeText: "",
     facebook: "",
     instagram: "",
     linkedin: "",
     phone: "",
   });
+
   const [register, setRegister] = useState(false);
   const [fieldempty, setFieldempty] = useState(false);
   const [typeimage, setTypeimage] = useState(false);
 
-  const initialValues = {
-    address: "",
-    name: "",
-    image: "",
-    phone: "",
-    facebook: "",
-    instagram: "",
-    linkedin: "",
-  };
+
 
   //Info organization
   useEffect(() => {
     (async () => {
-      const { address, name, image, phone, socialmedia } = await apiGetService(
+      const { address, name, phone, welcomeText, socialmedia } = await apiGetService(
         "organizations/public"
       );
       const { facebook, instagram, linkedin } = socialmedia;
+      console.log(welcomeText);
 
-      setOrganizationState({
+      await setOrganizationState({
         address,
         name,
         image,
+        welcomeText,
         facebook,
         instagram,
         linkedin,
         phone,
-      });
+      })
+
     })();
   }, []);
 
@@ -81,42 +80,33 @@ const UpdateformOrganization = () => {
 
   const onSubmit = (data) => {
     //validate that at least one field is full
-    if (data.name.length > 0 || data.image.lengt > 0) {
-      console.log(data);
-      setTypeimage(false);
 
-      //Information by default that would be in the database
-      if (!data.name.length > 0) {
-        data.name = "Default information name";
-      } else {
         if (data.image.length > 0) {
           if (extensions.test(data.image)) {
             //correct data
             /*
                 const organization = async () => {
                 const infoorganization = await apiGetService('updateorganization');
-                setRegister(true)
+                //return await successAlert();
+
              };*/
+
+             
+
           } else {
             setTypeimage(true);
           }
         }
-      }
-    }
-    //Empty fields
-    else {
-      console.log("vacios");
-      setFieldempty(true);
-    }
-    console.log(data);
   };
 
   return (
     <div className="row g-5 form-contacto">
       <div className="col-md-10 col-lg-10 pt-md-5">
         <h2>Información de la organización</h2>
+
         <Formik
-          initialValues={initialValues}
+          enableReinitialize={true}
+          initialValues={{address, name, image, welcomeText,facebook, instagram, linkedin, phone}}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
@@ -136,7 +126,7 @@ const UpdateformOrganization = () => {
               <div className="col-sm-6">
                 <InputField
                   label="Logo"
-                  name="image"
+                  name="logo"
                   type="file"
                   placeholder="..."
                 />
@@ -165,8 +155,8 @@ const UpdateformOrganization = () => {
                   as="textarea"
                   rows="4"
                   className="form-control"
-                  id="message"
-                  name="message"
+                  name="welcomeText"
+
                 />
               </div>
               {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
