@@ -24,8 +24,6 @@ const UpdateformOrganization = () => {
     phone: "",
   });
 
-  const [register, setRegister] = useState(false);
-  const [fieldempty, setFieldempty] = useState(false);
   const [typeimage, setTypeimage] = useState(false);
 
 
@@ -167,8 +165,6 @@ const UpdateformOrganization = () => {
             </button>
           </Form>
         </Formik>
-        {register ? "Successful registered organization information" : ""}
-        {fieldempty ? "Fields cannot be empty" : ""}
         <hr></hr>
       </div>
     </div>
