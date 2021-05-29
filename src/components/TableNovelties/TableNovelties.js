@@ -15,17 +15,17 @@ const TableNovelties = () => {
     };
     const delet = async (type, id) => {
             const res = await confirmAlert();
-            if(res.isConfirmed){
-                await apiDeleteService(type, id)
-                return successAlert().then(()=>{
-                    let newNovelties = novelties.filter(novelty=>{
+            if(!res.isConfirmed){
+                return await cancelAlert();
+            }
+            const deleted = await apiDeleteService(type, id)
+            if(deleted){
+                let newNovelties = novelties.filter(novelty=>{
                         return novelty.id !== id
                     })
-                    setNovelties(newNovelties)
-                })
-            } else{
-                cancelAlert();
-            }
+                setNovelties(newNovelties)
+                return successAlert()
+            }           
     };
     const update = async () => {
         const res = await confirmAlert();
