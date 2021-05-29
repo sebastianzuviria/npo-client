@@ -1,11 +1,12 @@
 .scroll-menu {
   display: flex;
   justify-content: flex-start;
-  max-width: max-content;
   border-top: none;
+  max-width: max-content;
   height: calc(100vh - 100px);
   position: sticky;
   top: 100px;
+  background-color: var(--color-font);
 }
 
 .scrolling-wrapper {
@@ -16,6 +17,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  width: 250px;
 }
 
 .scrolling-wrapper::-webkit-scrollbar {
@@ -24,6 +26,8 @@
 
 .menu-view {
   display: none;
+  background-color: var(--color-font);
+  color: gainsboro;
 }
 @media screen and (max-width: 1200px) {
   .scrolling-wrapper,
@@ -31,6 +35,9 @@
     flex-direction: row;
   }
 
+  .scrolling-wrapper {
+    width: auto;
+  }
   .scroll-menu {
     position: fixed;
     top: auto;

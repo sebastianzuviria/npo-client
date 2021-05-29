@@ -1,6 +1,6 @@
 .nav__color,
 .nav__color > span {
-  color: var(--color-font);
+  color: gainsboro;
   transition: all 0.1s ease-in;
   flex: 0 0 auto;
   overflow: hidden;

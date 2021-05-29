@@ -7,11 +7,11 @@ const SideLink = ({ path, name, icon }) => {
   return (
     <NavLink
       to={path}
-      className={`nav-link nav__color ${
+      className={`nav-link nav__color px-4 ${
         location.pathname === path && 'disabled active_link'
       }`}
     >
-      <span className={`${icon} px-2`} />
+      <span className={`${icon} pe-2`} />
       {name}
     </NavLink>
   );

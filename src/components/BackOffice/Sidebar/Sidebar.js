@@ -9,7 +9,7 @@ const Sidebar = () => {
   const menuRef = useRef(null);
 
   return (
-    <div className="scroll-menu container-fluid bg-light p-0">
+    <div className="scroll-menu container-fluid p-0">
       <MenuView icon="fas fa-arrow-left" menuRef={menuRef} scrollTo="left" />
       <ul className="nav scrolling-wrapper" ref={menuRef}>
         <SideLink path="/backoffice" name="Perfil" icon="fas fa-user-circle" />
