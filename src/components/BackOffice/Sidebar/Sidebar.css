@@ -1,23 +1,44 @@
 .scroll-menu {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  max-width: max-content;
+  border-top: none;
+  height: calc(100vh - 100px);
+  position: sticky;
+  top: 100px;
 }
 
 .scrolling-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
+.scrolling-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-view {
+  display: none;
+}
 @media screen and (max-width: 1200px) {
   .scrolling-wrapper,
   .scroll-menu {
-    justify-content: flex-start;
+    flex-direction: row;
   }
-}
-.scrolling-wrapper::-webkit-scrollbar {
-  display: none;
+
+  .scroll-menu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    height: fit-content;
+    border-top: 1px solid gray;
+  }
+  .menu-view {
+    display: flex;
+  }
 }

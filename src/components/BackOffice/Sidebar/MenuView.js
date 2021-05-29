@@ -13,7 +13,7 @@ const MenuView = ({ icon, menuRef, scrollTo = '', pace = null }) => {
     current.scrollLeft += left;
   };
   return (
-    <button className="nav__color border-0 px-0 py-1">
+    <button className="nav__color border-0 px-0 py-1 menu-view">
       <span
         onClick={handleClick}
         className={`d-flex nav-link nav__color ${icon}`}
