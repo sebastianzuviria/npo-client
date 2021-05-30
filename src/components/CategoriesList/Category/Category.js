@@ -33,7 +33,7 @@ const Category = ({ name, description, id, setCategories }) => {
                 await apiDeleteService("categories", id);
                 setCategories((prev) => {
                     return prev.filter((val) => {
-                        return val.id != id;
+                        return val.id !== id;
                     });
                 });
                 return await successAlert();
@@ -48,13 +48,13 @@ const Category = ({ name, description, id, setCategories }) => {
     const onSubmit = async(data)=>{
 
         try{
-            const info = await apiUpdateService("categories",id, data);
+            await apiUpdateService("categories",id, data);
             setIsModalOpen(false);
             await successAlert();
             setCategories((prev) => {
                 return prev.map((val) => {
 
-                    return val.id==id? {name:data.name, description:data.description}: val
+                    return val.id === id ? {name:data.name, description:data.description}: val
                 });
             });
 

@@ -3,11 +3,16 @@ import apiGetService from '../../services/apiGetService'
 import apiDeleteService from '../../services/apiDeleteService'
 import apiUpdateService from '../../services/apiUpdateService'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
+import NewsForm from '../NewsForm/NewsForm'
+
+import { Modal, Button } from 'react-bootstrap'
 
 
 const TableNovelties = () => {
     const [novelties, setNovelties] = useState([])
     const [newObject, setNewObject] = useState({})
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [noveltyToEdit, setNoveltyToEdit] = useState('')
     
     const edit = async (type, id) => {
         const returnedNovelty = await apiGetService(type, id);
@@ -18,14 +23,13 @@ const TableNovelties = () => {
             if(!res.isConfirmed){
                 return await cancelAlert();
             }
-            const deleted = await apiDeleteService(type, id)
-            if(deleted){
-                let newNovelties = novelties.filter(novelty=>{
-                        return novelty.id !== id
-                    })
-                setNovelties(newNovelties)
-                return successAlert()
-            }           
+            await apiDeleteService(type, id)
+            let newNovelties = novelties.filter(novelty=>{
+                return novelty.id !== id
+            })
+            setNovelties(newNovelties)
+            return successAlert()
+                       
     };
     const update = async () => {
         const res = await confirmAlert();
@@ -49,10 +53,10 @@ const TableNovelties = () => {
             <table className="table table-bordered table-hw">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">CreatedAt</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Url de imagen</th>
+                        <th scope="col">Creado</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +67,10 @@ const TableNovelties = () => {
                             <td>{novelty.createdAt}</td>
                             <td>
                                 <button
-                                    onClick={() => edit('news', novelty.id)}
+                                    onClick={() => {
+                                        setIsModalOpen(!isModalOpen)
+                                        setNoveltyToEdit(novelty.id)
+                                    }}
                                     type="button"
                                     className="btn btn-info"
                                     data-toggle="modal"
@@ -72,6 +79,7 @@ const TableNovelties = () => {
                                 >
                                     <i className="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
+                               
                                 <button
                                     onClick={() => delet('news', novelty.id)}
                                     className="btn btn-danger"
@@ -83,73 +91,14 @@ const TableNovelties = () => {
                     ))}
                 </tbody>
             </table>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Edit Novelty</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <label className="form-label">Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder=""
-                                name="title"
-                                value={newObject.title}
-                                onChange={(e) => {
-                                    setNewObject({...newObject, [e.target.name]:e.target.value})
-                                }}
-                            />
-                            <br/>
-                            <label className="form-label">Image</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder=""
-                                name="image"
-                                value={newObject.image}
-                                onChange={(e) => {
-                                    setNewObject({...newObject, [e.target.name]:e.target.value})
-                                }}
-                                />
-                            <br/>
-                            <label className="form-label">Content</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder=""
-                                name="content"
-                                value={newObject.content}
-                                onChange={(e) => {
-                                    setNewObject({...newObject, [e.target.name]:e.target.value})
-                                }}
-                                />
-                            <br/>
-                            <label className="form-label">Created At</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder=""
-                                name="createdAt"
-                                value={newObject.createdAt}
-                                onChange={(e) => {
-                                    setNewObject({...newObject, [e.target.name]:e.target.value})
-                                }}
-                                />
-
-                            <br/>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button onClick={update} type="button" className="btn btn-primary" data-dismiss="modal">Update</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Modal size='lg' show={isModalOpen} onHide={() => setIsModalOpen(!isModalOpen)} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewsForm id={noveltyToEdit} />
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }

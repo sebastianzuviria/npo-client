@@ -2,51 +2,80 @@ import './NewsForm.css';
 import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import apiPostService from '../../services/apiPostService';
+import apiGetService from '../../services/apiGetService';
+import apiUpdateService from '../../services/apiUpdateService';
 
-const allCategories = [ 
-    { value: 'category 1', label: 'Category 1'},
-    { value: 'category 2', label: 'Category 2'},
-    { value: 'category 3', label: 'Category 3'}
-];
-
-const NewsForm = ({ id, title, image, category, content }) => {
+const NewsForm = ({ id }) => {
+    const [allCategories, setAllCategories] = useState([])
     const [newTitle, setNewTitle] = useState('');
     const [newImage, setNewImage] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
     const [newContent, setNewContent] = useState('');
-    const [newCategory, setNewCategory] = useState('');
+    const [newCategoryId, setNewCategoryId] = useState('');
+    const [newCategoryName, setNewCategoryName] = useState('')
     const [isEdit, setIsEdit] = useState(false);
     const [titleOfForm, setTitleOfForm] = useState('Create a New');  
 
+    console.log(newCategoryId)
+
     useEffect(() => {
-        const verifyContent = id && title && image && category && content;
-        const isContentToEdit = (verifyContent) ? true : false;
-        if (isContentToEdit) {
-            setIsEdit(true); 
-            setNewTitle(title);
-            setNewImage(image);
-            setNewCategory(category);
-            setNewContent(content);
-            setTitleOfForm('Edit a New');
+        (async () => {
+            const categories = await apiGetService('categories')
+            setAllCategories(categories)
+        })()
+    }, [])
+
+    useEffect(() => {
+        if (id) {
+            (async () => {
+                const categories = await apiGetService('categories')
+                setAllCategories(categories)
+                const novelty = await apiGetService('news', String(id))
+                console.log(novelty)
+                setIsEdit(true) 
+                setNewTitle(novelty.title)
+                setImageUrl(novelty.image)
+                setNewCategoryId(novelty.category.id)
+                setNewCategoryName(novelty.category.name)
+                setNewContent(novelty.content)
+                setTitleOfForm('Edit a New')
+            })()
         }
-    },[id, title, image, category, content]);
+    },[id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newsObject = {
-            newTitle,
-            newImage,
-            newCategory,
-            newContent
-        };
+        const formData = new FormData()
+        formData.append('image', newImage)
+        formData.append('title', newTitle)
+        formData.append('category', newCategoryId)
+        formData.append('content', newContent) 
+        formData.append('imageUrl', imageUrl)
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }       
 
         try {
             if (isEdit) {
-                //const editedNew = await newsService.editNew(id, newsObject);
-                console.log(newsObject, 'edited New');
+                const response = await apiUpdateService('news',String(id), formData, config)
+                console.log(response)
+                setNewTitle('')
+                setImageUrl('')
+                setNewCategoryId('')
+                setNewCategoryName('')
+                setNewContent('')
             } else {
-                //const createdNew = await newsService.createNew(newObject);
-                console.log(newsObject, 'created New');
+                const response = await apiPostService('news', formData, config)
+                console.log(response)
+                setNewTitle('')
+                setImageUrl('')
+                setNewCategoryId('')
+                setNewCategoryName('')
+                setNewContent('')
             }
         } catch (error) {
             console.log(error);
@@ -56,8 +85,8 @@ const NewsForm = ({ id, title, image, category, content }) => {
     console.log(newContent)
 
     return (
-        <div className='d-flex justify-content-center'>
-            <form className='form-new' /* style={{ display: 'flex', flexDirection: 'column'}} */ onSubmit={handleSubmit}>
+        <div className='d-flex justify-content-center form-container'>
+            <form className='form-new' onSubmit={handleSubmit}>
             <h2 className='text-center'>{titleOfForm}</h2>
                 <label className='w-100'>
                     Title
@@ -68,25 +97,31 @@ const NewsForm = ({ id, title, image, category, content }) => {
                         onChange={({target}) => { setNewTitle(target.value) }}
                     />
                 </label>
-                <label className='w-100'>
-                    Image
+                <label className='w-100 '>
+                    <div>Image</div>
+                    <div className='image-container'>
+                    {id && <img style={{ width: '30%'}} src={imageUrl} alt='prueba'/>}
                     <input 
-                        className='input-new'
-                        type='text'
-                        value={newImage}
-                        onChange={({target}) => { setNewImage(target.value) }}
+                        className='input-image'
+                        type='file'
+                        onChange={({target}) => { setNewImage(target.files[0]) }}
                     />
+                    </div>
                 </label>
                 <label className='w-100'>
                     Category
                     <select
                         className='select-new'
-                        value={newCategory}
-                        onChange={({ target }) => setNewCategory(target.value)}
+                        value={newCategoryId}
+                        onChange={({ target }) => setNewCategoryId(target.value)}
                     >
-                        <option value=''>Select</option>
-                        {allCategories.map(c => 
-                            <option key={c.value} value={c.value}>{c.label}</option>
+                        {id ? (<option value={newCategoryId} defaultValue>{newCategoryName}</option>) : <option value='' defaultValue>Select</option>}
+                        
+                        {allCategories.map(c => {
+                            if(newCategoryId !== c.id) {
+                               return <option key={c.name} value={c.id}>{c.name}</option>
+                            }
+                        }
                         )}
                     </select>
                 </label>
