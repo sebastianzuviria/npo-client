@@ -1,100 +1,84 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
-import PhoneInput from "react-phone-input-2";
 import * as Yup from "yup";
 import apiGetService from "../../services/apiGetService";
+import apiUpdateService from "../../services/apiUpdateService";
 import InputField from "../SignupForm/InputField";
-import { successAlert, cancelAlert, confirmAlert, errorAlert,} from "../Alert/Alert";
-
+import {
+  successAlert,
+  cancelAlert,
+  confirmAlert,
+  errorAlert,
+} from "../Alert/Alert";
 
 const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
   const [
-    { address, name, image, welcomeText, facebook, instagram, linkedin, phone },
+    { name, image, phone, address, facebook, instagram, linkedin },
     setOrganizationState,
   ] = useState({
-    address: "",
     name: "",
     image: "",
-    welcomeText: "",
+    phone: "",
+    address: "",
     facebook: "",
     instagram: "",
     linkedin: "",
-    phone: "",
   });
 
   const [typeimage, setTypeimage] = useState(false);
 
+  const organizationinfo = async()=>{
 
+    const { name, image, phone, address, socialmedia } = await apiGetService(
+      "organizations/public"
+    );
+    const { facebook, instagram, linkedin } = socialmedia;
+
+    await setOrganizationState({
+      name,
+      image,
+      phone,
+      address,
+      facebook,
+      instagram,
+      linkedin,
+    });
+
+  }
 
   //Info organization
   useEffect(() => {
-    (async () => {
-      const { address, name, phone, welcomeText, socialmedia } = await apiGetService(
-        "organizations/public"
-      );
-      const { facebook, instagram, linkedin } = socialmedia;
-      console.log(welcomeText);
 
-      await setOrganizationState({
-        address,
-        name,
-        image,
-        welcomeText,
-        facebook,
-        instagram,
-        linkedin,
-        phone,
-      })
+    organizationinfo();
 
-    })();
   }, []);
 
   const validationSchema = Yup.object({
-    name: Yup.string().min(
-      3,
-      "Debe contener mínimo 3 caracteres"
-    ),
-    phone: Yup.number().min(
-      3,
-      "Debe ser un número de teléfono válido"
-    ),
+    name: Yup.string()
+      .required("El nombre de la organización es obligatorio")
+      .min(3, "Debe contener mínimo 3 caracteres"),
+    phone: Yup.number().min(3, "Debe ser un número de teléfono válido"),
 
-    address: Yup.string().min(
-      3,
-      "Debe contener mínimo 3 caracteres"
-    ),
-    facebook: Yup.string().url(
-      "Debe ser una url válida"
-    ),
-    linkedin:Yup.string().url(
-      "Debe ser una url válida"
-    ),
-    instagram: Yup.string().url(
-      "Debe ser una url válida"
-    ),
+    address: Yup.string().min(3, "Debe contener mínimo 3 caracteres"),
+    facebook: Yup.string().url("Debe ser una url válida"),
+    linkedin: Yup.string().url("Debe ser una url válida"),
+    instagram: Yup.string().url("Debe ser una url válida"),
   });
 
-  const onSubmit = (data) => {
-    //validate that at least one field is full
+  const onSubmit = async (data) => {
 
-        if (data.image.length > 0) {
-          if (extensions.test(data.image)) {
-            //correct data
-            /*
-                const organization = async () => {
-                const infoorganization = await apiGetService('updateorganization');
-                //return await successAlert();
+      try{
+        const infoorganization = await apiUpdateService("organizations",1,data);
+        organizationinfo();
+        return await successAlert();        
+      }
+      catch(e){
+        errorAlert();
+        
+      }
 
-             };*/
-
-             
-
-          } else {
-            setTypeimage(true);
-          }
-        }
   };
 
   return (
@@ -104,7 +88,15 @@ const UpdateformOrganization = () => {
 
         <Formik
           enableReinitialize={true}
-          initialValues={{address, name, image, welcomeText,facebook, instagram, linkedin, phone}}
+          initialValues={{
+            name,
+            image,
+            phone,
+            address,
+            facebook,
+            instagram,
+            linkedin,
+          }}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
@@ -132,7 +124,8 @@ const UpdateformOrganization = () => {
 
               <div className="col-sm-6">
                 <div className="form-floating mt-4">
-                  <PhoneInput
+                  <InputField
+                    label="Teléfono"
                     name="phone"
                     country="ar"
                     className="form-control"
@@ -148,15 +141,7 @@ const UpdateformOrganization = () => {
               <div className="col-sm-6">
                 <InputField label="Linkedin" name="linkedin" type="text" />
               </div>
-              <div className="col-sm-12">
-                <Field
-                  as="textarea"
-                  rows="4"
-                  className="form-control"
-                  name="welcomeText"
 
-                />
-              </div>
               {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
             </div>
             <br />
