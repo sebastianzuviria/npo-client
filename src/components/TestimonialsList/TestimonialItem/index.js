@@ -73,13 +73,13 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
                             <Modal.Title>Edición</Modal.Title>
                         </Modal.Header>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="name">
 
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control type="text" placeholder="nombre" name="name" autoComplete="off" value={ testimonial.name } onChange={handleOnChange}/>
                             
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="content">
 
                             <Form.Label>Historia</Form.Label>
                             <Form.Control as="textarea" rows={3} placeholder="Contanos tu testimonio" name="content" autoComplete="off" value={ testimonial.content } onChange={handleOnChange}/>
