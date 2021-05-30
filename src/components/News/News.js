@@ -38,10 +38,6 @@ const News = () => {
                                 <h5 className='card-title news__title'>
                                     {title}
                                 </h5>
-                                <hr className='news__hr'/>
-                                <p className='card-text text-muted text-justify'>
-                                    { content.slice(0,230) } ...
-                                </p>
                             </div>
                         </div>
                     </div>

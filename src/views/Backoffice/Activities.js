@@ -7,7 +7,6 @@ const Activities = () => {
   return (
     <BackOfficeLayout>
       <Table />
-      <Form />
     </BackOfficeLayout>
   );
 };
