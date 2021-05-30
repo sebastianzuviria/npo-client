@@ -1,8 +1,8 @@
 import apiService from './apiService';
 
-const apiUpdateService = async ( type, id, payload ) => {
+const apiUpdateService = async ( type, id, payload, config ) => {
 
-    const response = await apiService.put(`/${ type }/${ id }`, payload);
+    const response = await apiService.put(`/${ type }/${ id }`, payload, config);
     return await response.data;
 
 }

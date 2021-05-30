@@ -15,12 +15,13 @@ const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
   const [
-    { id, name, image, phone, address, facebook, instagram, linkedin },
+    { id, name, image, imageurl, phone, address, facebook, instagram, linkedin },
     setOrganizationState,
   ] = useState({
     id: "",
     name: "",
     image: "",
+    imageurl: "",
     phone: "",
     address: "",
     facebook: "",
@@ -40,7 +41,7 @@ const UpdateformOrganization = () => {
     await setOrganizationState({
       id,
       name,
-      image,
+      imageurl:image,
       phone,
       address,
       facebook,
@@ -71,14 +72,28 @@ const UpdateformOrganization = () => {
 
   const onSubmit = async (data) => {
 
+    const formData = new FormData()
+    formData.append('name', data.name)
+    formData.append('image', data.image)
+    formData.append('imageurl', imageurl)
+    formData.append('phone', data.phone)
+    formData.append('address', data.address)
+    formData.append('facebook', data.facebook) 
+    formData.append('instagram', data.instagram)
+    formData.append('linkedin', data.linkedin)
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
       try{
-        const infoorganization = await apiUpdateService("organizations",id,data);
+        const infoorganization = await apiUpdateService("organizations",id,formData,config);
         organizationinfo();
         return await successAlert();        
       }
       catch(e){
         errorAlert();
-        
       }
 
   };
@@ -102,55 +117,61 @@ const UpdateformOrganization = () => {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          <Form>
-            <div className="row g-3">
-              <div className="col-sm-6">
-                <InputField
-                  label="Nombre de la organización"
-                  name="name"
-                  type="text"
-                />
-              </div>
-              <div className="col-sm-6">
-                <InputField label="Dirección" name="address" type="text" />
-              </div>
 
-              <div className="col-sm-6">
-                <InputField
-                  label="Logo"
-                  name="logo"
-                  type="file"
-                  placeholder="..."
-                />
-              </div>
+          {(formProps)=>(
+                      <Form>
+                      <div className="row g-3">
+                        <div className="col-sm-6">
+                          <InputField
+                            label="Nombre de la organización"
+                            name="name"
+                            type="text"
+                          />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Dirección" name="address" type="text" />
+                        </div>
+          
+                        <div className="col-sm-6">
+                          <img src={imageurl} alt ="Logo de la organización" class="img-fluid" ></img>
+                          <input
+                            label="Logo"
+                            name="image"
+                            type="file"
+                            onChange={(event)=>formProps.setFieldValue("image", event.target.files[0])}
+                            placeholder="..."
+                          />
+                        </div>
+          
+                        <div className="col-sm-6">
+                          <div className="form-floating mt-4">
+                            <InputField
+                              label="Teléfono"
+                              name="phone"
+                              country="ar"
+                              className="form-control"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Facebook" name="facebook" type="text" />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Instagram" name="instagram" type="text" />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Linkedin" name="linkedin" type="text" />
+                        </div>
+          
+                        {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
+                      </div>
+                      <br />
+                      <button type="submit" className="btn btn-secondary">
+                        Actualizar
+                      </button>
+                    </Form>
+          )}
 
-              <div className="col-sm-6">
-                <div className="form-floating mt-4">
-                  <InputField
-                    label="Teléfono"
-                    name="phone"
-                    country="ar"
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="col-sm-6">
-                <InputField label="Facebook" name="facebook" type="text" />
-              </div>
-              <div className="col-sm-6">
-                <InputField label="Instagram" name="instagram" type="text" />
-              </div>
-              <div className="col-sm-6">
-                <InputField label="Linkedin" name="linkedin" type="text" />
-              </div>
-
-              {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
-            </div>
-            <br />
-            <button type="submit" className="btn btn-secondary">
-              Actualizar
-            </button>
-          </Form>
         </Formik>
         <hr></hr>
       </div>
