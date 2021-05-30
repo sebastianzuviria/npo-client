@@ -15,9 +15,10 @@ const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
   const [
-    { name, image, phone, address, facebook, instagram, linkedin },
+    { id, name, image, phone, address, facebook, instagram, linkedin },
     setOrganizationState,
   ] = useState({
+    id: "",
     name: "",
     image: "",
     phone: "",
@@ -31,12 +32,13 @@ const UpdateformOrganization = () => {
 
   const organizationinfo = async()=>{
 
-    const { name, image, phone, address, socialmedia } = await apiGetService(
+    const { id, name, image, phone, address, socialmedia } = await apiGetService(
       "organizations/public"
     );
     const { facebook, instagram, linkedin } = socialmedia;
 
     await setOrganizationState({
+      id,
       name,
       image,
       phone,
@@ -70,7 +72,7 @@ const UpdateformOrganization = () => {
   const onSubmit = async (data) => {
 
       try{
-        const infoorganization = await apiUpdateService("organizations",1,data);
+        const infoorganization = await apiUpdateService("organizations",id,data);
         organizationinfo();
         return await successAlert();        
       }
