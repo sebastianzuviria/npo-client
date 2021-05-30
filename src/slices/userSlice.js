@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const loginService = {
-  login: (credentials) => {
-    return credentials
-  },
-};
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -31,8 +25,8 @@ export const isLogged = () => dispatch => {
   };
 };
 
-export const userLogin = credentials => async dispatch => {
-    const user = await loginService.login(credentials);
+export const userLogin = authResponse => async dispatch => {
+    const user = authResponse;
     window.localStorage.setItem(
       'ongLoggedUser', JSON.stringify(user)
     );

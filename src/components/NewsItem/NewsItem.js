@@ -1,5 +1,6 @@
 import React from 'react';
 import './NewsItem.css';
+import ReactHtmlParser from 'react-html-parser'
 
 // Posible modificación de props
 const NewsItem = ({ title, content, type, createdAt, image }) => {
@@ -17,9 +18,9 @@ const NewsItem = ({ title, content, type, createdAt, image }) => {
         </div>
         <div className="detail-body">
           <div className="detail-img">
-            <img src={image} alt="Novelty image" />
+            <img src={image} alt="Novelty" />
           </div>
-          <p className="detail-content">{content}</p>
+          <p className="detail-content">{ReactHtmlParser(content)}</p>
         </div>
       </div>
     </div>

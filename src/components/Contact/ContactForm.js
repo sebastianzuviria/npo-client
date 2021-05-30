@@ -74,7 +74,6 @@ const ContactForm = () => {
                   id="name"
                   name="name"
                   type="text"
-                  className="form-control"
                 />
                 <ErrorMessage
                   name="name"
