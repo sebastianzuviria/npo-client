@@ -64,7 +64,7 @@ const NewsForm = ({ id }) => {
 
         try {
             if (isEdit) {
-                const response = await apiUpdateService('news',String(id), formData, config)
+                const response = await apiUpdateService('news',id, formData, config)
                 dispatch(updateNovelties(response))
                 console.log(response)
                 setNewTitle('')
@@ -125,6 +125,8 @@ const NewsForm = ({ id }) => {
                         {allCategories.map(c => {
                             if(newCategoryId !== c.id) {
                                return <option key={c.name} value={c.id}>{c.name}</option>
+                            } else {
+                                return null
                             }
                         }
                         )}
