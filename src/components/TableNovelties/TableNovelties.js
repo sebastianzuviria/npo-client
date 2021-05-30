@@ -1,53 +1,32 @@
 import React,{useEffect,useState} from 'react'
-import apiGetService from '../../services/apiGetService'
-import apiDeleteService from '../../services/apiDeleteService'
-import apiUpdateService from '../../services/apiUpdateService'
+import { useDispatch, useSelector } from 'react-redux'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 import NewsForm from '../NewsForm/NewsForm'
+import { loadNovelties, deleteNovelties, noveltiesSelector } from '../../slices/backNoveltiesSlice'
 
-import { Modal, Button } from 'react-bootstrap'
+
+import { Modal } from 'react-bootstrap'
 
 
 const TableNovelties = () => {
-    const [novelties, setNovelties] = useState([])
-    const [newObject, setNewObject] = useState({})
+    const novelties = useSelector(noveltiesSelector)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [noveltyToEdit, setNoveltyToEdit] = useState('')
+    const dispatch = useDispatch()
     
-    const edit = async (type, id) => {
-        const returnedNovelty = await apiGetService(type, id);
-        setNewObject(returnedNovelty)
-    };
-    const delet = async (type, id) => {
+    const delet = async (id) => {
             const res = await confirmAlert();
             if(!res.isConfirmed){
                 return await cancelAlert();
             }
-            await apiDeleteService(type, id)
-            let newNovelties = novelties.filter(novelty=>{
-                return novelty.id !== id
-            })
-            setNovelties(newNovelties)
-            return successAlert()
-                       
-    };
-    const update = async () => {
-        const res = await confirmAlert();
-        if(res.isConfirmed){
-                await apiUpdateService('news',newObject.id, newObject)
-                setNovelties(novelties.map(novelty=>(novelty.id===newObject.id?newObject:novelty)))
-            return successAlert()
-        } else{
-            cancelAlert();
-        }
+            dispatch(deleteNovelties(id))
+            return successAlert()                  
     }
 
     useEffect(() => {
-        (async (type) => {
-            const returnedNovelties = await apiGetService(type) ;
-            setNovelties ( returnedNovelties ) ;
-            })('news');
+        dispatch(loadNovelties())    
     }, [])
+
     return (
         <div className='d-flex justify-content-center'>
             <table className="table table-bordered table-hw">

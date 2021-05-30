@@ -1,10 +1,12 @@
 import './NewsForm.css';
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import apiPostService from '../../services/apiPostService';
 import apiGetService from '../../services/apiGetService';
 import apiUpdateService from '../../services/apiUpdateService';
+import { loadNovelties, updateNovelties } from '../../slices/backNoveltiesSlice'
 
 const NewsForm = ({ id }) => {
     const [allCategories, setAllCategories] = useState([])
@@ -16,6 +18,7 @@ const NewsForm = ({ id }) => {
     const [newCategoryName, setNewCategoryName] = useState('')
     const [isEdit, setIsEdit] = useState(false);
     const [titleOfForm, setTitleOfForm] = useState('Create a New');  
+    const dispatch = useDispatch()
 
     console.log(newCategoryId)
 
@@ -62,6 +65,7 @@ const NewsForm = ({ id }) => {
         try {
             if (isEdit) {
                 const response = await apiUpdateService('news',String(id), formData, config)
+                dispatch(updateNovelties(response))
                 console.log(response)
                 setNewTitle('')
                 setImageUrl('')
@@ -70,6 +74,7 @@ const NewsForm = ({ id }) => {
                 setNewContent('')
             } else {
                 const response = await apiPostService('news', formData, config)
+                dispatch(loadNovelties())
                 console.log(response)
                 setNewTitle('')
                 setImageUrl('')
