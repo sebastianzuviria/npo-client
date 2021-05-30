@@ -21,7 +21,7 @@ const News = () => {
     <div className='container'>
         <div className='row row-cols-1 row-cols-md-3 my-4'>
             {news.length > 0 &&
-                news.slice(0, loadedNews).map(({ id, createdAt, content, image, title }) => (
+                news.slice(0, loadedNews).map(({ id, createdAt, image, title }) => (
                     <div className='col my-3' key={id}>
                         <div className='card news__card h-100 border-0 shadow animate__animated animate__fadeIn'>
                             <Link to={ `/news/${ id }` }>
@@ -38,10 +38,6 @@ const News = () => {
                                 <h5 className='card-title news__title'>
                                     {title}
                                 </h5>
-                                <hr className='news__hr'/>
-                                <p className='card-text text-muted text-justify'>
-                                    { content.slice(0,230) } ...
-                                </p>
                             </div>
                         </div>
                     </div>
