@@ -17,7 +17,7 @@ const NewsForm = ({ id }) => {
     const [newCategoryId, setNewCategoryId] = useState('');
     const [newCategoryName, setNewCategoryName] = useState('')
     const [isEdit, setIsEdit] = useState(false);
-    const [titleOfForm, setTitleOfForm] = useState('Create a New');  
+    const [titleOfForm, setTitleOfForm] = useState('Crear Novedad');  
     const dispatch = useDispatch()
 
     console.log(newCategoryId)
@@ -42,7 +42,7 @@ const NewsForm = ({ id }) => {
                 setNewCategoryId(novelty.category.id)
                 setNewCategoryName(novelty.category.name)
                 setNewContent(novelty.content)
-                setTitleOfForm('Edit a New')
+                setTitleOfForm('Editar Novedad')
             })()
         }
     },[id]);
@@ -94,7 +94,7 @@ const NewsForm = ({ id }) => {
             <form className='form-new' onSubmit={handleSubmit}>
             <h2 className='text-center'>{titleOfForm}</h2>
                 <label className='w-100'>
-                    Title
+                    Titulo
                     <input 
                         className='input-new'
                         type='text'
@@ -103,7 +103,7 @@ const NewsForm = ({ id }) => {
                     />
                 </label>
                 <label className='w-100 '>
-                    <div>Image</div>
+                    <div>Imagen</div>
                     <div className='image-container'>
                     {id && <img style={{ width: '30%'}} src={imageUrl} alt='prueba'/>}
                     <input 
@@ -114,7 +114,7 @@ const NewsForm = ({ id }) => {
                     </div>
                 </label>
                 <label className='w-100'>
-                    Category
+                    Categoria
                     <select
                         className='select-new'
                         value={newCategoryId}
@@ -131,7 +131,7 @@ const NewsForm = ({ id }) => {
                     </select>
                 </label>
                 <label className='content-new'>
-                    Content
+                    Contenido
                     <CKEditor
                         editor={ ClassicEditor }
                         data={newContent}
