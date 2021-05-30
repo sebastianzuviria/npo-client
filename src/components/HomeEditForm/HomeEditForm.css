@@ -1,3 +1,13 @@
+.HomeEditForm__btn {
+    background-color: var(--color-brand);
+    color: white;
+}
+
+.HomeEditForm__btn:hover {
+    background-color: rgb(79, 132, 150);
+    color: white;
+}
+
 .HomeEditForm__content{
     display: grid;
     gap: 1rem;
