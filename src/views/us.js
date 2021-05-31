@@ -10,12 +10,12 @@ const As = () => {
             <BasicLayout>
                 <main>
                     <div class="py-5 text-center">
-                        <h2>As</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h2>Nosotros</h2>
+                        <p class="lead">Somos quienes aprendimos mucho realizando esta aplicacion</p>
                     </div>
                 </main>
                 <div class="container marketing">
-                    <div class="row" >
+                    <div class="row">
                         <MembersOrganization/>
                     </div>
                 </div>
