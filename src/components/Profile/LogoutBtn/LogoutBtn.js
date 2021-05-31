@@ -20,7 +20,7 @@ const LogoutBtn = () => {
     }
   };
   return (
-    <Button className="btn-danger ms-2" onClick={handleLogout}>
+    <Button className="btn-danger ms-2 text-nowrap" onClick={handleLogout}>
       Cerrar sesión
     </Button>
   );

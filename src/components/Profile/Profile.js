@@ -12,24 +12,27 @@ const Profile = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mx-5 mt-5">
-        <h2 className="h2 d-block">Bienvenid@ {user.firstName}!</h2>
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mx-5 mt-5">
+        <h2 className="h2">Bienvenid@ {user?.firstName || 'usuario'}!</h2>
         <div className="d-flex justify-content-between align-items-center">
-          <EditBtn icon="fa-user-edit" text="Editar datos">
+          <EditBtn
+            icon="fa-user-edit"
+            text="Editar datos"
+            modalName="profileForm"
+          >
             <ProfileForm user={user} />
           </EditBtn>
           <LogoutBtn />
         </div>
       </div>
-
       <hr className="mx-4" />
-      <div className="d-flex justify-content-evenly mt-5 vh-100">
+      <div className="d-flex flex-column flex-md-row justify-content-evenly mt-5 vh-100">
         <UpdateImage user={user} />
-        <div className="d-flex flex-column w-50">
-          <ShowData name="Nombre/s" value={user.firstName} />
-          <ShowData name="Apellido/s" value={user.lastName} />
-          <ShowData name="Correo electrónico" value={user.email} />
-          <ShowData name="Privilegios" value={user.role} />
+        <div className="d-flex flex-column w-75 mx-auto mx-md-0 px-md-5 my-5 my-md-0">
+          <ShowData name="Nombre/s" value={user?.firstName || ''} />
+          <ShowData name="Apellido/s" value={user?.lastName || ''} />
+          <ShowData name="Correo electrónico" value={user?.email || ''} />
+          <ShowData name="Privilegios" value={user?.role || ''} />
         </div>
       </div>
     </>
