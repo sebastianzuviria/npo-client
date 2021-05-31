@@ -6,7 +6,7 @@ import { Modal, Form, Button } from 'react-bootstrap';
 
 const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
     
-    const [testimonial, setTestimonial] = useState({id, user, name, content});
+    const [testimonial, setTestimonial] = useState({id, name, content});
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOnChange = e => {
@@ -51,7 +51,7 @@ const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
         return(<>
             <tr>
                 <td>{testimonial.name}</td>
-                <td>{testimonial.user.firstName}</td>
+
                 <td className="d-flex justify-content-center">
                     <button style={{cursor:"pointer"}} 
                         type="button" className="btn btn-info mx-1"
