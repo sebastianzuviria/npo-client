@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import apiGetService from "../../services/apiGetService";
 import apiUpdateService from "../../services/apiUpdateService";
@@ -63,7 +63,14 @@ const UpdateformOrganization = () => {
       .required("El nombre de la organización es obligatorio")
       .min(3, "Debe contener mínimo 3 caracteres"),
     phone: Yup.number().min(3, "Debe ser un número de teléfono válido"),
-
+    image: Yup.mixed().test("type", "El archivo debe ser de type png/jpg", (value)=>{
+      if( value.type== "image/jpeg" || value.type=="image/png" || value.type== "image/jpeg"){
+        return (true)
+      }
+      else{
+        return (false)
+      }
+    }),
     address: Yup.string().min(3, "Debe contener mínimo 3 caracteres"),
     facebook: Yup.string().url("Debe ser una url válida"),
     linkedin: Yup.string().url("Debe ser una url válida"),
@@ -133,7 +140,7 @@ const UpdateformOrganization = () => {
                         </div>
           
                         <div className="col-sm-6">
-                          <img src={imageurl} alt ="Logo de la organización" class="img-fluid" ></img>
+                          <img src={imageurl} alt ="Logo de la organización" className="img-fluid" ></img>
                           <input
                             label="Logo"
                             name="image"
@@ -141,6 +148,13 @@ const UpdateformOrganization = () => {
                             onChange={(event)=>formProps.setFieldValue("image", event.target.files[0])}
                             placeholder="..."
                           />
+                          <ErrorMessage
+                            name="image"
+                            className="invalid-feedback ml-2 d-block"
+                            component="div"
+                          />
+
+                          
                         </div>
           
                         <div className="col-sm-6">
@@ -163,7 +177,7 @@ const UpdateformOrganization = () => {
                           <InputField label="Linkedin" name="linkedin" type="text" />
                         </div>
           
-                        {typeimage ? "the file must be of type jpg, jpeg, png" : ""}
+                        
                       </div>
                       <br />
                       <button type="submit" className="btn btn-secondary">
