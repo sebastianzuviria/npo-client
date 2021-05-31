@@ -59,6 +59,7 @@ const TestimonialsList = () => {
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
+                            <th scope="col">author</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
