@@ -1,32 +1,43 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { userLogged } from '../../../slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogged, userLogin } from '../../../slices/userSlice';
 import apiUpdateService from '../../../services/apiUpdateService';
+import { errorAlert } from '../../Alert/Alert';
+import { changeModalState } from '../../../slices/modalSlice';
 
 const ImageForm = () => {
   const user = useSelector(userLogged);
   const [imageUrl, setImageUrl] = useState(undefined);
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }, formProps) => {
     const imageBlob = new Blob(target.files, { type: 'image/*' });
     const imageBlobUrl = URL.createObjectURL(imageBlob);
     setImageUrl(imageBlobUrl);
 
-    formProps.setFieldValue('image', target.files[0], false);
+    formProps.setFieldValue('image', target.files[0]);
   };
 
   const initialValues = { image: '' };
 
-  const handleSubmit = async (values) => {
-    //TODO
-    console.log(values.image);
-    const data = new FormData();
-    data.append('image', values.image);
-    const newImageUrl = await apiUpdateService('users/image', '', data);
-    console.log(newImageUrl);
-    console.log(values);
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setSubmitting(true);
+    try {
+      const data = new FormData();
+      data.append('image', values.image);
+      const { image } = await apiUpdateService('users/updateimage', '', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      image ? dispatch(userLogin({ ...user, image })) : await errorAlert();
+      dispatch(changeModalState(''));
+    } catch (err) {
+      setSubmitting(false);
+      await errorAlert();
+    }
   };
   return (
     <Formik
@@ -38,7 +49,7 @@ const ImageForm = () => {
         <>
           <Form className="d-flex flex-column align-items-center">
             <div className="img-container rounded-circle border border-3">
-              {!user.image && !imageUrl ? (
+              {user && !user.image && !imageUrl ? (
                 `${user.firstName} ${user.lastName}`
               ) : (
                 <img
@@ -60,6 +71,7 @@ const ImageForm = () => {
             className="btn-warning mt-3 mb-1 w-100"
             type="submit"
             onClick={() => formProps.submitForm()}
+            disabled={formProps.isSubmitting}
           >
             Guardar
           </Button>
