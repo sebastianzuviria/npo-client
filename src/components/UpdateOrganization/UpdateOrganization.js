@@ -1,100 +1,194 @@
-import React, { useState, useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import apiGetService from '../../services/apiGetService';
-import InputField from '../SignupForm/InputField';
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage} from "formik";
+import * as Yup from "yup";
+import apiGetService from "../../services/apiGetService";
+import apiUpdateService from "../../services/apiUpdateService";
+import InputField from "../SignupForm/InputField";
+import {
+  successAlert,
+  cancelAlert,
+  confirmAlert,
+  errorAlert,
+} from "../Alert/Alert";
 
 const UpdateformOrganization = () => {
   const extensions = new RegExp(/.jpg|.jpeg|.png/i);
 
-  const [name, setName] = useState('');
-  const [image, setImage] = useState('');
-  const [register, setRegister] = useState(false);
-  const [fieldempty, setFieldempty] = useState(false);
+  const [
+    { id, name, image, imageurl, phone, address, facebook, instagram, linkedin },
+    setOrganizationState,
+  ] = useState({
+    id: "",
+    name: "",
+    image: "",
+    imageurl: "",
+    phone: "",
+    address: "",
+    facebook: "",
+    instagram: "",
+    linkedin: "",
+  });
+
   const [typeimage, setTypeimage] = useState(false);
 
-  const initialValues = {
-    name: '',
-    image: ''
-  };
+  const organizationinfo = async()=>{
+
+    const { id, name, image, phone, address, socialmedia } = await apiGetService(
+      "organizations/public"
+    );
+    const { facebook, instagram, linkedin } = socialmedia;
+
+    await setOrganizationState({
+      id,
+      name,
+      imageurl:image,
+      phone,
+      address,
+      facebook,
+      instagram,
+      linkedin,
+    });
+
+  }
 
   //Info organization
   useEffect(() => {
-    (async () => {
-      const infoorganization = await apiGetService('organizations/public');
-      setName(infoorganization.name);
-      setImage(infoorganization.image);
-    })();
+
+    organizationinfo();
+
   }, []);
 
   const validationSchema = Yup.object({
-    name: Yup.string().min(3, 'organization name must be at least 3 characters')
+    name: Yup.string()
+      .required("El nombre de la organización es obligatorio")
+      .min(3, "Debe contener mínimo 3 caracteres"),
+    phone: Yup.number().min(3, "Debe ser un número de teléfono válido"),
+    image: Yup.mixed().test("type", "El archivo debe ser de type png/jpg", (value)=>{
+      if( value.type== "image/jpeg" || value.type=="image/png" || value.type== "image/jpeg"){
+        return (true)
+      }
+      else{
+        return (false)
+      }
+    }),
+    address: Yup.string().min(3, "Debe contener mínimo 3 caracteres"),
+    facebook: Yup.string().url("Debe ser una url válida"),
+    linkedin: Yup.string().url("Debe ser una url válida"),
+    instagram: Yup.string().url("Debe ser una url válida"),
   });
 
-  const onSubmit = (data) => {
-    //validate that at least one field is full
-    if (data.name.length > 0 || data.image.lengt > 0) {
-      console.log(data);
-      setTypeimage(false);
+  const onSubmit = async (data) => {
 
-      //Information by default that would be in the database
-      if (!data.name.length > 0) {
-        data.name = 'Default information name';
-      } else {
-        if (data.image.length > 0) {
-          if (extensions.test(data.image)) {
-            //correct data
-            /*
-                const organization = async () => {
-                const infoorganization = await apiGetService('updateorganization');
-                setRegister(true)
-             };*/
-          } else {
-            setTypeimage(true);
-          }
+    const formData = new FormData()
+    formData.append('name', data.name)
+    formData.append('image', data.image)
+    formData.append('imageurl', imageurl)
+    formData.append('phone', data.phone)
+    formData.append('address', data.address)
+    formData.append('facebook', data.facebook) 
+    formData.append('instagram', data.instagram)
+    formData.append('linkedin', data.linkedin)
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
         }
+    }
+      try{
+        const infoorganization = await apiUpdateService("organizations",id,formData,config);
+        organizationinfo();
+        return await successAlert();        
       }
-    }
-    //Empty fields
-    else {
-      console.log('vacios');
-      setFieldempty(true);
-    }
-    console.log(data);
+      catch(e){
+        errorAlert();
+      }
+
   };
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
-      <h1>Update organization!</h1>
-      <p>{name}</p>
-      <img src={image} alt="Organization logo image"></img>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '800px',
-            alignItems: 'center'
+    <div className="row g-5 form-contacto">
+      <div className="col-md-10 col-lg-10 pt-md-5">
+        <h2>Información de la organización</h2>
+
+        <Formik
+          enableReinitialize={true}
+          initialValues={{
+            name,
+            image,
+            phone,
+            address,
+            facebook,
+            instagram,
+            linkedin,
           }}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
         >
-          <InputField label="organization name" name="name" type="text" />
 
-          <InputField label="Logo" name="image" type="file" placeholder="..." />
+          {(formProps)=>(
+                      <Form>
+                      <div className="row g-3">
+                        <div className="col-sm-6">
+                          <InputField
+                            label="Nombre de la organización"
+                            name="name"
+                            type="text"
+                          />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Dirección" name="address" type="text" />
+                        </div>
+          
+                        <div className="col-sm-6">
+                          <img src={imageurl} alt ="Logo de la organización" className="img-fluid" ></img>
+                          <input
+                            label="Logo"
+                            name="image"
+                            type="file"
+                            onChange={(event)=>formProps.setFieldValue("image", event.target.files[0])}
+                            placeholder="..."
+                          />
+                          <ErrorMessage
+                            name="image"
+                            className="invalid-feedback ml-2 d-block"
+                            component="div"
+                          />
 
-          {typeimage ? 'the file must be of type jpg, jpeg, png' : ''}
+                          
+                        </div>
+          
+                        <div className="col-sm-6">
+                          <div className="form-floating mt-4">
+                            <InputField
+                              label="Teléfono"
+                              name="phone"
+                              country="ar"
+                              className="form-control"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Facebook" name="facebook" type="text" />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Instagram" name="instagram" type="text" />
+                        </div>
+                        <div className="col-sm-6">
+                          <InputField label="Linkedin" name="linkedin" type="text" />
+                        </div>
+          
+                        
+                      </div>
+                      <br />
+                      <button type="submit" className="btn btn-secondary">
+                        Actualizar
+                      </button>
+                    </Form>
+          )}
 
-          <br />
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-      {register ? 'Successful registered organization information' : ''}
-      {fieldempty ? 'Fields cannot be empty' : ''}
+        </Formik>
+        <hr></hr>
+      </div>
     </div>
   );
 };
