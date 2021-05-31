@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { successAlert, errorAlert } from '../Alert/Alert';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import apiGetService from '../../services/apiGetService';
 import apiUpdateService from '../../services/apiUpdateService';
+import { HomeEditCard } from './HomeEditCard';
+import * as Yup from 'yup';
 import './HomeEditForm.css';
 
 const HomeEditForm = () => {
-    const [welcomeState, setWelcomeState] = useState();
-    const [ slideState, setSlideState ] = useState();
 
-    // Here we bring organization data from DB
+    const [ welcomeState, setWelcomeState ] = useState();
+    const [ slideState, setSlideState ] = useState();
+    const [ imageState, setImageState ] = useState();
+
     useEffect(() => {
         (async () => {
+
             const welcomeResponse = await apiGetService('organizations/public');
-            const slideResponse = await apiGetService(
-                'slides',
-                welcomeResponse.id
-            );
+            const slideResponse = await apiGetService('slides', welcomeResponse.id);
 
             setWelcomeState(welcomeResponse);
             setSlideState(slideResponse);
+
         })();
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [ imageState ]);
 
     const editHomeSchema = Yup.object().shape({
         welcomeText: Yup.string().min(50, '¡El texo es demasiado corto!'),
+        text: Yup.string().min(10, '¡El texo es demasiado corto!'),
     });
 
     const handleSubmitWelcome = async (values) => {
@@ -42,42 +43,32 @@ const HomeEditForm = () => {
     const handleSubmitSlides = async (data) => {
         
         const formData = new FormData();
-        
         formData.append('image', data.image);
         formData.append('imageUrl', data.imageUrl);
         formData.append('order', data.order);
         formData.append('text', data.text); 
-
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
-        }
 
     const config = {
         headers: { 'Content-Type' : 'multipart/form-data' }
     }
 
         try {
-
             await apiUpdateService(`slides`, data.id,  formData, config );
+            setImageState( data.imageUrl );
             await successAlert();
-
         } catch (err) {
-
             await errorAlert();
-
         }
     };
 
     return (
-        <div className='container my-5'>
+        <div className='container my-4'>
             <h3>Editar Página de Inicio</h3>
-            <hr className='mb-5' />
-            <div className='card'>
-                <div className='card-header py-3'>
-                    <h5 className='mb-0'>Texto de Bienvenida</h5>
-                    <small className='mt-0 text-muted'>Se muestra al inicio, a modo de información inicial</small>
-                </div>
-                <div className='card-body'>
+            <hr/>
+                <HomeEditCard 
+                    title='Texto de Bienvenida' 
+                    description='Se muestra al inicio, a modo de información inicial'
+                >
                     <Formik
                         enableReinitialize={true}
                         initialValues={welcomeState}
@@ -100,89 +91,64 @@ const HomeEditForm = () => {
                                     />
                                 </div>
                             </div>
-                            <button
-                                className='btn HomeEditForm__btn my-3'
-                                type='submit'
-                            >
+                            <button className='btn HomeEditForm__btn my-3'type='submit'>
+                                <i className='fas fa-edit HomeEditForm__fa me-2'></i>
                                 Actualizar
                             </button>
                         </Form>
                     </Formik>
-                </div>
-            </div>
-            <div className='card my-5'>
-                <div className='card-header py-3'>Imágenes de Presentación</div>
-                <div className='card-body'>
-                        <div>
-                            <div className='row row-cols-1 row-cols-md-3 g-4'>
-                                {slideState &&
-                                    slideState.map(({ id, imageUrl, order, text }) => {
-                                        return (
-                                            <Formik
-                                                enableReinitialize={true}
-                                                initialValues={ { id, order, imageUrl, text } }
-                                                validationSchema={editHomeSchema}
-                                                onSubmit={handleSubmitSlides}
-                                                key={id}
-                                            >
-                                                { props  => ( 
-                                                    <Form>
-                                                        <div
-                                                            className='col form-group border-0'
-                                                        >
-                                                            
-                                                            <div>
-                                                                <img
-                                                                    className='img-fluid'
-                                                                    src={imageUrl}
-                                                                    alt={text}
-                                                                />
-                                                            </div>
-                                                            <div>
-                                                                <input
-                                                                    type='file'
-                                                                    className='form-control-file border-0 mt-3 shadow-none text-center'
-                                                                    name='image'
-                                                                    onChange={(event) => {
-                                                                        props.setFieldValue('image', event.currentTarget.files[0]);
-                                                                    }}
-                                                                    required
-                                                                />
-                                                                <input
-                                                                    type='hidden'
-                                                                    name='imageUrl'
-                                                                />
-                                                                <input
-                                                                    type='hidden'
-                                                                    name='order'
-                                                                />
-                                                                <input
-                                                                    type='hidden'
-                                                                    name='id'
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className='form-group mb-3 text-center'>
-                                                            <Field className='form-control border-0 border-bottom shadow-none my-2' name='text'/>
-                                                        </div>
-                                                        <div className='d-flex justify-content-center'>
-                                                            <button
-                                                                className='btn HomeEditForm__btn my-3'
-                                                                type='submit'
-                                                            >
-                                                                Actualizar
-                                                            </button>
-                                                        </div>
-                                                    </Form> 
-                                                ) } 
-                                            </Formik>
-                                        );
-                                    })}
-                            </div>
-                        </div>
-                    
-                </div>
-            </div>
+                </HomeEditCard>
+                <HomeEditCard 
+                    title='Slider de Imágenes' 
+                    description='Contiene tres imágenes en carrousel'
+                >
+                    <div className='row row-cols-1 row-cols-md-3 g-4'>
+                        {slideState &&
+                            slideState.map(({ id, imageUrl, order, text }) => {
+                                return (
+                                    <Formik
+                                        enableReinitialize={true}
+                                        initialValues={ { id, order, imageUrl, text } }
+                                        validationSchema={editHomeSchema}
+                                        onSubmit={handleSubmitSlides}
+                                        key={id}
+                                    >
+                                        { props  => ( 
+                                            <Form>
+                                                <div className='col form-group border-0'>
+                                                    <div>
+                                                        <img className='img-fluid' src={imageUrl} alt={text} />
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            type='file'
+                                                            className='form-control mt-3 text-center'
+                                                            name='image'
+                                                            onChange={(event) => {
+                                                                props.setFieldValue('image', event.currentTarget.files[0]);
+                                                            }}
+                                                        />
+                                                        <input type='hidden' name='imageUrl' />
+                                                        <input type='hidden' name='order' />
+                                                        <input type='hidden' name='id' />
+                                                    </div>
+                                                </div>
+                                                <div className='form-group mb-3 text-center'>
+                                                    <Field className='form-control border-0 border-bottom shadow-none my-2' name='text'/>
+                                                </div>
+                                                <div className='d-flex justify-content-center'>
+                                                    <button className='btn HomeEditForm__btn my-3' type='submit'>
+                                                        <i className='fas fa-cloud-upload-alt HomeEditForm__fa me-2'></i>
+                                                        Actualizar
+                                                    </button>
+                                                </div>
+                                            </Form> 
+                                        ) } 
+                                    </Formik>
+                                );
+                            })}
+                    </div>
+                </HomeEditCard>
         </div>
     );
 };
