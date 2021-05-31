@@ -4,7 +4,6 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import apiGetService from '../../services/apiGetService';
 import apiUpdateService from '../../services/apiUpdateService';
-import InputField from '../SignupForm/InputField';
 import './HomeEditForm.css';
 
 const HomeEditForm = () => {
@@ -62,15 +61,14 @@ const HomeEditForm = () => {
                 <Form>
                     <div className='mb-3'>
                         <div className='form-group'>
-                            <label for='exampleFormControlTextarea1'>Example textarea</label>
+                            <label htmlFor='exampleFormControlTextarea1'>Example textarea</label>
                             <textarea className='form-control' name='welcomeText' rows='3'></textarea>
                         </div>
                         {
-                            ( slideState ) &&
-                            slideState.map( ( { imageUrl, text } ) => {
+                            slideState && slideState.map( ( { id, imageUrl, text } ) => {
                                 return ( 
                                 
-                                    <div className='form-group'>
+                                    <div className='form-group' key={ id }>
                                         <img className='img-thumbnail w-25' src={ imageUrl } alt={ text }/> 
                                         <input type='file' className='form-control-file border-0' id='exampleFormControlFile1' />
                                     </div>

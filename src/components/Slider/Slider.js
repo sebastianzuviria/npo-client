@@ -46,12 +46,12 @@ const Slider = () => {
         pagination={{ clickable: true, dynamicBullets: true }}
       >
 
-        { slideState && slideState.map((slide) => (
+        { slideState && slideState.map(({ id, imageUrl, text }) => (
 
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide key={id}>
             <div className='container-fluid slider__container p-0'>
-              <img className='slider__img img-fluid' src={slide.imageUrl} alt='slider__img'></img>
-              <span className='slider__text text-center'>{slide.text}</span>
+              <img className='slider__img img-fluid' src={imageUrl} alt='slider__img'></img>
+              <span className='slider__text text-center'>{text}</span>
             </div>
           </SwiperSlide>
 
