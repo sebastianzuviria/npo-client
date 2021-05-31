@@ -19,7 +19,7 @@ const Detail = ({id}) => {
             <div className='activity-detail'>
                 <h2>{activity.name}</h2>
                 <div className='d-flex justify-content-center'>
-                    <img className='img-act' src={activity.image} />
+                    <img className='img-act' src={activity.image} alt=""/>
                 </div>
                     <div>
                         {activity.content}

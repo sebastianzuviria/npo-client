@@ -24,7 +24,7 @@ const TestimonialsList = () => {
             
             if(confirm.isConfirmed) {
 
-                const res = await apiDeleteService('testimonials', id)
+                await apiDeleteService('testimonials', id)
 
                 setTestimonials(testimonials.filter( value => value.id !== id))
 

@@ -9,7 +9,7 @@ const UpdateformOrganization = () => {
 
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  const [register, setRegister] = useState(false);
+  const [register] = useState(false); // setRegister
   const [fieldempty, setFieldempty] = useState(false);
   const [typeimage, setTypeimage] = useState(false);
 
@@ -69,7 +69,7 @@ const UpdateformOrganization = () => {
     >
       <h1>Update organization!</h1>
       <p>{name}</p>
-      <img src={image} alt="Organization logo image"></img>
+      <img src={image} alt="Organization logo"/>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

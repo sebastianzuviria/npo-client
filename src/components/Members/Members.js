@@ -22,8 +22,8 @@ const MembersOrganization= ()=>{
             
             {members.length > 0 ? (
                 members.map((item) => 
-                <div class="col-lg-4 col-sm-4">
-                    <img src={item.image} alt={`Picture of ${item.name}`} class="bd-placeholder-img rounded-circle" width="140" height="140" />
+                <div class="col-lg-4 col-sm-4" key={item.id}>
+                    <img src={item.image} alt={item.name} className="bd-placeholder-img rounded-circle" width="140" height="140" />
                         <p>{item.name}</p>
                 </div>
                 

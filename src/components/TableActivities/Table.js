@@ -7,7 +7,6 @@ import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 const Table = () => {
     const [activities, setActivities] = useState([]);
     const [newObject, setNewObject] = useState({})
-    console.log(newObject);
 
     const edit = async (type,id) => {
         const returnedActivity = await apiGetService(type, id);

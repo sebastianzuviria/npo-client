@@ -11,7 +11,7 @@ const NewsCard = ({ title, image, id }) => {
   return (
     <div className="news-item" onClick={viewMore}>
       <div className="news-img">
-        <img src={image} />
+        <img src={image} alt=""/>
       </div>
       <span className="news-title">{title}</span>
     </div>

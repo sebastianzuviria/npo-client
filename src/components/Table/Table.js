@@ -5,11 +5,9 @@ import apiDeleteService from '../../services/apiDeleteService'
 import apiUpdateService from '../../services/apiUpdateService'
 import { successAlert ,cancelAlert, confirmAlert } from '../Alert/Alert';
 
-
 const Table = () => {
     const [users, setUsers] = useState([])
     const [newObject, setNewObject] = useState({})
-    console.log(newObject);
 
     const edit = async (type, id) => {
             const returnedUser = await apiGetService(type, id);
