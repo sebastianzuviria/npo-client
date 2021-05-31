@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import './Detail.css'
+import { useParams } from 'react-router';
 import apiGet from '../../services/apiGetService'
+import ReactHtmlParser from 'react-html-parser'
 
-const Detail = ({id}) => {
+const Detail = () => {
+    const {id} = useParams()
     const [activity, setActivity] = useState({})
     console.log(activity);
     
@@ -22,7 +25,7 @@ const Detail = ({id}) => {
                     <img className='img-act' src={activity.image} alt=""/>
                 </div>
                     <div>
-                        {activity.content}
+                        {ReactHtmlParser(activity.content)}
                     </div>
                 <br />
                 <div className='d-flex justify-content-between'>
