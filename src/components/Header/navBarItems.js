@@ -12,9 +12,8 @@ const navBarItems = [
     route: '/news' 
   },
   {
-    text: 'Testimonios',
-    route: '/testimonialsform',
-    restricted: true
+    text: 'Actividades',
+    route: '/activities'
   },
   {
     text: 'Contacto',
