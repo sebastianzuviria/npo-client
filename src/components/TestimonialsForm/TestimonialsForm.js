@@ -77,34 +77,34 @@ const TestimonialsForm = () => {
                 testimonials={testimonials} 
                 setTestimonials={setTestimonials}
             />
-            
-        {
-            
-        testimonials.length === 0 ? <Spinner/> : (
-            
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {
-                    testimonials?.map(value => <TestimonialItem key={value.id} {...value}
 
-                        deleteTestimonial={ () => deleteTestimonial(value.id) }
-                        
-                        />
-                        
-                    )
-                }
-                </tbody>
-            </table>
-        )
-        }
+            {
+                
+            testimonials.length === 0 ? <Spinner/> : (
+                
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        testimonials?.map(value => <TestimonialItem key={value.id} {...value}
+
+                            deleteTestimonial={ () => deleteTestimonial(value.id) }
+                            
+                            />
+                            
+                        )
+                    }
+                    </tbody>
+                </table>
+            )
+            }
         
-    </div>
+        </div>
     )   
 }
 
