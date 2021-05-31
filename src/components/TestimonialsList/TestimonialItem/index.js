@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import apiGetService from '../../../services/apiGetService';
 import apiUpdateService from '../../../services/apiUpdateService';
 import { successAlert } from '../../Alert/Alert';
+import { Modal, Form, Button } from 'react-bootstrap';
 
 const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
     
     const [testimonial, setTestimonial] = useState({id, name, content});
-    const [isEdit, setIsEdit] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOnChange = e => {
 
@@ -16,8 +17,8 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
         })
 
     }
-    const handleSubmit = async e => {
-        e.preventDefault()
+    const handleSubmit = async _ => {
+
         try{
             const res = await apiUpdateService('testimonials', id, testimonial)
 
@@ -26,23 +27,25 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
                 await successAlert();
                 
             }
-            setIsEdit(false);
+            setIsModalOpen(false);
 
         }catch(err){
             console.log(err)
         }
 
     }
+
     const handleCancel = async (id) => {
 
         try{
 
             const res = await apiGetService('testimonials', id);
             setTestimonial(res)
-            setIsEdit(false)
+            setIsModalOpen(false)
         }catch(err){
             console.log(err)
         }
+
     }
     
         return(<>
@@ -51,7 +54,7 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
                 <td>
                     <button style={{cursor:"pointer"}} 
                         type="button" className="btn btn-info mr-1"
-                        onClick={ () => setIsEdit(!isEdit) } >
+                        onClick={ () => setIsModalOpen(!isModalOpen) } >
                         <i className="fa fa-pencil" ></i>
                     </button>
                     <button style={{cursor:"pointer"}}
@@ -61,18 +64,41 @@ const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
                     </button>
                 </td>
             </tr>
-            {
-                isEdit && (
-                <div className="TestimonialItem__modal-content">
-                    <form onSubmit={handleSubmit} >
-                        <input type="text" name="name" autoComplete="off" value={ testimonial.name } onChange={handleOnChange}/>
-                        <textarea type="textarea" name="content" autoComplete="off" value={ testimonial.content } onChange={handleOnChange}></textarea>
-                        <button type="submit">Guardar Cambios</button>
-                        <button type="button" onClick = { () => handleCancel(id) } > Cancelar </button>
-                    </form>
-                </div>
-                )
-            }
+            
+            <Modal show={isModalOpen} onHide={() => handleCancel(id)} animation={false} >
+
+                <Form className="d-flex flex-direction: row px-5" >
+
+                        <Modal.Header>
+                            <Modal.Title>Edición</Modal.Title>
+                        </Modal.Header>
+
+                        <Form.Group className="mb-3" controlId="name">
+
+                            <Form.Label>Nombre</Form.Label>
+                            <Form.Control type="text" placeholder="nombre" name="name" autoComplete="off" value={ testimonial.name } onChange={handleOnChange}/>
+                            
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="content">
+
+                            <Form.Label>Historia</Form.Label>
+                            <Form.Control as="textarea" rows={3} placeholder="Contanos tu testimonio" name="content" autoComplete="off" value={ testimonial.content } onChange={handleOnChange}/>
+                            
+                        </Form.Group>
+                            
+                    </Form>
+                    <Modal.Footer>
+
+                        <Button variant="primary" type="button" onClick={() => handleSubmit() }> Guardar Cambios </Button>
+
+                        <Button variant="secondary" type="button" onClick = { () => handleCancel(id) } > Cancelar </Button>
+
+                </Modal.Footer>
+                    
+                
+                
+            </Modal>
+            
         </>)
 }
 export default TestimonialItem;
