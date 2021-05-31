@@ -1,3 +1,9 @@
+.slider__container {
+    max-height: 640px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
 .slider__img {
     filter: brightness(80%);
     position: relative;
@@ -19,6 +25,11 @@
 
 
 @media only screen and (max-width: 600px) {
+
+    .slider__container {
+        max-height: 240px;
+        overflow: hidden;
+    }
 
     .slider__text {
         top: 25%;

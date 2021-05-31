@@ -9,22 +9,23 @@ import './HomeEditForm.css';
 
 const HomeEditForm = () => {
     
-    const [ { id, welcomeText }, setHomeState ] = useState({ id: '', welcomeText: '' });
+    const [ welcomeState, setWelcomeState ] = useState();
+    const [ slideState, setSlideState ] = useState();
     
     // Here we bring organization data from DB
     useEffect(() => {
 
         (async () => {
 
-            const { id, welcomeText } = await apiGetService('organizations/public');
-            setHomeState({
-                id,
-                welcomeText
-            });
+            const welcomeResponse = await apiGetService('organizations/public');
+            const slideResponse = await apiGetService('slides', welcomeResponse.id);
+
+            setWelcomeState(welcomeResponse);
+            setSlideState(slideResponse);
 
         })()
-
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const editHomeSchema = Yup.object().shape({
@@ -38,7 +39,7 @@ const HomeEditForm = () => {
 
         try {
         
-            await apiUpdateService(`organizations`, id,  values );
+            await apiUpdateService(`organizations`, welcomeState.id,  values );
             await successAlert();
 
         } catch (err) {
@@ -50,17 +51,33 @@ const HomeEditForm = () => {
     }
     
     return(
-        <div className='container mt-4'>
+        <div className='container my-4'>
             <h3>Editar Página de Inicio</h3>
             <Formik
                 enableReinitialize={ true }
-                initialValues={{ welcomeText }}
+                initialValues={ welcomeState }
                 validationSchema={ editHomeSchema }
                 onSubmit={ handleSubmit }
             >
                 <Form>
                     <div className='mb-3'>
-                        <InputField label='Texto de Bienvenida' type='text' className='form-control' name='welcomeText' />
+                        <div className='form-group'>
+                            <label for='exampleFormControlTextarea1'>Example textarea</label>
+                            <textarea className='form-control' name='welcomeText' rows='3'></textarea>
+                        </div>
+                        {
+                            ( slideState ) &&
+                            slideState.map( ( { imageUrl, text } ) => {
+                                return ( 
+                                
+                                    <div className='form-group'>
+                                        <img className='img-thumbnail w-25' src={ imageUrl } alt={ text }/> 
+                                        <input type='file' className='form-control-file border-0' id='exampleFormControlFile1' />
+                                    </div>
+
+                                )
+                            } )
+                        }
                     </div>
                     <button className='btn HomeEditForm__btn' type='submit'>
                         Actualizar
