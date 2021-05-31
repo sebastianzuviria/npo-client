@@ -1,121 +1,168 @@
 import React, { useEffect, useState } from 'react';
 import { successAlert, errorAlert } from '../Alert/Alert';
-import { Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import apiGetService from '../../services/apiGetService';
 import apiUpdateService from '../../services/apiUpdateService';
 import './HomeEditForm.css';
+import InputField from '../SignupForm/InputField';
 
 const HomeEditForm = () => {
-    
-    const [ welcomeState, setWelcomeState ] = useState();
+    const [welcomeState, setWelcomeState] = useState();
     const [ slideState, setSlideState ] = useState();
-    
+    const [ imageState, setImageState ] = useState();
+
     // Here we bring organization data from DB
     useEffect(() => {
-
         (async () => {
-
             const welcomeResponse = await apiGetService('organizations/public');
-            const slideResponse = await apiGetService('slides', welcomeResponse.id);
+            const slideResponse = await apiGetService(
+                'slides',
+                welcomeResponse.id
+            );
 
             setWelcomeState(welcomeResponse);
             setSlideState(slideResponse);
+        })();
 
-        })()
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const editHomeSchema = Yup.object().shape({
-
-        welcomeText: Yup.string()
-            .min(50, '¡El texo es demasiado corto!')
-
+        welcomeText: Yup.string().min(50, '¡El texo es demasiado corto!'),
     });
 
-    const handleSubmit = async ( values ) => {
-
+    const handleSubmitWelcome = async (values) => {
         try {
-        
-            await apiUpdateService(`organizations`, welcomeState.id,  values );
+            await apiUpdateService(`organizations`, welcomeState.id, values);
             await successAlert();
-
         } catch (err) {
-
             await errorAlert();
-
         }
+    };
+
+    const handleSubmitSlides = async (data) => {
         
+        const formData = new FormData();
+        
+        formData.append('image', data.image);
+        formData.append('text', data.text); 
+
+    const config = {
+        headers:{'Content-Type':'multipart/form-data'}
     }
-    
-    return(
-        <div className='container my-4'>
+
+        // try {
+
+        //     await apiUpdateService(`organizations`, welcomeState.id,  data );
+        //     await successAlert();
+
+        // } catch (err) {
+
+        //     await errorAlert();
+
+        // }
+    };
+
+    return (
+        <div className='container my-5'>
             <h3>Editar Página de Inicio</h3>
-            <Formik
-                enableReinitialize={ true }
-                initialValues={ welcomeState }
-                validationSchema={ editHomeSchema }
-                onSubmit={ handleSubmit }
-            >
-                <Form>
-                    <div className='mb-3'>
-                        <div className='form-group'>
-                            <label htmlFor='exampleFormControlTextarea1'>Example textarea</label>
-                            <textarea className='form-control' name='welcomeText' rows='3'></textarea>
+            <hr className='mb-5' />
+            <div className='card'>
+                <div className='card-header py-3'>Texto de Bienvenida</div>
+                <div className='card-body'>
+                    <Formik
+                        enableReinitialize={true}
+                        initialValues={welcomeState}
+                        validationSchema={editHomeSchema}
+                        onSubmit={handleSubmitWelcome}
+                    >
+                        <Form>
+                            <div className='my-3'>
+                                <div className='form-group'>
+                                    <Field
+                                        as='textarea'
+                                        className='form-control border-0 border-bottom'
+                                        name='welcomeText'
+                                        rows='2'
+                                    ></Field>
+                                    <ErrorMessage
+                                        name='welcomeText'
+                                        className='invalid-feedback ml-2 d-block'
+                                        component='div'
+                                    />
+                                </div>
+                            </div>
+                            <button
+                                className='btn HomeEditForm__btn my-3'
+                                type='submit'
+                            >
+                                Actualizar
+                            </button>
+                        </Form>
+                    </Formik>
+                </div>
+            </div>
+            <div className='card my-5'>
+                <div className='card-header py-3'>Imágenes de Presentación</div>
+                <div className='card-body'>
+                    <Formik
+                        validationSchema={editHomeSchema}
+                        onSubmit={handleSubmitSlides}
+                    >
+                        <div>
+                            <div className='row row-cols-1 row-cols-md-3 g-4'>
+                                {slideState &&
+                                    slideState.map(({ id, imageUrl, text }) => {
+                                        return (
+                                            <Form>
+                                                <div
+                                                    className='col form-group border-0'
+                                                    key={id}
+                                                >
+                                                    
+                                                    <div>
+                                                        <img
+                                                            className='img-fluid'
+                                                            src={imageUrl}
+                                                            alt={text}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            type='file'
+                                                            className='form-control-file border-0 mt-3 shadow-none text-center'
+                                                            name='image'
+                                                            required
+                                                        />
+                                                        <input
+                                                            type='hidden'
+                                                            name='id'
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className='input-group mb-3'>
+                                                    <input type='text' className='form-control'/>
+                                                    </div>
+                                                <hr />
+                                                <div className='d-flex justify-content-center'>
+                                                    <button
+                                                        className='btn HomeEditForm__btn my-3'
+                                                        type='submit'
+                                                    >
+                                                        Actualizar
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        );
+                                    })}
+                            </div>
                         </div>
-                        {
-                            slideState && slideState.map( ( { id, imageUrl, text } ) => {
-                                return ( 
-                                
-                                    <div className='form-group' key={ id }>
-                                        <img className='img-thumbnail w-25' src={ imageUrl } alt={ text }/> 
-                                        <input type='file' className='form-control-file border-0' id='exampleFormControlFile1' />
-                                    </div>
-
-                                )
-                            } )
-                        }
-                    </div>
-                    <button className='btn HomeEditForm__btn' type='submit'>
-                        Actualizar
-                    </button>
-                </Form>
-            </Formik>
+                    </Formik>
+                </div>
+            </div>
         </div>
-        
-        // <form className='HomeEditForm__content' onSubmit={handleSubmit}>
-
-        //     <div className='HomeEditForm__content-input'>
-
-        //         <label className='HomeEditForm__label-title'>título de portada:
-        //             <input type='text' name='title' className='HomeEditForm__input-title' autoComplete='off' 
-        //                 value={currentData.title} 
-        //                 onChange={handleOnChange}
-        //             />
-        //         </label>
-        //     </div>
-
-        //     <div className='HomeEditForm__content-input'>
-
-        //         <label className='HomeEditForm__label-message'>Texto de bienvenida:
-        //             <textarea name='message' className='HomeEditForm__input-message' autoComplete='off' 
-        //                 value={currentData.message} 
-        //                 onChange={handleOnChange}
-        //             ></textarea>
-        //         </label>
-        //     </div>
-
-        //     <div className='HomeEditForm__content-slides'>
-                
-        //         {
-        //             currentData.slides?.map((value) => <EditSlides key={value.id} {...value} handleOnChangeSlides={(e) => handleOnChangeSlides(e,value)} />)
-        //         }
-
-        //     </div>
-        //     <button className='HomeEditForm__button' type='submit'>Guardar Cambios</button>
-        // </form>
     );
-}
+};
 
 export default HomeEditForm;
