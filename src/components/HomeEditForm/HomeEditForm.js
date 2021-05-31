@@ -5,6 +5,7 @@ import apiGetService from '../../services/apiGetService';
 import apiUpdateService from '../../services/apiUpdateService';
 import { HomeEditCard } from './HomeEditCard';
 import * as Yup from 'yup';
+import noimage from '../../assets/no_image.jpg';
 import './HomeEditForm.css';
 
 const HomeEditForm = () => {
@@ -98,13 +99,16 @@ const HomeEditForm = () => {
                         </Form>
                     </Formik>
                 </HomeEditCard>
+
                 <HomeEditCard 
                     title='Slider de Imágenes' 
                     description='Contiene tres imágenes en carrousel'
                 >
                     <div className='row row-cols-1 row-cols-md-3 g-4'>
-                        {slideState &&
-                            slideState.map(({ id, imageUrl, order, text }) => {
+                        {
+                            
+                            slideState && slideState.length > 0 ? slideState.map(({ id, imageUrl, order, text }) => {
+                                
                                 return (
                                     <Formik
                                         enableReinitialize={true}
@@ -117,7 +121,7 @@ const HomeEditForm = () => {
                                             <Form>
                                                 <div className='col form-group border-0'>
                                                     <div>
-                                                        <img className='img-fluid' src={imageUrl} alt={text} />
+                                                        <img className='img-fluid' src={ imageUrl || noimage } alt={text} />
                                                     </div>
                                                     <div>
                                                         <input
@@ -135,6 +139,11 @@ const HomeEditForm = () => {
                                                 </div>
                                                 <div className='form-group mb-3 text-center'>
                                                     <Field className='form-control border-0 border-bottom shadow-none my-2' name='text'/>
+                                                    <ErrorMessage
+                                                        name='text'
+                                                        className='invalid-feedback ml-2 d-block'
+                                                        component='div'
+                                                    />
                                                 </div>
                                                 <div className='d-flex justify-content-center'>
                                                     <button className='btn HomeEditForm__btn my-3' type='submit'>
@@ -146,7 +155,11 @@ const HomeEditForm = () => {
                                         ) } 
                                     </Formik>
                                 );
-                            })}
+                            })
+
+                            : <div className='my-5'>No se encontraron slides en la Base de Datos.</div>
+
+                        }
                     </div>
                 </HomeEditCard>
         </div>
