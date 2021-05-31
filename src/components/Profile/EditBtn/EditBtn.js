@@ -6,10 +6,11 @@ const EditBtn = ({ text, icon, children }) => {
   const handleModal = () => {
     setShowModal(!showModal);
   };
+
   return (
     <>
       <button
-        className="btn-sm  btn-warning  border-0 p-2 px-3 mt-2"
+        className="btn-sm  btn-warning  border-0 p-2 px-3"
         onClick={handleModal}
       >
         <i className={`fa ${icon} me-2`} />

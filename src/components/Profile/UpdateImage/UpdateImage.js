@@ -6,7 +6,7 @@ import './UpdateImage.css';
 const UpdateImage = ({ user }) => {
   return (
     <div className="d-flex flex-column justify-content-start align-items-center">
-      <div className="img-container rounded-circle border border-3">
+      <div className="img-container rounded-circle border border-3 mb-2">
         {user.image ? (
           <img
             src={user.image}
