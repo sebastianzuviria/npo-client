@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import apiPostService from '../../services/apiPostService';
@@ -17,7 +17,7 @@ const TestimonialsForm = () => {
       content: newContent,
     };
     try {
-      const newTestimonial = await apiPostService(
+      await apiPostService(
         'testimonials',
         testimonialsObject
       );
