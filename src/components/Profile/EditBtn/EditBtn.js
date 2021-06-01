@@ -17,7 +17,7 @@ const EditBtn = ({ text, icon, children, modalName }) => {
   return (
     <>
       <button
-        className="btn-sm text-nowrap border-0 p-2 px-3 btn-edit"
+        className="btn text-nowrap border-0 px-3 btn-edit"
         onClick={openModal}
       >
         <i className={`fa ${icon} me-2`} />
