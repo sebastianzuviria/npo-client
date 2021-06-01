@@ -13,6 +13,11 @@
   background-color: var(--color-brand);
 }
 
+.newsPage__content a:link {
+  text-decoration: none;
+  color: var(--color-brand);
+}
+
 .newsPage__date {
   font-size:small;
   font-weight: lighter;

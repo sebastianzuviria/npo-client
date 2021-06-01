@@ -29,6 +29,10 @@ const NewsPage = () => {
     fetchCategories();
   }, [ compareState ]);
 
+  const wordsTruncate = (str, no_words) => {
+    return str.split(" ").splice(0,no_words).join(" ");
+}
+
   return (
     <div className="container py-5">
         <div>
@@ -75,8 +79,8 @@ const NewsPage = () => {
                         { new Date( createdAt ).toLocaleDateString("es-ES", {weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'   }) }
                       </p>
                       <h4 className='card-title newsPage__title'>{ title }</h4>
-                      <div className='card-text'>
-                        { ReactHtmlParser( content.slice(0,150) + ' ...' ) }
+                      <div className='card-text newsPage__content'>
+                        { ReactHtmlParser( wordsTruncate( content, 35 ) + ' ...' ) }
                       </div>
                       <p className='mt-0'>
                         <Link className='newsPage__link' to={`news/${ id }`}>
