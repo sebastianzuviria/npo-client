@@ -14,8 +14,6 @@ const Header = () => {
 
     useEffect(() => {
 
-        console.log(user, 'user has changed');
-
         if (user) {
             setNavItems(
                 navBarItems.filter(

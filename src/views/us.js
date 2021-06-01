@@ -9,13 +9,13 @@ const As = () => {
         <>
             <BasicLayout>
                 <main>
-                    <div class="py-5 text-center">
-                        <h2>Nosotros</h2>
-                        <p class="lead">Somos quienes aprendimos mucho realizando esta aplicacion</p>
+                    <div className="py-5 text-center">
+                        <h2>As</h2>
+                        <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </main>
-                <div class="container marketing">
-                    <div class="row">
+                <div className="container marketing">
+                    <div className="row" >
                         <MembersOrganization/>
                     </div>
                 </div>

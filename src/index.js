@@ -5,7 +5,7 @@ import './index.css';
 import store from './store';
 import App from './App';
 import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import { TopButton } from './components/TopButton/TopButton';
 
 ReactDOM.render(
