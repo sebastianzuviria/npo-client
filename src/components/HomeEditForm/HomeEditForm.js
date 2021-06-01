@@ -13,6 +13,7 @@ const HomeEditForm = () => {
     const [ welcomeState, setWelcomeState ] = useState();
     const [ slideState, setSlideState ] = useState();
     const [ imageState, setImageState ] = useState();
+    const [ loadingState, setLoadingState ] = useState( false );
 
     useEffect(() => {
         (async () => {
@@ -34,11 +35,13 @@ const HomeEditForm = () => {
 
     const handleSubmitWelcome = async (values) => {
         try {
+            setLoadingState(true);
             await apiUpdateService(`organizations`, welcomeState.id, values);
             await successAlert();
         } catch (err) {
             await errorAlert();
         }
+        setLoadingState(false);
     };
 
     const handleSubmitSlides = async (data) => {
@@ -54,12 +57,14 @@ const HomeEditForm = () => {
     }
 
         try {
+            setLoadingState(true);
             await apiUpdateService(`slides`, data.id,  formData, config );
             setImageState( data.imageUrl );
             await successAlert();
         } catch (err) {
             await errorAlert();
         }
+        setLoadingState(false);
     };
 
     return (
@@ -92,7 +97,7 @@ const HomeEditForm = () => {
                                     />
                                 </div>
                             </div>
-                            <button className='btn HomeEditForm__btn my-3'type='submit'>
+                            <button className='btn HomeEditForm__btn my-3' type='submit' disabled={ loadingState }>
                                 <i className='fas fa-edit HomeEditForm__fa me-2'></i>
                                 Actualizar
                             </button>
@@ -146,7 +151,7 @@ const HomeEditForm = () => {
                                                     />
                                                 </div>
                                                 <div className='d-flex justify-content-center'>
-                                                    <button className='btn HomeEditForm__btn my-3' type='submit'>
+                                                    <button className='btn HomeEditForm__btn my-3' type='submit' disabled={ loadingState }>
                                                         <i className='fas fa-cloud-upload-alt HomeEditForm__fa me-2'></i>
                                                         Actualizar
                                                     </button>
