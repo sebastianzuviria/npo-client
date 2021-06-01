@@ -1,3 +1,18 @@
+.newsPage__btn {
+  background-color: rgb(192, 192, 192);
+  color: white;
+}
+
+.newsPage_btn-filter {
+  border-radius: 0px;
+  border: none;
+  width: 7em;
+}
+
+.newsPage_btn-filter:hover {
+  background-color: var(--color-brand);
+}
+
 .newsPage__date {
   font-size:small;
   font-weight: lighter;

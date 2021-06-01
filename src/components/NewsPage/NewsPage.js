@@ -27,20 +27,27 @@ const NewsPage = () => {
   useEffect(() => {
     fetchNews();
     fetchCategories();
-  }, []);
+  }, [ compareState ]);
 
   return (
     <div className="container py-5">
         <div>
-          <h2>Novedades</h2>
-          <p className="lead border-bottom pb-3">Este es el subtitulo de novedades</p>
-          <div className='newsPage__filter mt-4'>
+          <h2 className='mb-1'>Novedades</h2>
+          <p className="lead border-bottom pb-3 mt-0">Enterate de las últimas noticias de nuestra institución</p>
+          <div className='newsPage__filter mt-5 mb-4'>
             <i className='fas fa-filter me-2'></i>
             Filtrar por:
-            { categoryState && categoryState.map( ( { name } ) => {
+            <button className='btn btn-outline-secondary btn-sm ms-2 newsPage_btn-filter' onClick={ () => setCompareState() }>
+              Todas
+            </button>
+            { categoryState && categoryState.map( ( { id, name } ) => {
 
                 return (
-                  <button className='btn mx-4' onClick={ () => setCompareState() }>
+                  <button 
+                    className='btn btn-outline-secondary btn-sm ms-0 newsPage_btn-filter' 
+                    onClick={ () => setCompareState(name) }
+                    key={ id }
+                  >
                     { name }
                   </button>
                   )
@@ -54,8 +61,10 @@ const NewsPage = () => {
             news.map(( {id, category, content, createdAt, image, title } ) => {
 
               return (
-                <div className='col'>
-                  <div className='card border-0' key={ id }>
+
+                (compareState === category.name || !compareState) && 
+                <div className='col' key={ id }>
+                  <div className='card border-0'>
                     <div className='newsPage__img-box'>
                       <Link className='newsPage__link' to={`news/${ id }`}>
                         <img src={ image || noimage } className='card-img-top newsPage__img' alt={ image } />
@@ -66,9 +75,9 @@ const NewsPage = () => {
                         { new Date( createdAt ).toLocaleDateString("es-ES", {weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'   }) }
                       </p>
                       <h4 className='card-title newsPage__title'>{ title }</h4>
-                      <p className='card-text'>
-                        { ReactHtmlParser( content.slice(0,230) + ' ...') }
-                      </p>
+                      <div className='card-text'>
+                        { ReactHtmlParser( content.slice(0,150) + ' ...' ) }
+                      </div>
                       <p className='mt-0'>
                         <Link className='newsPage__link' to={`news/${ id }`}>
                           Leer más
