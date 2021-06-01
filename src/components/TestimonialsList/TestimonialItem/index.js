@@ -4,7 +4,7 @@ import apiUpdateService from '../../../services/apiUpdateService';
 import { successAlert } from '../../Alert/Alert';
 import { Modal, Form, Button } from 'react-bootstrap';
 
-const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
+const TestimonialItem = ({id, name, content, deleteTestimonial}) => {
     
     const [testimonial, setTestimonial] = useState({id, name, content});
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +48,7 @@ const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
         return(<>
             <tr>
                 <td>{testimonial.name}</td>
-
+                <td>{testimonial.content}</td>
                 <td className="d-flex justify-content-center">
                     <button style={{cursor:"pointer"}} 
                         type="button" className="btn btn-info mx-1"

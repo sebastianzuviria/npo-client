@@ -52,8 +52,9 @@ const TestimonialsList = () => {
                 <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
