@@ -83,7 +83,7 @@ const Footer = () => {
             <div className='container'>
                 <div className='row row-cols-1 row-cols-md-3 '>
                     <div className='col footer__col'>
-                        <div className='footer__img mb-2' style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+                        <img className='mb-2' src={ image } alt={ image } />
                         <p className='mt-4 mb-1 text-white-50'>Todos los derechos reservados</p>
                         <p className='text-muted'>{ name } ©  { actualDate.getFullYear() }</p>
                     </div>

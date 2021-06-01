@@ -46,7 +46,6 @@ const Header = () => {
         >
           <ul className="navbar-nav mb-2 mb-md-0 mx-0 px-2 rounded w-100 justify-content-evenly">
             {navItems.map(({ text, route }, idx) => {
-              console.log(route.slice(1));
               return (
                 <NavLink
                   key={idx}

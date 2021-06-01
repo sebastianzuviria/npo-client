@@ -8,12 +8,6 @@
   opacity: 80%;
 }
 
-.footer__img {
-  height: 80px;
-  width: 130px;
-  /* filter: invert(100%) grayscale(100%) contrast(200%); */
-}
-
 .footer__linkweb {
   text-decoration: none;
 }

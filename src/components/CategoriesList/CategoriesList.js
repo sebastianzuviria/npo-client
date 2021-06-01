@@ -3,35 +3,30 @@ import { useEffect, useState } from "react";
 import apiGetService from "../../services/apiGetService";
 import Category from "./Category/Category";
 import './CategoriesList.css';
-// import '../Table/Table.css'
+import FormCategories from '../../components/FormCategories/Form';
 
 
 const CategoriesList = () => {
   const [categories, setCategories] = useState([]);
 
     const allcategories = async () => {
-
             const info = await apiGetService('categories');
-            setCategories(info);
-        
+            setCategories(info); 
     };
 
     useEffect(() => {
         allcategories();
     }, []);
-
     return (
-
         <div>
-            <h3>Categories</h3>
-
+           <FormCategories setCategories={setCategories} />
             <div className='container-sm'>
                 {categories.length > 0 ?(
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">Category</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +45,8 @@ const CategoriesList = () => {
                 )}
 
             </div>
+
+            
         </div>
             
 

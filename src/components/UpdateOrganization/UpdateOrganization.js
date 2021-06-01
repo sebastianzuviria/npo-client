@@ -73,9 +73,10 @@ const UpdateformOrganization = () => {
       'El archivo debe ser de type png/jpg',
       (value) => {
         if (
-          value.type == 'image/jpeg' ||
-          value.type == 'image/png' ||
-          value.type == 'image/jpeg'
+          value &&
+          (value.type === 'image/jpeg' ||
+            value.type === 'image/png' ||
+            value.type === 'image/jpeg')
         ) {
           return true;
         } else {
