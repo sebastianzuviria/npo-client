@@ -1,26 +1,26 @@
 .TopButton__btn {
-    background: var(--color-brand);
-    border: none;
-    bottom: 2rem;  
-    cursor: pointer;
-    font-size: 2rem;
-    position: fixed;
-    right: 2rem;
-    z-index: 1;
+  background: var(--color-brand);
+  border: none;
+  bottom: 3rem;
+  cursor: pointer;
+  font-size: 2rem;
+  position: fixed;
+  right: 2rem;
+  z-index: 2;
 }
 
 .TopButton__btn__show {
-    opacity: 60%;
-    transition: visibility 0s linear 0s, opacity 400ms;
-    visibility: visible;
+  opacity: 60%;
+  transition: visibility 0s linear 0s, opacity 400ms;
+  visibility: visible;
 }
 
 .TopButton__btn__hidden {
-    opacity: 0;
-    transition: visibility 0s linear 300ms, opacity 400ms;
-    visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 400ms;
+  visibility: hidden;
 }
 
 .TopButton__fa-arrow-up {
-    color: white;
+  color: white;
 }

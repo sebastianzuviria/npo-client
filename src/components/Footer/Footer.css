@@ -1,24 +1,24 @@
-.footer__content{
-    background-color: var(--color-primary);
+.footer__content {
+  background-color: var(--color-primary);
+  position: relative;
+  z-index: 1;
 }
 
 .footer__fa {
-    opacity: 80%;
+  opacity: 80%;
 }
 
-.footer__linkweb{
-    text-decoration : none ;
+.footer__linkweb {
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 800px) {
+  .footer__col {
+    text-align: center;
+    font-size: small;
+  }
 
-    .footer__col {
-        text-align: center;
-        font-size: small;
-    }
-
-    .footer__col-pad {
-        padding-top: 3em;
-    }
-    
+  .footer__col-pad {
+    padding-top: 3em;
+  }
 }

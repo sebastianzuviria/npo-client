@@ -1,9 +1,12 @@
 .header__ul {
-    color: grey;
+  color: var(--color-font) !important;
+}
+.header__ul:hover {
+  background-color: var(--color-brand);
+  color: gainsboro !important;
 }
 
-.header__ul:hover {
-    background-color: var(--color-brand);
-    color: white;
-    opacity: 60%;
+.navbar-active {
+  background-color: var(--color-brand);
+  opacity: 70%;
 }
