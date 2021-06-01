@@ -20,13 +20,10 @@ const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
     const handleSubmit = async _ => {
 
         try{
-            const res = await apiUpdateService('testimonials', id, testimonial)
+            await apiUpdateService('testimonials', id, testimonial)
 
-            if(res){
-
-                await successAlert();
+            await successAlert();
                 
-            }
             setIsModalOpen(false);
 
         }catch(err){
@@ -68,7 +65,7 @@ const TestimonialItem = ({id, user, name, content, deleteTestimonial}) => {
             
             <Modal show={isModalOpen} onHide={() => handleCancel(id)} animation={false} >
 
-                <Form className="d-flex flex-direction: row px-5" >
+                <Form className="d-flex flex-direction: row px-5" onSubmit={ e => e.preventDefault() }>
 
                         <Modal.Header>
                             <Modal.Title>Edición</Modal.Title>
