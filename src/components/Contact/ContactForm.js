@@ -63,7 +63,7 @@ const ContactForm = () => {
         validate={validateFields}
       >
         {({ isSubmitting }) => (
-          <Form className="needs-validation" novalidate="">
+          <Form className="needs-validation" noValidate="">
             <div className="row g-3">
               <div className="col-sm-6">
                 <label htmlFor="name" className="form-label">

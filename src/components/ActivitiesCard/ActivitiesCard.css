@@ -1,0 +1,36 @@
+.activities-item {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-bottom: 1.3rem;
+    width: 90vw;
+    max-width: 1000px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s ease;
+  }
+  .activities-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 6px rgba(8, 78, 148, 0.4);
+    transition: all 0.1s ease;
+  }
+  
+  .activities-img {
+    overflow: hidden;
+    object-fit: contain;
+    width: 100%;
+  }
+  .activities-img > img {
+    width: 100%;
+    max-height: 300px;
+  }
+  
+  .activities-title {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    padding: 1rem;
+    text-align: justify;
+    margin-top: 0.7rem;
+  }
+  

@@ -1,34 +1,13 @@
-.HomeEditForm__content{
-    display: grid;
-    gap: 1rem;
-    justify-content: center;
-}
-.HomeEditForm__content-slides{
-    display: grid;
-    gap: 1rem;
-}
-.HomeEditForm__input-title, .HomeEditForm__input-message, .HomeEditForm__button{
-    border: none;
-    outline: 0; 
-    background: none;
-}
-.HomeEditForm__input-message{
-    resize: none;
-    height: 10rem;
-    box-shadow: 0 0px 3px .1px rgb(129, 129, 129);
-    padding: 20px 20px 20px 20px;
-}
-input{
-    box-shadow: 0 0px 3px .1px rgb(129, 129, 129);
-    padding: 20px 20px 20px 20px;
-}
-
-.HomeEditForm__button{
-    background-color:rgb(143, 211, 66);
-    width: 16rem;
-    height: 3rem;
+.HomeEditForm__btn {
+    background-color: var(--color-brand);
     color: white;
-    font-weight: 600;
-    border-radius: .5rem;
 }
 
+.HomeEditForm__btn:hover {
+    background-color: rgb(79, 132, 150);
+    color: white;
+}
+
+.HomeEditForm__fa {
+    color: white;
+}
