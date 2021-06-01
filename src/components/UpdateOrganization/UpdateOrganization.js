@@ -64,7 +64,7 @@ const UpdateformOrganization = () => {
       .min(3, "Debe contener mínimo 3 caracteres"),
     phone: Yup.number().min(3, "Debe ser un número de teléfono válido"),
     image: Yup.mixed().test("type", "El archivo debe ser de type png/jpg", (value)=>{
-      if( value.type== "image/jpeg" || value.type=="image/png" || value.type== "image/jpeg"){
+      if (value && (value.type === "image/jpeg" || value.type ==="image/png" || value.type === "image/jpeg")) {
         return (true)
       }
       else{
