@@ -4,18 +4,18 @@ import BasicLayout from '../Layouts/BasicLayout';
 
 
 
-const As = () => {
+const Us = () => {
     return (
         <>
             <BasicLayout>
                 <main>
                     <div className="py-5 text-center">
-                        <h2>As</h2>
-                        <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h2>Nosotros</h2>
+                        <p className="lead">Somos quienes aprendimos mucho realizando esta aplicacion</p>
                     </div>
                 </main>
                 <div className="container marketing">
-                    <div className="row" >
+                    <div className="row">
                         <MembersOrganization/>
                     </div>
                 </div>
@@ -24,4 +24,4 @@ const As = () => {
     )
 }
 
-export default As
+export default Us

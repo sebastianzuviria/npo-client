@@ -23,7 +23,7 @@ const WelcomeText = () => {
 
     <div className="container text-center my-5">
       <h1 className='welcomeText__title'>
-        ¡Bienvenid@ a nuestra página!
+        Fundación Zonas Grises
       </h1>
       <p className="lead mt-4 welcomeText__text">
         {welcomeTextState}

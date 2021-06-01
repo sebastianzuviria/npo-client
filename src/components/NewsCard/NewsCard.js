@@ -11,7 +11,7 @@ const NewsCard = ({ title, image, id }) => {
   return (
     <div className="news-item" onClick={viewMore}>
       <div className="news-img">
-        <div style={{width:'auto', height: '20vh', backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '100%', alignSelf: 'center'}}></div>
+        <div style={{width:'auto', height: '40vh', backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
       </div>
       <span className="news-title">{title}</span>
     </div>
