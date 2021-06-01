@@ -55,7 +55,7 @@ const ProfileForm = ({ user }) => {
           <InputField label="Apellido/s" name="lastName" type="text" />
           <InputField label="Correo electrónico" name="email" type="email" />
           <Button
-            className="btn-warning w-100 my-2 mt-4"
+            className="btn-edit w-100 my-2 mt-4"
             disabled={isSubmitting}
             type="submit"
           >

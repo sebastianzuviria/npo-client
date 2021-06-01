@@ -17,7 +17,7 @@ const EditBtn = ({ text, icon, children, modalName }) => {
   return (
     <>
       <button
-        className="btn-sm text-nowrap btn-warning border-0 p-2 px-3"
+        className="btn-sm text-nowrap border-0 p-2 px-3 btn-edit"
         onClick={openModal}
       >
         <i className={`fa ${icon} me-2`} />
@@ -35,7 +35,7 @@ const EditBtn = ({ text, icon, children, modalName }) => {
         </Modal.Header>
         <Modal.Body>
           {children}
-          <Button className="btn-danger w-100" onClick={closeModal}>
+          <Button className="btn-secondary w-100" onClick={closeModal}>
             Cancelar
           </Button>
         </Modal.Body>

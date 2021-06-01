@@ -68,7 +68,7 @@ const ImageForm = () => {
             />
           </Form>
           <Button
-            className="btn-warning mt-3 mb-1 w-100"
+            className="btn-edit mt-3 mb-1 w-100"
             type="submit"
             onClick={() => formProps.submitForm()}
             disabled={formProps.isSubmitting}
