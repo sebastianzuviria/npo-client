@@ -20,14 +20,24 @@ const Form = ({setCategories}) => {
 
     const handleSubmit= async (e)=>{
 
+
         e.preventDefault();
         const objcategory = {
             name,
             description
         }
-        console.log(objcategory);
         try {
             const createdcategory = await apiPostService('categories', objcategory);  
+            
+            const info= {
+                id:createdcategory.id,
+                name:createdcategory.name,
+                description:createdcategory.description
+            }
+
+            setCategories((prev) => {
+                return [...prev, info]
+              });    
             setName('')
             setdescription('')
             setIsModalOpen('')
