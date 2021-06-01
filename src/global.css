@@ -1,30 +1,36 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@300&Roboto:wght@300&family=Coming+Soon:wght@600&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
-:root{
+:root {
+  /* --font-roboto: 'Roboto', sans-serif; */
+  --font-lato: 'Lato', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+  --font-comic: 'Coming Soon', cursive;
 
-    /* --font-roboto: 'Roboto', sans-serif; */
-    --font-lato: 'Lato', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
-    --font-nunito: 'Nunito', sans-serif;
-    --font-comic: 'Coming Soon', cursive;
-
-    --color-font: #4a4c4e;
-    --color-primary: rgb(52, 58, 64);
-    --color-secondary: rgb(231, 231, 231);
-    --color-red-light: rgba(219, 60, 86, .4);
-    --color-green-light: rgba(115, 187, 42, 0.4);
-    --color-brand: rgb(96, 140, 155);
+  --color-font: #4a4c4e;
+  --color-primary: rgb(52, 58, 64);
+  --color-secondary: rgb(231, 231, 231);
+  --color-red-light: rgba(219, 60, 86, 0.4);
+  --color-green-light: rgba(115, 187, 42, 0.4);
+  --color-brand: rgb(96, 140, 155);
 }
 
-*{
-    
-    font-family: var(--font-lato);
-    color: var(--color-font);
-    
+.btn-edit {
+  background-color: var(--color-brand);
+  transition: 0.2s ease;
 }
 
+.btn-edit:hover {
+  background-color: rgb(76, 114, 130);
+}
 
+.btn-edit,
+.btn-edit > i {
+  color: var(--color-secondary);
+}
 
-
-
+* {
+  font-family: var(--font-lato);
+  color: var(--color-font);
+}

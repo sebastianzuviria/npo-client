@@ -83,7 +83,7 @@ const Footer = () => {
             <div className='container'>
                 <div className='row row-cols-1 row-cols-md-3 '>
                     <div className='col footer__col'>
-                        <img className='footer__img mb-2' src={ image } alt={ image } />
+                        <img className='mb-2' src={ image } alt={ image } />
                         <p className='mt-4 mb-1 text-white-50'>Todos los derechos reservados</p>
                         <p className='text-muted'>{ name } ©  { actualDate.getFullYear() }</p>
                     </div>
@@ -111,7 +111,7 @@ const Footer = () => {
                     <div className='col footer__col footer__col-pad'>
                         <div>
                             <h5 className='text-white-50'>Acerca de Nosotros</h5>
-                            <p className='text-muted mt-3 mb-4'>Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula.</p>
+                            <p className='text-muted mt-3 mb-4'>Esta aplicacion fue realizada por el grupo 27 de Alkemy</p>
                         </div>
                         <div className='footer_social-container my-2 justify-content-center'>
                             {

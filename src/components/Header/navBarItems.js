@@ -8,7 +8,7 @@ const navBarItems = [
     route: '/members' 
   },
   { 
-    text: 'Noticias', 
+    text: 'Novedades', 
     route: '/news' 
   },
   {

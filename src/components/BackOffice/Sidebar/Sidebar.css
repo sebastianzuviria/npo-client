@@ -3,9 +3,9 @@
   justify-content: flex-start;
   border-top: none;
   max-width: max-content;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 84px);
   position: sticky;
-  top: 100px;
+  top: 84px;
   background-color: var(--color-font);
 }
 
@@ -42,6 +42,9 @@
     position: fixed;
     top: auto;
     bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
     height: fit-content;
     border-top: 1px solid gray;
   }

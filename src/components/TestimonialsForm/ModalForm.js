@@ -53,8 +53,8 @@ const ModalForm = ( { isModalOpen, setIsModalOpen} ) => {
         </Form>
         <Modal.Footer>
 
-            <button type="button" className="fa fa-user-edit btn btn-edit " onClick={ () => handleSubmit() }> Guardar Cambios </button>
-            <button type="button" className="btn btn-secondary" onClick={ () => setIsModalOpen(!isModalOpen)}> Cancelar </button>
+            <button type="button" className=" btn-sm btn-edit text-nowrap border-0 p-2 " onClick={ () => handleSubmit() }><i className="fa fa-user-edit me-2" aria-hidden="true"></i> Guardar Cambios </button>
+            <button type="button" className="btn btn-secondary " onClick={ () => setIsModalOpen(!isModalOpen)}> Cancelar </button>
 
     </Modal.Footer>
         
