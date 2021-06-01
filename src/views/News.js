@@ -1,11 +1,11 @@
 import React from 'react';
-import NewList from '../components/NewList/NewList';
+import NewsPage from '../components/NewsPage/NewsPage';
 import BasicLayout from '../Layouts/BasicLayout';
 
 const News = () => {
   return (
     <BasicLayout>
-      <NewList />
+      <NewsPage />
     </BasicLayout>
   );
 };
