@@ -11,6 +11,11 @@
 .footer__linkweb {
   text-decoration: none;
 }
+.img-footer{
+  background-position: center;
+  width: 130px;
+  height: 58px;
+}
 
 @media only screen and (max-width: 800px) {
   .footer__col {
