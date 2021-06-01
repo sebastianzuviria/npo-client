@@ -23,6 +23,7 @@
 
 .btn-edit:hover {
   background-color: rgb(76, 114, 130);
+  color: #fff;
 }
 
 .btn-edit,
