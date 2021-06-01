@@ -153,27 +153,7 @@ const UpdateformOrganization = () => {
                   <InputField label="Dirección" name="address" type="text" />
                 </div>
 
-                <div className="col-sm-6">
-                  <img
-                    src={imageurl}
-                    alt="Logo de la organización"
-                    className="img-fluid"
-                  ></img>
-                  <input
-                    label="Logo"
-                    name="image"
-                    type="file"
-                    onChange={(event) =>
-                      formProps.setFieldValue('image', event.target.files[0])
-                    }
-                    placeholder="..."
-                  />
-                  <ErrorMessage
-                    name="image"
-                    className="invalid-feedback ml-2 d-block"
-                    component="div"
-                  />
-                </div>
+               
 
                 <div className="col-sm-6">
                   <div className="form-floating mt-4">
@@ -196,7 +176,29 @@ const UpdateformOrganization = () => {
                 </div>
               </div>
               <br />
-              <button type="submit" className="btn btn-secondary">
+              <div className="col-sm-6">
+                  {/* <img
+                    src={imageurl}
+                    alt="Logo de la organización"
+                    className="img-fluid"
+                  ></img> */}
+                  <div style={{width:'25vw', height: '25vw', backgroundImage: `url(${imageurl})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+                  <input
+                    label="Logo"
+                    name="image"
+                    type="file"
+                    onChange={(event) =>
+                      formProps.setFieldValue('image', event.target.files[0])
+                    }
+                    placeholder="..."
+                  />
+                  <ErrorMessage
+                    name="image"
+                    className="invalid-feedback ml-2 d-block"
+                    component="div"
+                  />
+                </div>
+              <button type="submit" className="btn btn-secondary" style={{ marginTop: '30px'}}>
                 Actualizar
               </button>
             </Form>
