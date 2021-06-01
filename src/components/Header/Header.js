@@ -44,10 +44,11 @@ const Header = () => {
           className="collapse navbar-collapse justify-content-center"
           id="appHeader"
         >
-          <ul className="navbar-nav mb-2 mb-lg-0 mx-0 px-2 rounded">
+          <ul className="navbar-nav mb-2 mb-md-0 mx-0 px-2 rounded">
             {navItems.map(({ text, route }, idx) => {
               return (
                 <NavLink
+                  key={idx}
                   className={`nav-link mb-2  mx-lg-2 px-2 rounded  ${
                     location.pathname === route
                       ? 'disabled navbar-active'
