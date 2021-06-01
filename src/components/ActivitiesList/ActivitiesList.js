@@ -16,9 +16,10 @@ const ActivitiesList = () => {
   }, []);
 
   return (
-    <div className="activities-container">
+    <div className="container py-5">
       <div className="activities-header">
-        <h1>Actividades</h1>
+      <h2 className='mb-1'>Actividades</h2>
+      <p className="lead border-bottom pb-3 mt-0">Enterate de los próximos eventos.</p>
       </div>
       {activities.length > 0 ? (
         activities.map((item) => <ActivitiesCard {...item} key={item.id} />)
