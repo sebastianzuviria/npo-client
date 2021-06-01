@@ -34,7 +34,7 @@ const ModalForm = ( { isModalOpen, setIsModalOpen} ) => {
     <Form className="d-flex flex-direction: row px-5" onSubmit={e => e.preventDefault()}>
 
             <Modal.Header>
-                <Modal.Title>Crear Testimonio</Modal.Title>
+                <Modal.Title>Dejanos tu comentario</Modal.Title>
             </Modal.Header>
 
             <Form.Group className="mb-3" controlId="name">
