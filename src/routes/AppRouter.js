@@ -5,12 +5,13 @@ import Home from '../views/Home';
 import RestrictedRoute from './components/RestrictedRoute';
 import News from '../views/News';
 import DetailedNew from '../views/DetailedNew';
+import Activities from '../views/Activities' 
 import DetailActivity from '../views/DetailActivity';
 import BackOfficeRoutes from './BackOfficeRoutes';
 import Signup from '../views/Signup';
 import Login from '../views/Login';
 import TestimonialForms from '../views/TestimonialForms';
-import As from '../views/as';
+import Us from '../views/us';
 import PrivateRoute from './components/PrivateRoute';
 
 const AppRouter = () => {
@@ -21,8 +22,9 @@ const AppRouter = () => {
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/news" component={News} />
         <Route exact path="/news/:id" component={DetailedNew} />
+        <Route exact path="/activities" component={Activities} />
         <Route exact path="/activities/:id" component={DetailActivity} />
-        <Route exact path="/members" component={As} />
+        <Route exact path="/members" component={Us} />
 
         {/*  Restricted routes for logged users */}
         <RestrictedRoute exact path="/login" component={Login} />

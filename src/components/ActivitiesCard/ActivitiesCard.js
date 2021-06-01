@@ -1,21 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import './NewsCard.css';
+import './ActivitiesCard.css';
 
-const NewsCard = ({ title, image, id }) => {
+const ActivitiesCard = ({ name, image, id }) => {
   const history = useHistory();
   const viewMore = () => {
-    history.push(`/news/${id}`);
+    history.push(`/activities/${id}`);
   };
 
   return (
-    <div className="news-item" onClick={viewMore}>
-      <div className="news-img">
+    <div className="activities-item" onClick={viewMore}>
+      <div className="activities-img">
         <div style={{width:'auto', height: '20vh', backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '100%', alignSelf: 'center'}}></div>
       </div>
-      <span className="news-title">{title}</span>
+      <span className="activities-title">{name}</span>
     </div>
   );
 };
 
-export default NewsCard;
+export default ActivitiesCard;

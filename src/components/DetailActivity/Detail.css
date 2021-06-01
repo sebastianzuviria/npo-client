@@ -7,6 +7,9 @@
     box-shadow: 1px 1px 10px 0.1px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
+.img-act{
+    width: 100%;
+}
 .date{
     font-style: italic;
     color: rgb(121, 121, 121);

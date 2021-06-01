@@ -18,13 +18,14 @@ const MembersOrganization= ()=>{
 
     return (
         
-        <div class="row" >
+        <div className="row" style={{display: 'flex', justifyContent: 'center'}}>
             
             {members.length > 0 ? (
                 members.map((item) => 
-                <div class="col-lg-4 col-sm-4">
-                    <img src={item.image} alt={`Picture of ${item.name}`} class="bd-placeholder-img rounded-circle" width="140" height="140" />
-                        <p>{item.name}</p>
+                <div className="col-lg-4 col-sm-4" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItem: 'center'}}>
+                    {/* <img src={item.image} alt={`Picture of ${item.name}`} class="bd-placeholder-img rounded-circle" width="140" height="140" /> */}
+                    <div style={{width:'150px', height: '150px', backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '100%', alignSelf: 'center'}}></div>
+                        <p style={{alignSelf: 'center'}}>{item.name}</p>
                 </div>
                 
                 )
