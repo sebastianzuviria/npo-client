@@ -55,8 +55,8 @@ const Table = () => {
       <table className="table table-bordered table-light">
         <thead>
           <tr>
-            <th scope="col">Name Activity</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Nombre de actividad</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
