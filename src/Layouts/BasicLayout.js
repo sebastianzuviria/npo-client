@@ -8,7 +8,10 @@ const BasicLayout = ({ children }) => {
     <React.Fragment>
       <Header />
       <LazyLoad>
-        <div className="animate__animated animate__fadeIn">
+        <div
+          className="animate__animated animate__fadeIn"
+          style={{ position: 'relative', zIndex: 2 }}
+        >
           {children}
         </div>
       </LazyLoad>
