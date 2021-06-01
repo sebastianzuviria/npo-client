@@ -13,7 +13,7 @@ const TestimonialsForm = () => {
             
             <div className='d-flex justify-content-center my-4'>
                 
-                <button type="button" className="btn btn-edit my-4" onClick={() => setIsModalOpen(!isModalOpen)}> Dejanos tu comentario </button>
+                <button type="button" className="btn news__btn-more p-3 mb-5" onClick={() => setIsModalOpen(!isModalOpen)}> DEJA TU COMENTARIO </button>
 
             </div>
 
