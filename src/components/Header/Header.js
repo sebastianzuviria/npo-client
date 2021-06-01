@@ -41,15 +41,17 @@ const Header = () => {
           <img className="img-fluid" src={logo} alt={logo} />
         </NavLink>
         <div
-          className="collapse navbar-collapse justify-content-center"
+          className="collapse navbar-collapse justify-content-around"
           id="appHeader"
         >
-          <ul className="navbar-nav mb-2 mb-md-0 mx-0 px-2 rounded">
+          <ul className="navbar-nav mb-2 mb-md-0 mx-0 px-2 rounded w-100 justify-content-evenly">
             {navItems.map(({ text, route }, idx) => {
+              console.log(route.slice(1));
               return (
                 <NavLink
                   key={idx}
-                  className={`nav-link mb-2  mx-lg-2 px-2 rounded  ${
+                  className={`nav-link mb-2  mb-lg-0  mx-lg-3 px-2 rounded  ${
+                    (location.pathname.startsWith(route) && route !== '/') ||
                     location.pathname === route
                       ? 'disabled navbar-active'
                       : 'header__ul'
