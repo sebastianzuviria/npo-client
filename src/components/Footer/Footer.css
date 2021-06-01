@@ -7,9 +7,9 @@
 }
 
 .footer__img {
-    height: 58px;
+    height: 80px;
     width: 130px;
-    filter: invert(100%) grayscale(100%) contrast(200%);
+    /* filter: invert(100%) grayscale(100%) contrast(200%); */
 }
 
 .footer__linkweb{
