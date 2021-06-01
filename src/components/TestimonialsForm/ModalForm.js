@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import apiPostService from '../../services/apiPostService';
 import { successAlert } from '../Alert/Alert';
 
-const ModalForm = ( { isModalOpen, setIsModalOpen, currentUserId, testimonials, setTestimonials} ) => {
+const ModalForm = ( { isModalOpen, setIsModalOpen} ) => {
 
     const [testimonial, setTestimonial] = useState({});
 
@@ -19,10 +19,10 @@ const ModalForm = ( { isModalOpen, setIsModalOpen, currentUserId, testimonials, 
         
         try{
 
-            const {id, name, content, userId, user} = await apiPostService('testimonials', {...testimonial, id: currentUserId})
+            await apiPostService('testimonials', testimonial)
             
             await successAlert();
-            setTestimonials([...testimonials, {id, name, content, userId, user}]);
+            
             setIsModalOpen(false);
             
         }catch(err){
@@ -34,7 +34,7 @@ const ModalForm = ( { isModalOpen, setIsModalOpen, currentUserId, testimonials, 
     <Form className="d-flex flex-direction: row px-5" onSubmit={e => e.preventDefault()}>
 
             <Modal.Header>
-                <Modal.Title>Edición</Modal.Title>
+                <Modal.Title>Crear Testimonio</Modal.Title>
             </Modal.Header>
 
             <Form.Group className="mb-3" controlId="name">
@@ -53,9 +53,8 @@ const ModalForm = ( { isModalOpen, setIsModalOpen, currentUserId, testimonials, 
         </Form>
         <Modal.Footer>
 
-            <Button variant="primary" type="button" onClick={() => handleSubmit() }> Guardar Cambios </Button>
-
-            <Button variant="secondary" type="button" onClick = { () => setIsModalOpen(!isModalOpen) } > Cancelar </Button>
+            <button type="button" className="fa fa-user-edit btn btn-edit " onClick={ () => handleSubmit() }> Guardar Cambios </button>
+            <button type="button" className="btn btn-secondary" onClick={ () => setIsModalOpen(!isModalOpen)}> Cancelar </button>
 
     </Modal.Footer>
         
