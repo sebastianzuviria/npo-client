@@ -49,7 +49,7 @@ const Table = () => {
   }, []);
   return (
     <div className="d-flex justify-content-center">
-      <table className="table table-bordered table-hw">
+      <table className="table table-bordered table-hw table-scroll">
         <thead>
           <tr>
             <th scope="col">Nombre/s</th>

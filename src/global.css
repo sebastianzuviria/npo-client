@@ -35,3 +35,9 @@
   font-family: var(--font-lato);
   color: var(--color-font);
 }
+@media screen and (max-width: 700px) {
+  .table-overflow {
+    overflow: scroll;
+    width: 100%;
+  }
+}
